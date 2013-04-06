@@ -20,7 +20,7 @@ if PERMISSION_BUILTIN_TEMPLATETAGS:
 if PERMISSION_EXTEND_USER_CLASS:
     from django.contrib import auth
     from django.contrib.auth.models import AnonymousUser
-    from django.contrib.auth import get_user_model
+    #from django.contrib.auth import get_user_model
 
     def _user_has_role(user, role):
         backends = auth.get_backends()
@@ -40,8 +40,11 @@ if PERMISSION_EXTEND_USER_CLASS:
                     return backend.get_all_roles(user)
         return None
 
-    get_user_model().has_role = _user_has_role
-    get_user_model().roles = property(_user_get_all_roles)
+    #get_user_model().has_role = _user_has_role
+    #get_user_model().roles = property(_user_get_all_roles)
+    from gauth.models import GUser
+    GUser.has_role = _user_has_role
+    GUser.roles = property(_user_get_all_roles)
     AnonymousUser.has_role = lambda user, role: False
     AnonymousUser.roles = ()
 
