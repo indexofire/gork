@@ -1,0 +1,15 @@
+<ul class="ticker" style="list-style:none">
+{% for entry in feed.entries %}
+  <li>
+    <h3 class="title"><a href="{{ entry.link }}">{{ entry.title}}</a></h3>
+    {{ entry.summary|safe }}
+    <span class="copyright">{{ feed.feed.rights }}</span>
+    <span>posted by {{ entry.author }} at </span>
+    <span class="date">
+    {% with entry.updated_parsed as t %}
+      {{ t.tm_mday }}.{{ t.tm_mon }}.{{ t.tm_year }} {{ t.tm_hour|stringformat:'02d' }}:{{ t.tm_min|stringformat:'2d' }}
+    {% endwith %}
+    </span>
+  </li>
+  {% endfor %}
+</ul>

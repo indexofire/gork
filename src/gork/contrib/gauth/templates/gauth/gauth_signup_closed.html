@@ -1,0 +1,21 @@
+{% extends "gauth/gauth_base.html" %}
+{% load feincms_tags i18n applicationcontent_tags %}
+
+{% block title %}{{ block.super }}{% trans 'Sign up closed' %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li>{% trans "Sign up closed" %}</li>
+{% endblock breadcrumbs %}
+
+{% block account-content %}
+<div class="pad">
+  <h1>{% trans "Sign up closed" %}</h1>
+  {% if code %}
+  <p>{% blocktrans %}The code you provided was not accepted.{% endblocktrans %}</p>
+  {% else %}
+  <p>{% blocktrans %}Sign up is closed to the general public.{% endblocktrans %}</p>
+  {% endif %}
+</div>
+{% endblock account-content %}

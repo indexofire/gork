@@ -1,0 +1,52 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% block extra_head %}
+  {% block extrastyle %}
+  <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+  {% endblock extrastyle %}
+  {% block extrahead %}{% endblock %}
+  {% block blockbots %}{% endblock %}
+{% endblock extra_head %}
+
+{% block breadcrumbs %}
+  <li><i class="icon-home"></i>&nbsp<a href="/">{% trans "Home" %}</a></li>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+{% block userlinks %}{% endblock userlinks %}
+
+{% block mainbody %}
+<div class="main {% block coltype %}colM{% endblock %}">
+{% if messages %}
+  <div class="alert alert-success">
+    <ul class="messagelist">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{% block pretitle %}{% endblock pretitle %}
+{% block content_title %}
+{% if title %}
+  <div><h3>{{ title }}</h3></div>
+{% endif %}
+{% endblock content_title %}
+
+  <div class="row-fluid show-grid">
+    {% block admin_content %}
+      {% block object-tools %}{% endblock object-tools %}
+        {{ content }}
+    {% endblock admin_content %}
+
+    {% block sidebar %}{% endblock sidebar %}
+  </div>
+
+  {% block footer %}{% endblock footer %}
+</div>
+{% endblock mainbody %}
+<!-- end block content -->
+</div>
+{% endblock content %}

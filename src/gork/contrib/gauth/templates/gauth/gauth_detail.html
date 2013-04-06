@@ -1,0 +1,82 @@
+{% extends "gauth/gauth_base.html" %}
+{% load applicationcontent_tags feincms_tags i18n %}
+
+{% block title %}{{ block.super }}{% trans 'User info' %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li>{% trans "User" %} {{ object.username }}</li>
+{% endblock breadcrumbs %}
+
+{% block account-content %}
+<div class="span3">
+  <div>
+    <a title="{% trans 'your picture' %}" rel="prettyPhoto"><img src="{{ MEDIA_URL}}{{ object.avatar }}" class="img-circle"></a>
+    <h3>{{ object.username }}</h3>
+    <p>{% trans "Job title" %} / {% trans "Expertise" %}</p>
+  </div>
+
+  {% if request.user == object or request.user.is_superuser %}
+  <ul class="navbar">
+    <li><span>{% trans "view details" %}</span></li>
+    <li><a href="{% url 'account-edit' user.id %}">{% trans "edit details" %}</a></li>
+    <li><a href="{% url 'account-password-change' %}">{% trans "change password" %}</a></li>
+  </ul>
+  {% endif %}
+</div>
+
+<div class="span9">
+  <div class="pad">
+    <div>
+      <h2>{% trans "Personal Details" %}</h2>
+      <table class="table">
+        <tr>
+          <td>{% trans "Name" %}</td>
+          <td>{{ object.username }}</td>
+        </tr>
+        {% if object.nickname %}
+        <tr>
+          <td>{% trans "Nickname" %}</td>
+          <td>{{ object.nickname }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td>{% trans "Gender" %}</td>
+        {% if object.gender == 1 %}
+          <td>{% trans "Male" %}</td>
+        {% elif object.gender == 2 %}
+          <td>{% trans "Female" %}</td>
+        {% else %}
+          <td>{% trans "Unknown" %}</td>
+        {% endif %}
+        {% if object.birthday %}
+        <tr>
+          <td>{% trans "Day of Birth" %}</td>
+          <td>{{ object.birthday }}</td>
+        </tr>
+        {% endif %}
+        {% if object.telephone %}
+        <tr>
+          <td>{% trans "Telephone" %}</td>
+          <td>{{ object.telephone }}</td>
+        </tr>
+        {% endif %}
+        {% if object.email %}
+        <tr>
+          <td>{% trans "Email" %}</td>
+          <td><a href="mailto:{{ object.email }}">{{ object.email }}</a></td>
+        </tr>
+        {% endif %}
+      </table>
+    {% if object.intro %}
+    <div>
+      <h2>{% trans "Profesional object" %}</h2>
+      <ul>
+        <li><p>{{ object.intro }}</p></li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock account-content %}

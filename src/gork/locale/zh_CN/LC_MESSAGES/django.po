@@ -1,0 +1,1244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-03 09:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: contrib/gauth/admin.py:30 contrib/gauth/forms.py:42
+#: contrib/gauth/forms.py:77 contrib/gauth/forms.py:159
+#: contrib/gauth/templates/gauth/gauth_login.html:16
+#: contrib/gauth/templates/gauth/gauth_signup.html:15
+msgid "Username"
+msgstr ""
+
+#: contrib/gauth/admin.py:33
+msgid ""
+"Required. 30 characters or fewer. Letters, digits and             @/./+/-/_ "
+"only."
+msgstr ""
+
+#: contrib/gauth/admin.py:35
+msgid ""
+"This value may contain only letters,             numbers and @/./+/-/_ "
+"characters."
+msgstr ""
+
+#: contrib/gauth/admin.py:39 contrib/gauth/forms.py:51
+#: contrib/gauth/forms.py:83 contrib/gauth/forms.py:125
+#: contrib/gauth/templates/gauth/gauth_login.html:17
+#: contrib/gauth/templates/gauth/gauth_signup.html:16
+#: contrib/gauth/templates/gauth/gauth_signup.html:17
+#: themes/default/templates/admin/auth/user/change_password.html:38
+msgid "Password"
+msgstr ""
+
+#: contrib/gauth/admin.py:40
+msgid ""
+"Raw passwords are not stored, so there is no way to see             this "
+"user's password, but you can change the password using             <a href="
+"\"password/\">this form</a>."
+msgstr ""
+
+#: contrib/gauth/admin.py:72
+msgid "Auth info"
+msgstr ""
+
+#: contrib/gauth/admin.py:73
+msgid "Personal info"
+msgstr ""
+
+#: contrib/gauth/admin.py:74 contrib/gauth/admin.py:242
+msgid "Permissions"
+msgstr ""
+
+#: contrib/gauth/admin.py:76
+msgid "Important dates"
+msgstr ""
+
+#: contrib/gauth/admin.py:188
+msgid "Password changed successfully."
+msgstr ""
+
+#: contrib/gauth/admin.py:198
+#, python-format
+msgid "Change password: %s"
+msgstr ""
+
+#: contrib/gauth/admin.py:241
+msgid "Roles"
+msgstr ""
+
+#: contrib/gauth/admin.py:244
+msgid "Users"
+msgstr ""
+
+#: contrib/gauth/admin.py:267
+msgid "Children roles"
+msgstr ""
+
+#: contrib/gauth/admin.py:279
+msgid "Inherited permissions"
+msgstr ""
+
+#: contrib/gauth/admin.py:291
+msgid "Inherited users"
+msgstr ""
+
+#: contrib/gauth/admin.py:302
+msgid "Current permissions"
+msgstr ""
+
+#: contrib/gauth/admin.py:313
+msgid "Current users"
+msgstr ""
+
+#: contrib/gauth/forms.py:45
+msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: contrib/gauth/forms.py:48
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr ""
+
+#: contrib/gauth/forms.py:52
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user's "
+"password, but you can change the password using <a href=\"password/\">this "
+"form</a>."
+msgstr ""
+
+#: contrib/gauth/forms.py:87
+#: themes/default/templates/admin/auth/user/change_password.html:44
+msgid "Password (again)"
+msgstr ""
+
+#: contrib/gauth/forms.py:99
+msgid "Usernames can only contain letters, numbers and underscores."
+msgstr ""
+
+#: contrib/gauth/forms.py:103
+msgid "This username is already taken. Please choose another."
+msgstr ""
+
+#: contrib/gauth/forms.py:110
+msgid "A user is registered with this email address."
+msgstr ""
+
+#: contrib/gauth/forms.py:115 contrib/gauth/forms.py:210
+msgid "You must type the same password each time."
+msgstr ""
+
+#: contrib/gauth/forms.py:160
+msgid "The username and/or password you specified are not correct."
+msgstr ""
+
+#: contrib/gauth/forms.py:161
+msgid "This account is inactive."
+msgstr ""
+
+#: contrib/gauth/forms.py:174
+#: contrib/gauth/templates/gauth/gauth_detail.html:67
+#: contrib/gauth/templates/gauth/gauth_signup.html:18
+msgid "Email"
+msgstr ""
+
+#: contrib/gauth/forms.py:179
+msgid "Email address can not be found."
+msgstr ""
+
+#: contrib/gauth/forms.py:186
+msgid "Current Password"
+msgstr ""
+
+#: contrib/gauth/forms.py:190
+msgid "New Password"
+msgstr ""
+
+#: contrib/gauth/forms.py:194
+msgid "New Password (again)"
+msgstr ""
+
+#: contrib/gauth/forms.py:204
+msgid "Please type your current password."
+msgstr ""
+
+#: contrib/gauth/views.py:89
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr ""
+
+#: contrib/gauth/views.py:93
+#, python-format
+msgid "The code %(code)s is invalid."
+msgstr ""
+
+#: contrib/gauth/views.py:424
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr ""
+
+#: contrib/gauth/views.py:494
+msgid "Password successfully changed."
+msgstr ""
+
+#: contrib/gauth/_views/dashboard.py:43
+msgid "Your profile has been updated!"
+msgstr ""
+
+#: contrib/gauth/extensions/avatar.py:32
+msgid "Avatar Pictures"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:11
+#: contrib/gauth/templates/gauth/gauth_detail.html:47
+msgid "Male"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:12
+#: contrib/gauth/templates/gauth/gauth_detail.html:49
+msgid "Female"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:13
+#: contrib/gauth/templates/gauth/gauth_detail.html:51
+msgid "Unknown"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:19
+#: contrib/gauth/templates/gauth/gauth_detail.html:45
+msgid "Gender"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:29
+msgid "Birthday"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:38
+msgid "Telephone Number"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:47
+msgid "Cell Phone Number"
+msgstr ""
+
+#: contrib/gauth/extensions/portfolio.py:53
+msgid "Portifolio"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:38 contrib/gform/models.py:226
+msgid "name"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:39
+msgid "codename"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:40
+msgid "description"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:40
+msgid "A description of this permission role"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:41
+msgid "parent role"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:42 contrib/gauth/models/user.py:81
+msgid "user"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:43
+msgid "permissions"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:48
+msgid "role"
+msgstr ""
+
+#: contrib/gauth/models/permission.py:49
+msgid "roles"
+msgstr ""
+
+#: contrib/gauth/models/user.py:37
+msgid "username"
+msgstr ""
+
+#: contrib/gauth/models/user.py:40
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr ""
+
+#: contrib/gauth/models/user.py:44
+msgid "Enter a valid username."
+msgstr ""
+
+#: contrib/gauth/models/user.py:48
+msgid "nickname"
+msgstr ""
+
+#: contrib/gauth/models/user.py:52
+msgid "Showed in site. any characters will be valid"
+msgstr ""
+
+#: contrib/gauth/models/user.py:55
+msgid "email address"
+msgstr ""
+
+#: contrib/gauth/models/user.py:61
+msgid "staff status"
+msgstr ""
+
+#: contrib/gauth/models/user.py:63
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: contrib/gauth/models/user.py:66
+msgid "active"
+msgstr ""
+
+#: contrib/gauth/models/user.py:68
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: contrib/gauth/models/user.py:71
+msgid "sign up date"
+msgstr ""
+
+#: contrib/gauth/models/user.py:82
+msgid "users"
+msgstr ""
+
+#: contrib/gauth/models/user.py:153
+msgid "email confirmation"
+msgstr ""
+
+#: contrib/gauth/models/user.py:154
+msgid "email confirmations"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:4
+msgid "User info"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:8
+#: contrib/gauth/templates/gauth/gauth_edit.html:8
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:8
+#: contrib/gauth/templates/gauth/gauth_email_confirmation_sent.html:8
+#: contrib/gauth/templates/gauth/gauth_email_confirmed.html:8
+#: contrib/gauth/templates/gauth/gauth_index.html:8
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:8
+#: contrib/gauth/templates/gauth/gauth_password_reset_send.html:8
+#: contrib/gauth/templates/gauth/gauth_password_reset_token.html:8
+#: contrib/gauth/templates/gauth/gauth_password_reset_token_fail.html:8
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:8
+msgid "Account"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:9
+#: contrib/gauth/templates/gauth/gauth_edit.html:9
+#: themes/default/templates/admin/object_history.html:21
+msgid "User"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:15
+msgid "your picture"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:17
+msgid "Job title"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:17
+msgid "Expertise"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:22
+msgid "view details"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:23
+msgid "edit details"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:24
+msgid "change password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:32
+msgid "Personal Details"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:35
+msgid "Name"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:40
+msgid "Nickname"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:55
+msgid "Day of Birth"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:61
+msgid "Telephone"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_detail.html:74
+msgid "Profesional object"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_edit.html:4
+msgid "Edit user"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_edit.html:10
+msgid "Edit"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_edit.html:16
+msgid "Edit account"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:4
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:9
+msgid "Email confirm"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:15
+msgid "Confirm Email"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:17
+#, python-format
+msgid "Confirm email address <b>%(email)s</b>?"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirm.html:19
+msgid "Confirm"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirmation_sent.html:4
+#: contrib/gauth/templates/gauth/gauth_email_confirmation_sent.html:9
+msgid "Email confirmation sent"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirmation_sent.html:14
+msgid "Confirm your email address"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirmation_sent.html:15
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:"
+"%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirmed.html:4
+#: contrib/gauth/templates/gauth/gauth_email_confirmed.html:9
+#: contrib/gauth/templates/gauth/gauth_email_confirmed.html:14
+msgid "Email confirmed"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_email_confirmed.html:15
+#, python-format
+msgid "You have confirmed <b>%(email)s</b>"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_index.html:4
+msgid "User list"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:4
+#: themes/default/templates/admin/login.html:46
+msgid "Log in"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:26
+msgid "Sign in"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:27
+#: contrib/gauth/templates/gauth/gauth_signup.html:4
+msgid "Sign up"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:28
+msgid "forget your password?"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:28
+msgid "Forget?"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:172
+#: contrib/gauth/templates/gauth/gauth_signup.html:165
+msgid "Please fill in your username"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:180
+#: contrib/gauth/templates/gauth/gauth_signup.html:173
+msgid "Please fill in your password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:186
+#: contrib/gauth/templates/gauth/gauth_login.html:202
+#: contrib/gauth/templates/gauth/gauth_signup.html:190
+msgid "Checking credentials..."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:211
+msgid "Authenticate successful! Log into site right now!"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:222
+#: contrib/gauth/templates/gauth/gauth_signup.html:210
+msgid "Username or password is not correct!"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_login.html:222
+#: contrib/gauth/templates/gauth/gauth_signup.html:210
+msgid "Forget your password?"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_logout.html:4
+msgid "User logout"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_logout.html:13
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_logout.html:14
+msgid "Log out"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_change.html:4
+msgid "Change user's password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_change.html:13
+#: themes/default/templates/admin/auth/user/change_password.html:17
+#: themes/default/templates/admin/auth/user/change_password.html:51
+msgid "Change password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_change.html:16
+#: contrib/gauth/templates/gauth/gauth_password_reset_token.html:19
+#: themes/default/templates/admin/pagination.html:11
+#: themes/default/templates/admin/submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:4
+msgid "Reset user's password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:9
+msgid "Reset Password Send"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:16
+msgid "Password reset"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:17
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:22
+msgid "Reset my password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset.html:27
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</"
+"a>."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_send.html:4
+#: contrib/gauth/templates/gauth/gauth_password_reset_send.html:9
+msgid "Send reset password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_token.html:4
+#: contrib/gauth/templates/gauth/gauth_password_reset_token.html:9
+msgid "Password reset token"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_token.html:15
+msgid "Set your new password"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_token_fail.html:4
+#: contrib/gauth/templates/gauth/gauth_password_reset_token_fail.html:9
+msgid "Password reset token fail"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_token_fail.html:14
+msgid "Bad token"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_password_reset_token_fail.html:16
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(url)s\">new password reset</a>."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_signup.html:21
+msgid "Submit"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_signup.html:199
+msgid "Log into site right now!"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:4
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:9
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:14
+msgid "Sign up closed"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:16
+msgid "The code you provided was not accepted."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/gauth_signup_closed.html:18
+msgid "Sign up is closed to the general public."
+msgstr ""
+
+#: contrib/gauth/templates/gauth/email/email_confirmation_message.txt:4
+#, python-format
+msgid ""
+"User '%(user_name)s' at %(site_name)s has given this as an email address.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/email/email_confirmation_subject.txt:2
+#, python-format
+msgid "Confirm email address for %(site_name)s"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/email/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password for your user account at %(site_name)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+msgstr ""
+
+#: contrib/gauth/templates/gauth/email/password_reset_subject.txt:1
+#, python-format
+msgid "[%(site_name)s] Password reset"
+msgstr ""
+
+#: contrib/gbase/models.py:26
+msgid "Index Page"
+msgstr ""
+
+#: contrib/gbase/models.py:29 contrib/gbase/models.py:37
+#: contrib/gbase/models.py:45 contrib/gbase/models.py:54
+msgid "Main content area"
+msgstr ""
+
+#: contrib/gbase/models.py:34
+msgid "One Columns Page"
+msgstr ""
+
+#: contrib/gbase/models.py:42
+msgid "Two Columns Page"
+msgstr ""
+
+#: contrib/gbase/models.py:46
+msgid "Left Side"
+msgstr ""
+
+#: contrib/gbase/models.py:51
+msgid "Three Columns Page"
+msgstr ""
+
+#: contrib/gbase/models.py:55
+msgid "Sidebar"
+msgstr ""
+
+#: contrib/gbase/models.py:56
+msgid "Right Side"
+msgstr ""
+
+#: contrib/gbase/models.py:61
+msgid "Application Page"
+msgstr ""
+
+#: contrib/gbase/models.py:64
+msgid "Application"
+msgstr ""
+
+#: contrib/gbase/extensions/menu_class.py:13
+#: contrib/gbase/extensions/menu_class.py:31
+msgid "Menu Additional Class"
+msgstr ""
+
+#: contrib/gbase/extensions/menu_class.py:23
+msgid "Menu Additional Image"
+msgstr ""
+
+#: contrib/gform/admin.py:44
+msgid "Configuration options"
+msgstr ""
+
+#: contrib/gform/admin.py:45
+msgid "Save and continue editing to configure options."
+msgstr ""
+
+#: contrib/gform/admin.py:66
+#, python-format
+msgid "Form configuration: %s"
+msgstr ""
+
+#: contrib/gform/admin.py:127
+msgid "Configuration"
+msgstr ""
+
+#: contrib/gform/content.py:30 contrib/gform/models.py:153
+#: contrib/gform/models.py:215 contrib/gform/models.py:301
+msgid "form"
+msgstr ""
+
+#: contrib/gform/content.py:35
+msgid "show form title"
+msgstr ""
+
+#: contrib/gform/content.py:39
+msgid "success message"
+msgstr ""
+
+#: contrib/gform/content.py:41
+msgid "Optional custom message to display after valid form is submitted"
+msgstr ""
+
+#: contrib/gform/content.py:52
+msgid "form submission successful"
+msgstr ""
+
+#: contrib/gform/content.py:57
+msgid "form content"
+msgstr ""
+
+#: contrib/gform/content.py:58
+msgid "form contents"
+msgstr ""
+
+#: contrib/gform/models.py:46
+msgid "Thank you, your input has been received."
+msgstr ""
+
+#: contrib/gform/models.py:76
+msgid "You got an error!"
+msgstr ""
+
+#: contrib/gform/models.py:117
+msgid "Save form submission"
+msgstr ""
+
+#: contrib/gform/models.py:120
+msgid "E-mail"
+msgstr ""
+
+#: contrib/gform/models.py:122
+msgid "e-mail address"
+msgstr ""
+
+#: contrib/gform/models.py:131 contrib/gform/models.py:222
+msgid "title"
+msgstr ""
+
+#: contrib/gform/models.py:135
+msgid "config"
+msgstr ""
+
+#: contrib/gform/models.py:143
+msgid "gform_designer"
+msgstr ""
+
+#: contrib/gform/models.py:147
+msgid "submit numbers allowed"
+msgstr ""
+
+#: contrib/gform/models.py:148
+msgid "numbers of forms submit times"
+msgstr ""
+
+#: contrib/gform/models.py:154
+msgid "forms"
+msgstr ""
+
+#: contrib/gform/models.py:218
+msgid "ordering"
+msgstr ""
+
+#: contrib/gform/models.py:230
+msgid "field type"
+msgstr ""
+
+#: contrib/gform/models.py:235
+msgid "choices"
+msgstr ""
+
+#: contrib/gform/models.py:238
+msgid "Comma-separated"
+msgstr ""
+
+#: contrib/gform/models.py:241
+msgid "default value"
+msgstr ""
+
+#: contrib/gform/models.py:244
+msgid "Default value for this field"
+msgstr ""
+
+#: contrib/gform/models.py:247
+msgid "help text"
+msgstr ""
+
+#: contrib/gform/models.py:250
+msgid "Optional extra explanatory text beside the field"
+msgstr ""
+
+#: contrib/gform/models.py:253
+msgid "is required"
+msgstr ""
+
+#: contrib/gform/models.py:260
+msgid "form field"
+msgstr ""
+
+#: contrib/gform/models.py:261
+msgid "form fields"
+msgstr ""
+
+#: contrib/gform/models.py:269
+#, python-format
+msgid "You can't specify choices for %s fields"
+msgstr ""
+
+#: contrib/gform/models.py:310
+msgid "form_submit_user"
+msgstr ""
+
+#: contrib/gform/models.py:319
+msgid "form submission"
+msgstr ""
+
+#: contrib/gform/models.py:320
+msgid "form submissions"
+msgstr ""
+
+#: settings/base.py:36
+msgid "Simplified Chinese"
+msgstr ""
+
+#: themes/default/templates/site_base.html:60
+msgid "Welcome"
+msgstr ""
+
+#: themes/default/templates/site_base.html:62
+msgid "Preferences"
+msgstr ""
+
+#: themes/default/templates/site_base.html:63
+msgid "Messages"
+msgstr ""
+
+#: themes/default/templates/site_base.html:65
+msgid "Dashboard"
+msgstr ""
+
+#: themes/default/templates/site_base.html:68
+msgid "Logout"
+msgstr ""
+
+#: themes/default/templates/site_base.html:80
+msgid "Sign Up"
+msgstr ""
+
+#: themes/default/templates/site_base.html:83
+#: themes/default/templates/site_base.html:90
+msgid "Sign In"
+msgstr ""
+
+#: themes/default/templates/site_base.html:89
+msgid "Remember Me"
+msgstr ""
+
+#: themes/default/templates/admin/404.html:4
+#: themes/default/templates/admin/404.html:8
+msgid "Page not found"
+msgstr ""
+
+#: themes/default/templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: themes/default/templates/admin/500.html:4
+#: themes/default/templates/admin/base.html:12
+msgid "Home"
+msgstr ""
+
+#: themes/default/templates/admin/500.html:4
+msgid "Server error"
+msgstr ""
+
+#: themes/default/templates/admin/500.html:6
+msgid "Server error (500)"
+msgstr ""
+
+#: themes/default/templates/admin/500.html:9
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: themes/default/templates/admin/500.html:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: themes/default/templates/admin/actions.html:14
+msgid "Run the selected action"
+msgstr ""
+
+#: themes/default/templates/admin/actions.html:14
+msgid "Go"
+msgstr ""
+
+#: themes/default/templates/admin/actions.html:20
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: themes/default/templates/admin/actions.html:20
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: themes/default/templates/admin/actions.html:21
+msgid "Clear selection"
+msgstr ""
+
+#: themes/default/templates/admin/app_index.html:7
+#: themes/default/templates/admin/change_form.html:24
+#: themes/default/templates/admin/change_list.html:52
+#: themes/default/templates/admin/index.html:14
+msgid "Site Manager"
+msgstr "网站管理"
+
+#: themes/default/templates/admin/app_index.html:10
+#: themes/default/templates/admin/app_index.html:24
+#: themes/default/templates/admin/index.html:26
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: themes/default/templates/admin/app_index.html:22
+#: themes/default/templates/admin/index.html:24
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: themes/default/templates/admin/app_index.html:36
+#: themes/default/templates/admin/change_form.html:33
+#: themes/default/templates/admin/index.html:38
+msgid "Add"
+msgstr ""
+
+#: themes/default/templates/admin/app_index.html:39
+#: themes/default/templates/admin/index.html:41
+msgid "Change"
+msgstr ""
+
+#: themes/default/templates/admin/app_index.html:48
+#: themes/default/templates/admin/index.html:51
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: themes/default/templates/admin/base_site.html:4
+msgid "HZCDCLabs Site Manager"
+msgstr ""
+
+#: themes/default/templates/admin/base_site.html:8
+#: themes/default/templates/admin/login.html:34
+msgid "Django administration"
+msgstr ""
+
+#: themes/default/templates/admin/change_form.html:49
+#: themes/default/templates/admin/object_history.html:9
+msgid "History"
+msgstr ""
+
+#: themes/default/templates/admin/change_form.html:51
+#: themes/default/templates/admin/edit_inline/stacked.html:9
+#: themes/default/templates/admin/edit_inline/tabular.html:28
+msgid "View on site"
+msgstr ""
+
+#: themes/default/templates/admin/change_form.html:66
+#: themes/default/templates/admin/change_list.html:79
+#: themes/default/templates/admin/login.html:22
+#: themes/default/templates/admin/auth/user/change_password.html:27
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/default/templates/admin/change_list.html:70
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: themes/default/templates/admin/change_list.html:111
+#: themes/default/templates/admin/feincms/tree_editor.html:51
+msgid "Filter"
+msgstr ""
+
+#: themes/default/templates/admin/delete_confirmation.html:9
+#: themes/default/templates/admin/submit_line.html:4
+msgid "Delete"
+msgstr ""
+
+#: themes/default/templates/admin/delete_confirmation.html:15
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: themes/default/templates/admin/delete_confirmation.html:23
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: themes/default/templates/admin/delete_confirmation.html:31
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: themes/default/templates/admin/delete_confirmation.html:36
+#: themes/default/templates/admin/delete_selected_confirmation.html:42
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: themes/default/templates/admin/delete_selected_confirmation.html:8
+msgid "Delete multiple objects"
+msgstr ""
+
+#: themes/default/templates/admin/delete_selected_confirmation.html:15
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: themes/default/templates/admin/delete_selected_confirmation.html:23
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: themes/default/templates/admin/delete_selected_confirmation.html:31
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: themes/default/templates/admin/filter.html:3
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: themes/default/templates/admin/index.html:61
+msgid "Recent Actions"
+msgstr ""
+
+#: themes/default/templates/admin/index.html:63
+msgid "My Actions"
+msgstr ""
+
+#: themes/default/templates/admin/index.html:67
+msgid "None available"
+msgstr ""
+
+#: themes/default/templates/admin/index.html:79
+msgid "Unknown content"
+msgstr ""
+
+#: themes/default/templates/admin/invalid_setup.html:10
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: themes/default/templates/admin/login.html:38
+msgid "Username:"
+msgstr ""
+
+#: themes/default/templates/admin/login.html:41
+msgid "Password:"
+msgstr ""
+
+#: themes/default/templates/admin/object_history.html:20
+msgid "Date/time"
+msgstr ""
+
+#: themes/default/templates/admin/object_history.html:22
+msgid "Action"
+msgstr ""
+
+#: themes/default/templates/admin/object_history.html:36
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: themes/default/templates/admin/pagination.html:10
+msgid "Show all"
+msgstr ""
+
+#: themes/default/templates/admin/search_form.html:6
+msgid "Search"
+msgstr ""
+
+#: themes/default/templates/admin/search_form.html:8
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/default/templates/admin/search_form.html:8
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: themes/default/templates/admin/submit_line.html:5
+msgid "Save as new"
+msgstr ""
+
+#: themes/default/templates/admin/submit_line.html:6
+msgid "Save and add another"
+msgstr ""
+
+#: themes/default/templates/admin/submit_line.html:7
+msgid "Save and continue editing"
+msgstr ""
+
+#: themes/default/templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: themes/default/templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: themes/default/templates/admin/auth/user/change_password.html:31
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: themes/default/templates/admin/auth/user/change_password.html:45
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: themes/default/templates/admin/edit_inline/stacked.html:67
+#: themes/default/templates/admin/edit_inline/tabular.html:113
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: themes/default/templates/admin/edit_inline/stacked.html:70
+#: themes/default/templates/admin/edit_inline/tabular.html:116
+msgid "Remove"
+msgstr ""
+
+#: themes/default/templates/admin/edit_inline/tabular.html:15
+msgid "Delete?"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/content_editor.html:15
+msgid "Copy content from the original"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/content_editor.html:18
+msgid "Region empty"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/content_editor.html:23
+msgid ""
+"Content from the parent site is automatically inherited. To override this "
+"behaviour, add some content."
+msgstr ""
+
+#: themes/default/templates/admin/feincms/content_editor.html:29
+msgid "Add new item"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/item_editor.html:63
+msgid "available translations"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/tree_editor.html:45
+msgid "Shortcuts"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/tree_editor.html:47
+msgid "Collapse tree"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/tree_editor.html:48
+msgid "Expand tree"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/page/page/item_editor.html:10
+msgid "Edit on site"
+msgstr ""
+
+#: themes/default/templates/admin/feincms/page/page/item_editor.html:15
+msgid "Preview"
+msgstr ""

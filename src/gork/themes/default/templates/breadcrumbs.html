@@ -1,0 +1,12 @@
+{% for url, title in trail %}
+<li>
+{% if forloop.first %}
+  <i class="icon-home"></i>
+{% endif %}
+{% if url %}
+  <a href="{{ url }}">{{ title }}</a>
+{% else %}
+  {{ title }}
+{% endif %}
+</li>
+{% endfor %}

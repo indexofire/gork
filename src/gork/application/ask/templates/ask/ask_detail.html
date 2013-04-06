@@ -1,0 +1,40 @@
+{% extends "ask/ask_base.html" %}
+{% load i18n applicationcontent_tags mptt_tags %}
+
+{% block ask-content %}
+<div class="pad">
+  <div class="title" style="border-bottom: 1px solid #E1E1E1;">
+    <h3 style="margin: 0px">{% trans "Question" %}: {{ q.title }}</h3>
+  </div>
+  <div class="content" style="padding: 10px">
+    <span><img src="{{ q.author.avatar }}"><br>author: <a href="{% url 'gauth-detail' q.author.id %}">{{ q.author.username }}</a>
+    </span>
+    <span>{{ q.content }}</span>
+  </div>
+</div>
+
+<div class="pad">
+  <div class="title" style="border-bottom: 1px solid #E1E1E1;">
+    <h3 style="margin: 0px">{% trans "Answers" %}</h3>
+  </div>
+  <ul class="nav">
+  {% recursetree nodes %}
+    <li>
+      <div>{{ node.title }}</div>
+      <div>{{ node.content }}</div>
+      {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
+    </li>
+  {% endrecursetree %}
+  </ul>
+</div>
+{% endblock ask-content %}
+
+{% block ask-sidebar %}
+<div class="pad">
+  <ul>
+  {% for tag in tags %}
+    <li>{{ tag }}</li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock ask-sidebar %}

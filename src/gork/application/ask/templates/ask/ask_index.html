@@ -1,0 +1,56 @@
+{% extends "ask/ask_base.html" %}
+{% load i18n mptt_tags %}
+
+{% block ask-content %}
+{% for q in qs %}
+<div class="pad" style="padding: 10px">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="row-fluid">
+    <div class="span4 well well-small" style="margin-bottom: 0px">
+      <h3 style="margin:0px; text-align: center;">{{ q.full_score }}</h3>
+      <div style="text-align: center;">{% trans "Score" %}</div>
+    </div>
+    <div class="span4 well well-small" style="margin-bottom: 0px">
+      <h3 style="margin:0px;text-align:center">{{ q.views }}</h3>
+      <div style="text-align: center;">{% trans "Views" %}</div>
+    </div>
+    <div class="span4 well well-small" style="margin-bottom: 0px">
+      <h3 style="margin:0px; text-align: center">{{ q.get_descendant_count }}</h3>
+      <div style="text-align: center;">{% trans "Answers" %}</div>
+    </div>
+  </div>
+</div>
+    <div class="span9">
+      <a href="{{ q.get_absolute_url }}"><h3>{{ q.title }}</h3></a>
+      <p>{{ q.author.username }}</p>
+    </div>
+  </div>
+</div>
+{% empty %}
+  {% trans "No question yet!" %}
+{% endfor %}
+
+<div class="pagination">
+        <ul>
+          <li class="disabled"><a href="#">Prev</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </div>
+
+{% endblock ask-content %}
+
+{% block ask-sidebar %}
+<div class="pad">
+  <ul>
+    {% for tag in tags %}
+    <li>{{ tag }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock ask-sidebar %}

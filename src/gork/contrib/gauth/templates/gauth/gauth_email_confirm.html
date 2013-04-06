@@ -1,0 +1,24 @@
+{% extends "gauth/gauth_base.html" %}
+{% load feincms_tags i18n applicationcontent_tags %}
+
+{% block title %}{{ block.super }}{% trans 'Email confirm' %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li>{% trans "Email confirm" %}</li>
+{% endblock breadcrumbs %}
+
+{% block account-content %}
+<div class="pad">
+  <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}" class="form-horizontal">{% csrf_token %}
+  <legend>{% trans "Confirm Email" %}</legend>
+  <fieldset>
+    <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>
+    <div>
+      <button type="submit" class="btn btn-primary">{% trans "Confirm" %}</button>
+    </div>
+  </fieldset>
+  </form>
+</div>
+{% endblock account-content %}

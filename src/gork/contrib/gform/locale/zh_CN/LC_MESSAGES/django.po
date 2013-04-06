@@ -1,0 +1,173 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-05 16:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: admin.py:44
+msgid "Configuration options"
+msgstr "参数设置"
+
+#: admin.py:45
+msgid "Save and continue editing to configure options."
+msgstr "保存并继续编辑参数"
+
+#: admin.py:66
+#, python-format
+msgid "Form configuration: %s"
+msgstr "表单设置: %s"
+
+#: admin.py:127
+msgid "Configuration"
+msgstr "设置"
+
+#: content.py:30 models.py:153 models.py:215 models.py:301
+msgid "form"
+msgstr "表单"
+
+#: content.py:35
+msgid "show form title"
+msgstr "显示表单标题"
+
+#: content.py:39
+msgid "success message"
+msgstr "提交成功提示"
+
+#: content.py:41
+msgid "Optional custom message to display after valid form is submitted"
+msgstr "自定义表单提交后显示的提示信息(可选)"
+
+#: content.py:52
+msgid "form submission successful"
+msgstr "表单内容提交成功"
+
+#: content.py:57
+msgid "form content"
+msgstr "表单"
+
+#: content.py:58
+msgid "form contents"
+msgstr "表单"
+
+#: models.py:46
+msgid "Thank you, your input has been received."
+msgstr "谢谢你，你的提交已经收到。"
+
+#: models.py:76
+msgid "You got an error!"
+msgstr "发生一个错误"
+
+#: models.py:117
+msgid "Save form submission"
+msgstr "保存表单内容"
+
+#: models.py:120
+msgid "E-mail"
+msgstr "电子邮件"
+
+#: models.py:122
+msgid "e-mail address"
+msgstr "电子邮件地址"
+
+#: models.py:131 models.py:222
+msgid "title"
+msgstr "标题"
+
+#: models.py:135
+msgid "config"
+msgstr "设置"
+
+#: models.py:143
+msgid "gform_designer"
+msgstr "表单创建者"
+
+#: models.py:147
+msgid "submit numbers allowed"
+msgstr "同一提交者允许的提交结果次数"
+
+#: models.py:148
+msgid "numbers of forms submit times"
+msgstr "表单提交次数"
+
+#: models.py:154
+msgid "forms"
+msgstr "表单"
+
+#: models.py:218
+msgid "ordering"
+msgstr "排序"
+
+#: models.py:226
+msgid "name"
+msgstr "名称"
+
+#: models.py:230
+msgid "field type"
+msgstr "字段类型"
+
+#: models.py:235
+msgid "choices"
+msgstr "选项"
+
+#: models.py:238
+msgid "Comma-separated"
+msgstr "由英文逗号分隔"
+
+#: models.py:241
+msgid "default value"
+msgstr "默认值"
+
+#: models.py:244
+msgid "Default value for this field"
+msgstr "该字段的默认值"
+
+#: models.py:247
+msgid "help text"
+msgstr "帮助"
+
+#: models.py:250
+msgid "Optional extra explanatory text beside the field"
+msgstr "字段的额外解释(可选)"
+
+#: models.py:253
+msgid "is required"
+msgstr "必填项"
+
+#: models.py:260
+msgid "form field"
+msgstr "表单字段"
+
+#: models.py:261
+msgid "form fields"
+msgstr "表单字段"
+
+#: models.py:269
+#, python-format
+msgid "You can't specify choices for %s fields"
+msgstr "你不能指定 %s 的选项字段"
+
+#: models.py:310
+msgid "form_submit_user"
+msgstr "表单提交者"
+
+#: models.py:319
+msgid "form submission"
+msgstr "表单提交内容"
+
+#: models.py:320
+msgid "form submissions"
+msgstr "表单提交内容"

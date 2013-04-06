@@ -1,0 +1,21 @@
+{% extends "gauth/gauth_base.html" %}
+{% load feincms_tags i18n applicationcontent_tags %}
+
+{% block title %}{{ SITE_NAME }} - {% trans 'User logout' %}{% endblock %}
+
+{% block content %}
+<section role="main" id="main">
+
+<div class="with-padding">
+  <div class="twelve-columns">
+    <form method="POST" action="{% url 'gauth-logout' %}" class="form-horizontal">{% csrf_token %}
+      <fieldset>
+        <h1>{% trans "Are you sure you want to log out?" %}</h1>
+        <button type="submit" class="button blue-gradient glossy huge">{% trans "Log out" %}</button>
+    </fieldset>
+  </form>
+</div>
+</div>
+
+</section>
+{% endblock content %}

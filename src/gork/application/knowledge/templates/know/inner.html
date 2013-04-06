@@ -1,0 +1,32 @@
+{% extends 'know/base.html' %}
+{% load i18n applicationcontent_tags %}
+
+{% block knowledge_inner %}
+
+<div class="dk-inner">
+
+  {% include "know/welcome.html" %}
+
+  <div class="dk-search">
+    <form action="{% if category %}{% app_reverse 'knowledge_list_category' 'know.urls' category.slug %}{% else %}{% app_reverse 'knowledge_list' 'know.urls' %}{% endif %}" method="get">
+      <input class="question-search" {% if search %}value="{{ search|force_escape }}"{% else %}placeholder="{% trans 'Start typing your question here.' %}"{% endif %} type="text" name="title"/> <input value="Search" type="submit" class="btn submit-question-search" />
+    </form>
+    <div class="clear"></div>
+  </div>
+
+  <div class="dk-content">
+    {% block knowledge_widgets %}
+
+    {% endblock knowledge_widgets %}
+  </div>
+
+  <div class="dk-sidebar">
+    <div class="inner">
+      {% include "know/sidebar.html" %}
+    </div>
+  </div>
+
+  <div class="clear"></div>
+</div>
+
+{% endblock knowledge_inner %}

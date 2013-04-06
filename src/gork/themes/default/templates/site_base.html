@@ -1,0 +1,138 @@
+<!DOCTYPE html>{% load i18n feincms_tags feincms_page_tags applicationcontent_tags %}
+<!--[if lt IE 9]><html class="ie"><![endif]-->
+<!--[if gte IE 9]><!--><html lang="{{ LANGUAGE_CODE }}"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block meta %}{% endblock meta %}
+  <title>{% block title %}{{ SITE_NAME }} | {{ feincms_page.title }}{% endblock title %}</title>
+  <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico"/>
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  {% if debug %}
+  <script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/jquery.min.js"></script>
+  <link rel="stylesheet/less" href="{{ STATIC_URL }}libs/bootstrap/less/bootstrap.less"/>
+  <script src="{{ STATIC_URL }}libs/less/less.min.js"></script>
+  {% else %}
+  <script type="text/javascript" src="//lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript">
+  window.jQuery || document.write('<script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/jquery.min.js">\x3C/script>')
+  </script>
+  <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+  {% endif %}
+  {% block extra_head %}{% endblock extra_head %}
+  {% block head_static %}{% endblock head_static %}
+  {{ feincms_page.content.media.css }}
+  {{ feincms_page.object.media.css }}
+</head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+
+<!-- navbar start -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner"  id="main-menu">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+
+    <a class="brand" href="/"><img src="{{ STATIC_URL }}img/logo.png" /></a>
+
+    {% if feincms_page %}
+    <div class="nav-collapse">
+      <ul class="nav">
+        <li class="divider-vertical"></li>
+        {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
+        {% for p in sublevel %}
+        <li{% if p|is_equal_or_parent_of:feincms_page %} class="active"{% endif %}><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></li>
+        <li class="divider-vertical"></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="pull-right" style="margin-right:10px;">
+    {% if request.user.is_authenticated %}
+      <ul class="nav pull-right">
+        <li class="divider-vertical"></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 5px; float:left;"><img src="{{ request.user.avatar }}" style="width: 30px; height: 30px"  alt="{{ request.user.username }}" /></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">{% trans "Welcome" %}, {{ request.user }}</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'gauth-detail' request.user.id %}"><i class="icon-user"></i> {% trans "Preferences" %}</a></li>
+            <li><a href="/messages/"><i class="icon-envelope"></i> {% trans "Messages" %}</a></li>
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}"><i class="icon-globe"></i> {% trans "Dashboard" %}</a></li>
+            {% endif %}
+            <li class="divider"></li>
+            <li><a href="{% url 'gauth-logout' %}"><i class="icon-off"></i> {% trans "Logout" %}</a></li>
+          </ul>
+
+          {% if messages_inbox_count %}
+          <span class="badge badge-important" style="display:inline; padding: 0px 4px; margin-left:-14px;border-radius: 2px;">{{ messages_inbox_count }}</span>
+          {% endif %}
+        </li>
+        <li class="divider-vertical"></li>
+      </ul>
+    {% else %}
+      <ul class="nav pull-right">
+        <li class="divider-vertical"></li>
+        <li><a href="/auth/signup/">{% trans "Sign Up" %}</a></li>
+        <li class="divider-vertical"></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">{% trans "Sign In" %} <strong class="caret"></strong></a>
+          <div class="dropdown-menu">
+            <form class="sign-in-form" method="post" action="/gauth/signin/" accept-charset="UTF-8">{% csrf_token %}
+              <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span><input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username"></div>
+              <div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span><input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password"></div>
+              <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+              <label class="string optional" for="user_remember_me">{% trans "Remember Me" %}</label>
+              <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="{% trans 'Sign In' %}">
+            </form>
+          </div>
+        </li>
+        <li class="divider-vertical"></li>
+      </ul>
+    {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+
+  <!-- breadcrumb start -->
+  <ul class="breadcrumbs">
+    {% block breadcrumbs %}
+    {% if feincms_page %}
+    {% feincms_breadcrumbs feincms_page %}
+    {% endif %}
+    {% endblock breadcrumbs %}
+  </ul>
+  <!-- breadcrumb end -->
+
+</div>
+<!-- navbar end -->
+
+<!-- content start -->
+<div id="site_main">
+  {% block content %}{% endblock content %}
+</div>
+<!-- content end -->
+
+{% block foot_static %}
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-transition.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-alert.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-modal.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-dropdown.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-scrollspy.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-tab.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-tooltip.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-popover.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-button.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-collapse.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-typeahead.js"></script>
+{{ feincms_page.content.media.js }}
+{{ feincms_page.object.media.js }}
+{% endblock foot_static %}
+</body>
+</html>

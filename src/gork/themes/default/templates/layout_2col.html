@@ -1,0 +1,80 @@
+{% extends "site_base.html" %}
+{% load i18n applicationcontent_tags feincms_tags feincms_page_tags mptt_tags %}
+
+{% block content %}
+<style>
+div.ecs {
+  border-left: 4px solid white;
+}
+div.ecs:hover {
+  border-left: 4px solid #D43;
+}
+
+</style>
+<!-- auth extension start -->
+<div class="row-fluid">
+  {% if feincms_page.auth and request.user.is_anonymous %}
+  <script type="text/javascript">self.location="{% url 'account-signin' %}";</script>
+  {% else %}
+  <!-- menu start -->
+  <div class="span3 pad" style="margin-bottom: 0px">
+    {% feincms_nav feincms_page level=feincms_page.level|add:2 depth=2 as nodes %}
+    <h3 class="title">{% block menu_title %}{{ feincms_page.title }}{% endblock menu_title %}</h3>
+    {% if nodes %}
+    <!--
+    <ul class="nav-">
+      {% recursetree nodes %}
+      {% if not node.is_leaf_node %}
+      <li class="list-item{% if node|is_equal_or_parent_of:feincms_page %} active{% endif %}">
+        <a href="{{ node.get_absolute_url }}" class="exp inactive"><span>{{ node.title }}</span></a>
+        <ul class="sub">{{ children }}</ul>
+      </li>
+      {% else %}
+      <li class="list-item{% if node|is_equal_or_parent_of:feincms_page %} active{% endif %}">
+        <a href="{{ node.get_absolute_url }}"><span>{{ node.title }}</span></a>
+      </li>
+      {% endif %}
+      {% endrecursetree %}
+    </ul>
+    -->
+    <div class="accordion" id="accordion2" style="margin-bottom: 0px;">
+      <div class="accordion-group" style="margin-bottom: 0px;">
+        {% recursetree nodes %}
+        <div class="accordion-heading">
+          <div style="border-top: 1px solid #E6E6E6">
+            <div class="ecs">
+            {% if not node.is_leaf_node %}
+            <a href="#collapse_{{ node.id }}" class="accordion-toggle" style="display:inline-block; text-decoration:none; " data-toggle="collapse" data-parent="#accordion2">+</a>
+            <a href="{{ node.get_absolute_url }}" style="padding: 10px 10px 10px 0px; width: 80%">{{ node.title }}</a>
+            {% else %}
+            <a href="{{ node.get_absolute_url }}" class="accordion-toggle" style="padding: 10px 60px 10px 20px" class="ecs">{{ node.title }}</a>
+            {% endif %}
+            </div>
+          </div>
+          <!--<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">open</button>-->
+          <div id="collapse_{{ node.id }}" class="accordion-body collapse">
+            <div class="accordion-inner" style="padding: 0px; border-top:0px;">{{ children }}</div>
+          </div>
+        </div>
+        {% endrecursetree %}
+      </div>
+    </div>
+    {% endif %}
+    <!-- siderbar content -->
+    {% for content in feincms_page.content.left %}
+      {% feincms_render_content content request %}
+    {% endfor %}
+  </div>
+  <!-- menu end -->
+
+  <!-- main start -->
+  <div class="span9">
+    {% for content in feincms_page.content.main %}
+    <div class="pad">{% feincms_render_content content request %}</div>
+    {% endfor %}
+  </div>
+  <!-- main end -->
+  {% endif %}
+</div>
+<!-- auth extension end -->
+{% endblock content %}

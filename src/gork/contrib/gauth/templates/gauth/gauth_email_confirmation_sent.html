@@ -1,0 +1,18 @@
+{% extends "gauth/gauth_base.html" %}
+{% load feincms_tags i18n applicationcontent_tags %}
+
+{% block title %}{{ block.super }}{% trans "Email confirmation sent" %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li>{% trans "Email confirmation sent" %}</li>
+{% endblock breadcrumbs %}
+
+{% block account-content %}
+<div class="pad">
+  <h2>{% trans "Confirm your email address" %}</h2>
+  <p>{% blocktrans %}We have sent you an email to <b>{{ email }}</b> for verification. Follow the link provided to finalize the signup process. If you do not receive it within a few minutes, contact us at <a href="mailto:{{ THEME_ACCOUNT_CONTACT_EMAIL }}">{{ THEME_ACCOUNT_CONTACT_EMAIL }}</a>.{% endblocktrans %}</p>
+  <p><a href="{{ success_url }}">Go back</a></p>
+</div>
+{% endblock account-content %}

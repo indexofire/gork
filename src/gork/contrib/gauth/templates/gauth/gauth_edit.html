@@ -1,0 +1,24 @@
+{% extends "gauth/gauth_base.html" %}
+{% load feincms_tags i18n applicationcontent_tags %}
+
+{% block title %}{{ block.super }}{% trans 'Edit user' %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'account-index' %}">{% trans 'Account' %}</a></li>
+<li><a href="{% url 'account-detail' user.pk %}">{% trans 'User' %} {{ user.username }}</a></li>
+<li>{% trans "Edit" %}</li>
+{% endblock breadcrumbs %}
+
+{% block account-content %}
+<div class="pad">
+  <form method="POST" action="{% url 'account-edit' user.pk %}">
+    <legend>{% trans "Edit account" %}</legend>
+    {% csrf_token %}
+    {{ form }}
+    <div>
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>
+{% endblock account-content %}

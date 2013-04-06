@@ -1,0 +1,29 @@
+{% extends feincms_page.template.path|default:"site_base.html" %}
+
+{% block title %}{{ SITE_NAME }} - {% endblock title %}
+
+{% block extra-header %}
+<!-- Additional styles -->
+<link rel="stylesheet" href="{{ STATIC_URL }}css/styles/form.css?v=1">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/styles/switches.css?v=1">
+<link rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/login.css?v=1">
+{% endblock extra-header %}
+
+{% block body-style %} class="scratch-metal"{% endblock body-style %}
+
+{% block foot-js %}
+<!-- JavaScript at the bottom for fast page loading -->
+
+<!-- Scripts -->
+<script src="{{ STATIC_URL }}libs/jquery/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/setup.js"></script>
+
+<!-- Template functions -->
+<script src="{{ STATIC_URL }}js/developr.input.js"></script>
+<script src="{{ STATIC_URL }}js/developr.message.js"></script>
+<script src="{{ STATIC_URL }}js/developr.notify.js"></script>
+<script src="{{ STATIC_URL }}js/developr.tooltip.js"></script>
+{% endblock foot-js %}
+
+{% block sidebar %}{% endblock sidebar %}
+{% block left-menubar %}{% endblock left-menubar %}
