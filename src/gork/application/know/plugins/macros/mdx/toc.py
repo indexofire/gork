@@ -137,7 +137,7 @@ class TocTreeprocessor(markdown.treeprocessors.Treeprocessor):
         used_ids = set()
         for c in doc.getiterator():
             if "id" in c.attrib:
-                used_ids.append(c.attrib["id"])
+                used_ids.add(c.attrib["id"])
 
         toc_list = []
         marker_found = False
@@ -164,7 +164,6 @@ class TocTreeprocessor(markdown.treeprocessors.Treeprocessor):
 
                 # Do not override pre-existing ids
                 if not "id" in c.attrib:
-                    used_ids = set()
                     elem_id = unique(self.config["slugify"](text, '-'), used_ids)
                     c.attrib["id"] = elem_id
                 else:
