@@ -20,7 +20,7 @@ from gauth.forms import *
 from gauth.signals import *
 from gauth.models import EmailConfirmation
 from gauth.admin import GUserAdminForm
-from gauth import settings
+from gauth.settings import *
 
 
 @class_view_decorator(login_required)
@@ -101,7 +101,7 @@ class SignupView(FormView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated():
-            return redirect(default_redirect(self.request, settings.GAUTH_LOGIN_REDIRECT_URL))
+            return redirect(default_redirect(self.request, GAUTH_LOGIN_REDIRECT_URL))
         if not self.is_open():
             return self.closed()
         return super(SignupView, self).get(*args, **kwargs)
@@ -144,7 +144,7 @@ class SignupView(FormView):
 
     def form_valid(self, form):
         self.created_user = self.create_user(form, commit=False)
-        if settings.GAUTH_EMAIL_CONFIRMATION_REQUIRED:
+        if GAUTH_EMAIL_CONFIRMATION_REQUIRED:
             self.created_user.is_active = False
         # prevent User post_save signal from creating an Account instance
         # we want to handle that ourself.
@@ -161,9 +161,9 @@ class SignupView(FormView):
                 email_kwargs["verified"] = True
         #email_address = EmailAddress.objects.add_email(self.created_user, self.created_user.email, **email_kwargs)
         self.after_signup(form)
-        if settings.GAUTH_EMAIL_CONFIRMATION_EMAIL and not email_kwargs["verified"]:
+        if GAUTH_EMAIL_CONFIRMATION_EMAIL and not email_kwargs["verified"]:
             email_address.send_confirmation()
-        if settings.GAUTH_EMAIL_CONFIRMATION_REQUIRED and not email_kwargs["verified"]:
+        if GAUTH_EMAIL_CONFIRMATION_REQUIRED and not email_kwargs["verified"]:
             response_kwargs = {
                 "request": self.request,
                 "template": self.template_name_email_confirmation_sent,
@@ -175,7 +175,7 @@ class SignupView(FormView):
             return self.response_class(**response_kwargs)
         else:
             show_message = [
-                settings.GAUTH_EMAIL_CONFIRMATION_EMAIL,
+                GAUTH_EMAIL_CONFIRMATION_EMAIL,
                 self.messages.get("email_confirmation_sent"),
                 not email_kwargs["verified"]
             ]
@@ -192,7 +192,7 @@ class SignupView(FormView):
 
     def get_success_url(self, fallback_url=None, **kwargs):
         if fallback_url is None:
-            fallback_url = settings.GAUTH_SIGNUP_REDIRECT_URL
+            fallback_url = GAUTH_SIGNUP_REDIRECT_URL
         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
         return default_redirect(self.request, fallback_url, **kwargs)
 
@@ -237,7 +237,7 @@ class SignupView(FormView):
             try:
                 self.signup_code = SignupCode.check(code)
             except SignupCode.InvalidCode:
-                if not settings.GAUTH_OPEN_SIGNUP:
+                if not GAUTH_OPEN_SIGNUP:
                     return False
                 else:
                     if self.messages.get("invalid_signup_code"):
@@ -252,7 +252,7 @@ class SignupView(FormView):
             else:
                 return True
         else:
-            return settings.GAUTH_OPEN_SIGNUP
+            return GAUTH_OPEN_SIGNUP
 
     def closed(self):
         response_kwargs = {
@@ -317,7 +317,7 @@ class LoginView(FormView):
 
     def get_success_url(self, fallback_url=None, **kwargs):
         if fallback_url is None:
-            fallback_url = settings.GAUTH_LOGIN_REDIRECT_URL
+            fallback_url = GAUTH_LOGIN_REDIRECT_URL
         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
         return default_redirect(self.request, fallback_url, **kwargs)
 
@@ -327,7 +327,7 @@ class LoginView(FormView):
     def login_user(self, form):
         # log in user and set user login status expiry period in session
         login(self.request, form.user)
-        expiry = settings.GAUTH_REMEMBER_ME_EXPIRY if form.cleaned_data.get("remember") else 0
+        expiry = GAUTH_REMEMBER_ME_EXPIRY if form.cleaned_data.get("remember") else 0
         self.request.session.set_expiry(expiry)
 
 
@@ -363,7 +363,7 @@ class LogoutView(TemplateResponseMixin, View):
 
     def get_redirect_url(self, fallback_url=None, **kwargs):
         if fallback_url is None:
-            fallback_url = settings.GAUTH_LOGOUT_REDIRECT_URL
+            fallback_url = GAUTH_LOGOUT_REDIRECT_URL
         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
         return default_redirect(self.request, fallback_url, **kwargs)
 
@@ -410,7 +410,7 @@ class PasswordResetView(FormView):
             subject = render_to_string("gauth/email/password_reset_subject.txt", ctx)
             subject = "".join(subject.splitlines())
             message = render_to_string("gauth/email/password_reset.txt", ctx)
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+            send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email])
 
     def make_token(self, user):
         return self.token_generator.make_token(user)
@@ -476,11 +476,11 @@ class ConfirmEmailView(TemplateResponseMixin, View):
 
     def get_redirect_url(self):
         if self.request.user.is_authenticated():
-            if not settings.GAUTH_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL:
-                return settings.GAUTH_LOGIN_REDIRECT_URL
-            return settings.GAUTH_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL
+            if not GAUTH_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL:
+                return GAUTH_LOGIN_REDIRECT_URL
+            return GAUTH_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL
         else:
-            return settings.GAUTH_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL
+            return GAUTH_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL
 
 
 class ChangePasswordView(FormView):
@@ -513,7 +513,7 @@ class ChangePasswordView(FormView):
     def after_change_password(self):
         user = self.request.user
         password_changed.send(sender=ChangePasswordView, user=user)
-        if settings.GAUTH_NOTIFY_ON_PASSWORD_CHANGE:
+        if GAUTH_NOTIFY_ON_PASSWORD_CHANGE:
             self.send_email(user)
         if self.messages.get("password_changed"):
             messages.add_message(
@@ -553,7 +553,7 @@ class ChangePasswordView(FormView):
 
     def get_success_url(self, fallback_url=None, **kwargs):
         if fallback_url is None:
-            fallback_url = settings.GAUTH_PASSWORD_CHANGE_REDIRECT_URL
+            fallback_url = GAUTH_PASSWORD_CHANGE_REDIRECT_URL
         kwargs.setdefault("redirect_field_name", self.get_redirect_field_name())
         return default_redirect(self.request, fallback_url, **kwargs)
 
@@ -568,7 +568,7 @@ class ChangePasswordView(FormView):
         subject = render_to_string("gauth/email/password_change_subject.txt", ctx)
         subject = "".join(subject.splitlines())
         message = render_to_string("gauth/email/password_change.txt", ctx)
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+        send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email])
 
 
 def login_ajax(request, tpl=None):

@@ -9,6 +9,7 @@ from django.utils.translation import get_language_info
 GAUTH_EMAIL_CONFIRMATION_EXPIRE_DAYS = getattr(settings, 'GAUTH_EMAIL_CONFIRMATION_EXPIRE_DAYS', 14)
 GAUTH_DEFAULT_FROM_EMAIL = getattr(settings, 'GAUTH_DEFAULT_FROM_EMAIL', '')
 
+# set true if open new register users, or false if you close the registration
 GAUTH_OPEN_SIGNUP = getattr(settings, 'GAUTH_OPEN_SIGNUP', True)
 
 GAUTH_USER_DEFAULT_EXTENSIONS = (

@@ -33,6 +33,19 @@ def show_post(request, id):
         }
 
 
+def reply_question(request, id):
+
+    if request.method == 'POST':
+        form = askform
+        if form.is_valid():
+            pass
+    else:
+        return
+
+    return 'ask/ask_new_post.html', {
+
+    }
+
 class PostListView(ListView):
     model = Post
     template_name = 'ask/ask_index.html'

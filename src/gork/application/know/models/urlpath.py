@@ -266,6 +266,9 @@ def on_article_relation_save(**kwargs):
 post_save.connect(on_article_relation_save, ArticleForObject)
 
 
+class Namespace:
+    pass
+
 def on_article_delete(instance, *args, **kwargs):
     # If an article is deleted, then throw out its URLPaths
     # But move all descendants to a lost-and-found node.
@@ -274,15 +277,20 @@ def on_article_delete(instance, *args, **kwargs):
     # Get the Lost-and-found path or create a new one
     # Only create the lost-and-found article if it's necessary and such
     # that the lost-and-found article can be deleted without being recreated!
-    lost_and_found = None
+    #lost_and_found = None
+    ns = Namespace()
+    ns.lost_and_found = None
 
     def get_lost_and_found():
-        if lost_and_found:
-            return lost_and_found
+        #if lost_and_found:
+        #    return lost_and_found
+
+        if ns.lost_and_found:
+            return ns.lost_and_found
+
         try:
-            lost_and_found = URLPath.objects.get(slug=settings.LOST_AND_FOUND_SLUG,
-                                                 parent=URLPath.root(),
-                                                 site=site)
+            #lost_and_found = URLPath.objects.get(slug=settings.LOST_AND_FOUND_SLUG, parent=URLPath.root(), site=site)
+            ns.lost_and_found = URLPath.objects.get(slug=settings.LOST_AND_FOUND_SLUG, parent=URLPath.root(), site=site)
         except URLPath.DoesNotExist:
             article = Article(group_read=True, group_write=False, other_read=False, other_write=False)
             article.add_revision(ArticleRevision(
@@ -294,8 +302,8 @@ def on_article_delete(instance, *args, **kwargs):
                                                     parent=URLPath.root(),
                                                     site=site,
                                                     article=article)
-            article.add_object_relation(lost_and_found)
-        return lost_and_found
+            article.add_object_relation(ns.lost_and_found)
+        return ns.lost_and_found
 
     for urlpath in URLPath.objects.filter(articles__article=instance, site=site):
         # Delete the children

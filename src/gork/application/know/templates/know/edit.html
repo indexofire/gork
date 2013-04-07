@@ -6,15 +6,7 @@
 
 {% block wiki_contents_tab %}
 
-{% if not user.is_authenticated %}
-<p class="alert alert-warning">
-{% trans "<strong>Warning:</strong> You are not logged in. Your IP address will be logged." %}
-<a href="{% url 'know:login' %}?next={% url 'know:edit' article_id=article.id path=urlpath.path %}">{% trans "Click here to log in" %} &raquo;</a>
-</p>
-{% endif %}
-
 <div class="row-fluid">
-
   <div class="span8">
     <form method="POST" class="form-horizontal" id="article_edit_form">
       <input type="hidden" name="save" value="1" />
@@ -24,50 +16,53 @@
     {% endwith %}
     </form>
   </div>
-
   <div class="span4" id="edit_sidebar">
     {% include "know/includes/editor_sidebar.html" %}
   </div>
-
 </div>
 
-<div style="clear: both"></div>
-
 {% include "know/includes/modals.html" %}
+<div class="form-actions">
+  <a class="btn btn-large" onclick="$('#previewModal').modal('show'); document.getElementById('article_edit_form').target='previewWindow'; document.getElementById('article_edit_form').action='{% url 'know:preview' path=urlpath.path article_id=article.id %}'; $('#article_edit_form').submit()" href="#">
+    <span class="icon-eye-open"></span>
+    {% trans "Preview" %}
+  </a>
+  <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url 'know:edit' path=urlpath.path article_id=article.id %}'; $('#article_edit_form').submit();" href="#">
+    <span class="icon-ok"></span>
+    {% trans "Save changes" %}
+  </a>
+  {% if article|can_delete:user %}
+  <a href="{% url 'know:delete' path=urlpath.path article_id=article.id %}" class="pull-right btn">
+    <span class="icon-trash"></span>
+    {% trans "Delete article" %}
+  </a>
+  {% endif %}
+</div>
 
-    <div class="form-actions">
-        <a class="btn btn-large" onclick="$('#previewModal').modal('show'); document.getElementById('article_edit_form').target='previewWindow'; document.getElementById('article_edit_form').action='{% url 'know:preview' path=urlpath.path article_id=article.id %}'; $('#article_edit_form').submit()" href="#">
-          <span class="icon-eye-open"></span>
-          {% trans "Preview" %}
-        </a>
-        <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url 'know:edit' path=urlpath.path article_id=article.id %}'; $('#article_edit_form').submit();" href="#">
-          <span class="icon-ok"></span>
-          {% trans "Save changes" %}
-        </a>
+<div class="modal hide wiki-modal" id="previewModal">
+  <div class="modal-body">
+    <iframe name="previewWindow" frameborder="0"></iframe>
+  </div>
 
-        {% if article|can_delete:user %}
-        <a href="{% url 'know:delete' path=urlpath.path article_id=article.id %}" class="pull-right btn">
-          <span class="icon-trash"></span>
-          {% trans "Delete article" %}
-        </a>
-        {% endif %}
-
-    </div>
-    <div class="modal hide wiki-modal" id="previewModal">
-      <div class="modal-body">
-        <iframe name="previewWindow" frameborder="0"></iframe>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn btn-large" data-dismiss="modal">
-          <span class="icon-circle-arrow-left"></span>
-          {% trans "Back to editor" %}
-        </a>
-        <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url 'know:edit' path=urlpath.path article_id=article.id %}'; document.getElementById('article_edit_form').submit();" href="#">
-          <span class="icon-ok"></span>
-          {% trans "Save changes" %}
-        </a>
-      </div>
-    </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-large" data-dismiss="modal">
+      <span class="icon-circle-arrow-left"></span>
+      {% trans "Back to editor" %}
+    </a>
+    <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url 'know:edit' path=urlpath.path article_id=article.id %}'; document.getElementById('article_edit_form').submit();" href="#">
+      <span class="icon-ok"></span>
+      {% trans "Save changes" %}
+    </a>
+  </div>
+</div>
 
 {% endblock %}
 
+{% block foot_static %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/markitup/skins/simple/style.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/markitup/sets/frontend/style.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}libs/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/markitup/frontend.init.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/markitup/sets/frontend/set.js"></script>
+{% endblock foot_static %}
