@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 #from django.shortcuts import render
-from django.views.generic import ListView
+#from django.views.generic import ListView
 from django.utils.translation import ugettext_lazy as _
 from gtag.models import Tag
 from ask.models import Post
+from ask.forms import QuestionForm, AnswerForm
 
 
 def tag_list():
@@ -36,7 +37,7 @@ def show_post(request, id):
 def reply_question(request, id):
 
     if request.method == 'POST':
-        form = askform
+        form = AnswerForm
         if form.is_valid():
             pass
     else:
@@ -46,12 +47,14 @@ def reply_question(request, id):
 
     }
 
-class PostListView(ListView):
-    model = Post
-    template_name = 'ask/ask_index.html'
 
-    def get_queryset(self):
-        return Post.objects.all()
+def ask_question(request):
+    if request.method == 'POST':
+        form = QuestionForm
+        if form.is_valid():
+            pass
+    else:
+        return
 
 
 '''
