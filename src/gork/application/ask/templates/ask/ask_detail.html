@@ -22,18 +22,21 @@
 
 {% if nodes %}
 <div class="pad">
-  <div class="title" style="border-bottom: 1px solid #E1E1E1;">
+  <div class="title">
     <h3 style="margin: 0px">{% trans "Answers" %}</h3>
   </div>
-  <ul class="nav">
-  {% recursetree nodes %}
-    <li>
-      <div>{{ node.title }}</div>
-      <div>{{ node.content }}</div>
-      {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
-    </li>
-  {% endrecursetree %}
-  </ul>
+  <table class="table table-striped" style="margin: 0px">
+    {% recursetree nodes %}
+    <tr>
+      <td></td>
+      <td>
+        {{ node.content }}
+        {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
+      </td>
+    </tr>
+    {% endrecursetree %}
+  </table>
+
 </div>
 {% endif %}
 
@@ -60,8 +63,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 tinyMCE.init({
-    mode : "textareas",
-    theme : "simple"
+    mode : "textareas"
 });
 </script>
 
