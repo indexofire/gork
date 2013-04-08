@@ -6,13 +6,21 @@
   <div class="title" style="border-bottom: 1px solid #E1E1E1;">
     <h3 style="margin: 0px">{% trans "Question" %}: {{ q.title }}</h3>
   </div>
-  <div class="content" style="padding: 10px">
-    <span><img src="{{ q.author.avatar }}"><br>author: <a href="{% url 'gauth-detail' q.author.id %}">{{ q.author.username }}</a>
-    </span>
-    <span>{{ q.content }}</span>
+  <div class="content" style="padding: 20px 0px">
+    <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <a href="{% url 'gauth-detail' q.author.id %}"><img src="{{ q.author.avatar }}"></a><br>author: {{ q.author.username }}
+      </div>
+      <div class="span10">
+        <span>{{ q.content }}</span>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
+{% if nodes %}
 <div class="pad">
   <div class="title" style="border-bottom: 1px solid #E1E1E1;">
     <h3 style="margin: 0px">{% trans "Answers" %}</h3>
@@ -27,6 +35,36 @@
   {% endrecursetree %}
   </ul>
 </div>
+{% endif %}
+
+<div class="pad">
+  <div class="title" style="border-bottom: 1px solid #E1E1E1;">
+    <h3 style="margin: 0px">{% trans "Quick Reply" %}</h3>
+  </div>
+  <div class="holder">
+    <form class="form-horizontal" action="">{% csrf_token %}
+      {{ form.as_bootstrap }}
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn">{% trans 'Submit' %}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+#editor {
+  width: 98%;
+}
+</style>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+    mode : "textareas",
+    theme : "simple"
+});
+</script>
+
 {% endblock ask-content %}
 
 {% block ask-sidebar %}

@@ -1,0 +1,27 @@
+{% extends "ask/ask_base.html" %}
+{% load i18n %}
+{% block ask-content %}
+<div class="pad" style="padding: 10px">
+<form class="form-horizontal" action="">{% csrf_token %}
+  {{ form.as_bootstrap }}
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">{% trans 'Submit' %}</button>
+    </div>
+  </div>
+</form>
+</div>
+
+<style>
+#editor {
+  width: 98%;
+}
+</style>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+    mode : "textareas",
+    theme : "simple"
+});
+</script>
+{% endblock ask-content %}

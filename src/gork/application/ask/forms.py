@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from ask.settings import *
+from django.core.exceptions import ValidationError
+#from feincms.contrib.richtext import RichTextFormField
+from gform.models import BootstrapForm
+from ask.settings import POST_TYPES, MIN_POST_SIZE, MAX_POST_SIZE
+
+
+P_TITLE, P_CONTENT, P_TAG = _('Post title'), _('Post content'), _('Post tags')
 
 
 def valid_title(text):
@@ -18,7 +24,7 @@ def valid_content(text):
     "Validates form input for content"
     # text size, min size, max size
     text = text.strip()
-    ts, mi, mx = len(text), settings.MIN_POST_SIZE, settings.MAX_POST_SIZE
+    ts, mi, mx = len(text), MIN_POST_SIZE, MAX_POST_SIZE
     if not(text):
         raise ValidationError('Content appears to be whitespace')
     if text == P_CONTENT:
@@ -47,7 +53,7 @@ def valid_tag(text):
         raise ValidationError('You have too many tags, please use at most seven tags')
 
 
-class QuestionForm(forms.Form):
+class QuestionForm(forms.Form, BootstrapForm):
     """
     A form representing a new question
     """
@@ -59,7 +65,7 @@ class QuestionForm(forms.Form):
         max_length=250,
         initial='',
         validators=[valid_title],
-        widget=forms.TextInput(attrs={'class': 'span8', 'placeholder': P_TITLE}),
+        widget=forms.TextInput(attrs={'class': '', 'placeholder': P_TITLE}),
     )
 
     content = forms.CharField(
@@ -73,7 +79,7 @@ class QuestionForm(forms.Form):
         max_length=250,
         initial='',
         validators=[valid_tag],
-        widget=forms.TextInput(attrs={'class': 'span4', 'placeholder': P_TAG}),
+        widget=forms.TextInput(attrs={'class': '', 'placeholder': P_TAG}),
     )
 
     context = forms.CharField(
@@ -83,11 +89,11 @@ class QuestionForm(forms.Form):
     )
 
     type = forms.ChoiceField(
-        choices=const.POST_TYPES[2:],
+        choices=POST_TYPES[2:],
     )
 
 
-class AnswerForm(forms.Form):
+class AnswerForm(forms.Form, BootstrapForm):
     content = forms.CharField(
         max_length=10000,
         validators=[valid_content],

@@ -20,18 +20,24 @@ def ask_index(request):
 
 
 def show_post(request, id):
+    """ Question display and quick reply. """
     q = Post.objects.select_related().get(id=id)
-    if request.user.has_perm('can_view', q):
-        answers = q.get_descendants().select_related()
-        return 'ask/ask_detail.html', {
-            'q': q,
-            'nodes': answers,
-            'tags': tag_list(),
-        }
+    form = AnswerForm
+    if request.method == 'POST':
+        pass
     else:
-        return 'ask/ask_no_permission.html', {
-            'error': _(u"You have no permission to view the question.")
-        }
+        if request.user.has_perm('can_view', q):
+            answers = q.get_descendants().select_related()
+            return 'ask/ask_detail.html', {
+                'q': q,
+                'nodes': answers,
+                'tags': tag_list(),
+                'form': form(),
+            }
+        else:
+            return 'ask/ask_no_permission.html', {
+                'error': _(u"You have no permission to view the question.")
+            }
 
 
 def reply_question(request, id):
@@ -54,7 +60,8 @@ def ask_question(request):
         if form.is_valid():
             pass
     else:
-        return
+        form = QuestionForm()
+        return 'ask/ask_new_post.html', {'form': form}
 
 
 '''

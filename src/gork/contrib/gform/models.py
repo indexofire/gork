@@ -60,10 +60,10 @@ class BootstrapForm(object):
     """
     Inherit with forms.Form or forms.ModelForm
     For example:
-        class AnyForm(forms.Form, CustomForm):
+        class AnyForm(forms.Form, BootstrapForm):
             pass
 
-        class AnyModelForm(forms.ModelForm, CustomForm):
+        class AnyModelForm(forms.ModelForm, BootstrapForm):
             pass
     """
 
