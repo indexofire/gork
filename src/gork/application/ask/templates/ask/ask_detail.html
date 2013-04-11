@@ -28,7 +28,16 @@
   <table class="table table-striped" style="margin: 0px">
     {% recursetree nodes %}
     <tr>
-      <td></td>
+      <td>
+        <div class="vote-box">
+          <div class="vote">
+            <input type="hidden" value="{{ node.parent.id }}">
+            <div class="vote-up vote-off" data-original-title="Click to upvote">&nbsp;</div>
+            <div class="vote-count">{{ node.score }}</div>
+            <div class="vote-down vote-off" data-original-title="Click to downvote">&nbsp;</div>
+          </div>
+        </div>
+      </td>
       <td>
         {{ node.content }}
         {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
@@ -78,3 +87,147 @@ tinyMCE.init({
   </ul>
 </div>
 {% endblock ask-sidebar %}
+
+{% block extra_head %}
+<style>
+.vote-box .vote .vote-up.vote-off {
+  background-color: #CECECE;
+  opacity: 0.3;
+}
+.vote-box .vote .vote-down.vote-off {
+  background-color: #CECECE;
+  opacity: 0.3;
+}
+.vote-box .vote .vote-count {
+  font-size: 240%;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0px 10px 0px;
+}
+.vote-box .vote .vote-up,
+.vote-box .vote .vote-accepted,
+.vote-box .vote .vote-bookmark,
+.vote-box .vote .vote-down {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  text-align: center;
+}
+</style>
+<script>
+$('html').ajaxSend(function(event,xhr,settings){
+    function getCookie(name){
+        var cookieValue=null;
+        if(document.cookie && document.cookie!=''){
+            var cookies=document.cookie.split(';');
+            for(var i=0;i<cookies.length;i++){
+                var cookie=jQuery.trim(cookies[i]);
+                if(cookie.substring(0,name.length+1)==(name+'=')){
+                    cookieValue=decodeURIComponent(cookie.substring(name.length+1));break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    if(!(/^http:.*/.test(settings.url)||/^https:.*/.test(settings.url))){
+      xhr.setRequestHeader("X-CSRFToken",getCookie('csrftoken'));
+    }
+});
+
+function toggle_css(elem,start,end){
+    if(e.hasClass(start)){
+        e.removeClass(start);e.addClass(end);
+    }
+}
+
+function mod_votecount(button,k){
+    count = parseInt(button.siblings('.vote-count').text())||0
+    count += k
+    button.siblings('.vote-count').text(count)
+}
+
+function toggle_button(button){
+    if(button.hasClass('vote-on')){
+        button.removeClass('vote-on');
+        button.addClass('vote-off');
+    }else if(button.hasClass('vote-off')){
+        button.removeClass('vote-off');
+        button.addClass('vote-on');
+    }
+
+    if(button.hasClass('vote-up')&&button.hasClass('vote-on')){
+        button.attr('data-original-title','Click to remove');
+    }
+
+    if(button.hasClass('vote-up')&&button.hasClass('vote-off')){
+        button.attr('data-original-title','Click to upvote');
+    }
+    if(button.hasClass('vote-on')){
+        if(button.hasClass('vote-up'))
+            toggle_button(button.siblings('.vote-down.vote-on'))
+        if(button.hasClass('vote-down'))
+            toggle_button(button.siblings('.vote-up.vote-on'))
+    }
+
+    if(button.is('.vote-up.vote-on, .vote-down.vote-off'))
+        mod_votecount(button,+1)
+    if(button.is('.vote-up.vote-off, .vote-down.vote-on'))
+        mod_votecount(button,-1)
+}
+
+function popover(parent,msg,cls){
+    parent.append('<div></div>')
+    elem=parent.children('div').last()
+    elem.addClass('vote-popover '+cls)
+    elem.text(msg)
+    elem.delay(1000).fadeOut(1000,function(){$(this).remove()});
+}
+
+function do_vote(button,post,type){
+    toggle_button(button)
+    $.ajax('/vote/',{
+        type:'POST',
+        dataType:'json',
+        data:{
+            post: post,
+            type: type
+        },
+        success:function(data){
+            if(data.status=='error'){
+                popover(button.parent(),data.msg,data.status)
+                toggle_button(button)
+            }
+        },
+        error:function(){
+            popover(button.parent(),'Unable to submit vote','error');
+            toggle_button(button);
+        }
+    });
+}
+
+$(document).ready(function(){
+    $('.vote').each(function(){
+        elem = $(this)
+
+        // register a handler for each votable element
+        //callback functions defined in /static/js/vote.js
+        up_button  = elem.children('.vote-up')
+        up_button.click(function(){
+            do_vote($(this), $(this).parent().children('input').val(), 'upvote');
+        });
+
+        down_button  = elem.children('.vote-down')
+        down_button.click(function(){
+            do_vote($(this), $(this).parent().children('input').val(), 'downvote');
+        });
+
+        accept_button = elem.children('.vote-accepted')
+        accept_button.click(function(){
+            do_vote($(this), $(this).parent().children('input').val(), 'accept');
+        });
+    });
+});
+</script>
+{% endblock %}
