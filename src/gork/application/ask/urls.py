@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url, patterns
-from ask.views.main import *
+from ask.views import main, ajax
 
 
 urlpatterns = patterns('',
-    url(r'^$', ask_index, name='ask-index'),
-    url(r'^q/(?P<id>\d+)/$', show_post, name='ask-detail'),
-    url(r'^q/ask/$', ask_question, name='ask-question'),
-    url(r'^q/(?P<id>\d+)/reply/$', reply_question, name='ask-reply'),
+    url(r'^$', main.ask_index, name='ask-index'),
+    url(r'^q/(?P<id>\d+)/$', main.show_post, name='ask-detail'),
+    url(r'^q/ask/$', main.ask_question, name='ask-question'),
+    url(r'^q/(?P<id>\d+)/reply/$', main.reply_question, name='ask-reply'),
+    # vote question or answers by ajax
+    url(r'^vote/$', ajax.vote, name="ask-vote"),
 )

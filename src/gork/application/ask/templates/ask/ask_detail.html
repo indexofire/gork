@@ -187,20 +187,20 @@ function popover(parent,msg,cls){
 
 function do_vote(button,post,type){
     toggle_button(button)
-    $.ajax('/vote/',{
-        type:'POST',
+    $.ajax('{% app_reverse "ask-vote" "ask.urls" %}',{
+        type: 'POST',
         dataType:'json',
         data:{
             post: post,
             type: type
         },
-        success:function(data){
+        success: function(data){
             if(data.status=='error'){
                 popover(button.parent(),data.msg,data.status)
                 toggle_button(button)
             }
         },
-        error:function(){
+        error: function(){
             popover(button.parent(),'Unable to submit vote','error');
             toggle_button(button);
         }

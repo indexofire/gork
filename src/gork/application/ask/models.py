@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.db import models
 from django.conf import settings
+from django.db import models, transaction
 from django.utils.translation import ugettext_lazy as _
 from feincms.content.application.models import permalink
 from mptt.models import MPTTModel, TreeForeignKey
@@ -295,7 +295,8 @@ class Post(MPTTModel):
         return objects
 
     def set_rank(self):
-        self.rank = html.rank(self)
+        #self.rank = html.rank(self)
+        pass
 
     def combine(self):
         """
@@ -309,3 +310,88 @@ class Post(MPTTModel):
             content = self.content
             tag_val = self.tag_val
             return "TITLE:%s\n%s\nTAGS:%s" % (title, content, tag_val)
+
+
+class Vote(models.Model):
+    """
+    >>> user, flag = User.objects.get_or_create(first_name='Jane', last_name='Doe', username='jane', email='jane')
+    >>> post = Post.objects.create(author=user, type=POST_QUESTION, content='x')
+    >>> vote = Vote(author=user, post=post, type=VOTE_UP)
+    """
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    post = models.ForeignKey(Post, related_name='votes')
+    type = models.IntegerField(choices=app_settings.VOTE_TYPES, db_index=True)
+    date = models.DateTimeField(db_index=True, auto_now=True)
+
+    def apply(self, dir=1):
+        "Applies a score and reputation changes upon a vote. Direction can be set to -1 to undo (ie delete vote)"
+
+        post, root = self.post, self.post.root
+        if self.type == app_settings.VOTE_UP:
+            post_score_change(post, amount=dir)
+            user_score_change(post.author, amount=dir)
+
+        if self.type == app_settings.VOTE_DOWN:
+            post_score_change(post, amount=-dir)
+            user_score_change(post.author, amount=-dir)
+
+        if self.type == app_settings.VOTE_ACCEPT:
+            post.accepted = root.accepted = (dir == 1)
+            user_score_change(post.author, amount=1)
+            post.save()
+            root.save()
+
+        if self.type == app_settings.VOTE_BOOKMARK:
+            post.book_count += dir
+            post.save()
+
+
+def post_score_change(post, amount=1):
+    "How post score changes with votes. Both the rank and the score changes"
+
+    root = post.root
+
+    # post score increases
+    post.score += amount
+    post.full_score += amount
+
+    if post != root:
+        root.full_score += amount
+        root.save()
+
+    post.save()
+
+    return post, post.root
+
+
+def user_score_change(user, amount):
+    "How user score changes with votes"
+    user.score += amount
+    user.save()
+
+
+@transaction.commit_on_success
+def insert_vote(post, user, vote_type):
+    "Applies a vote. Applying an existing vote type removes it"
+
+    # due to race conditions (user spamming vote button) multiple votes may register
+    # this removes votes with the metioned type
+    votes = Vote.objects.filter(post=post, author=user, type=vote_type)
+    if votes:
+        vote = votes[0]
+        for vote in votes:
+            vote.delete()
+        msg = '%s removed' % vote.get_type_display()
+        return vote, msg
+
+    # remove opposing votes
+    opposing = app_settings.OPPOSING_VOTES.get(vote_type)
+    if opposing:
+        for vote in Vote.objects.filter(post=post, author=user, type=opposing):
+            vote.delete()
+            post = vote.post  # this reference now has been changed
+
+    vote = Vote.objects.create(post=post, author=user, type=vote_type)
+    vote.save()
+    msg = '%s added' % vote.get_type_display()
+    return vote, msg
