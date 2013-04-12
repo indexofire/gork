@@ -12,6 +12,7 @@ div.ecs:hover {
 
 </style>
 <!-- auth extension start -->
+<div class="container">
 <div class="row-fluid">
   {% if feincms_page.auth and request.user.is_anonymous %}
   <script type="text/javascript">self.location="{% url 'account-signin' %}";</script>
@@ -70,11 +71,12 @@ div.ecs:hover {
   <!-- main start -->
   <div class="span9">
     {% for content in feincms_page.content.main %}
-    <div class="pad">{% feincms_render_content content request %}</div>
+    <div class="pad" style="padding: 10px">{% feincms_render_content content request %}</div>
     {% endfor %}
   </div>
   <!-- main end -->
   {% endif %}
+</div>
 </div>
 <!-- auth extension end -->
 {% endblock content %}

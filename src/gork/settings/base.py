@@ -173,3 +173,9 @@ FEINCMS_FRONTEND_EDITING = True
 LOGIN_URL = '/auth/login/'
 
 FEINCMS_REVERSE_MONKEY_PATCH = False
+
+GAUTH_USER_EXTENSIONS = (
+    'gauth.extensions.avatar',
+    'gauth.extensions.portfolio',
+    'ask.extensions.question',
+)

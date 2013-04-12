@@ -1,9 +1,11 @@
 {% extends "site_base.html" %}
 {% load i18n %}
+
 {% block extra_head %}
   {% block extrastyle %}
-  <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+  <script type="text/javascript">window.__admin_media_prefix__ = "{{ STAITC_URL }}admin/";</script>
   {% endblock extrastyle %}
+
   {% block extrahead %}{% endblock %}
   {% block blockbots %}{% endblock %}
 {% endblock extra_head %}

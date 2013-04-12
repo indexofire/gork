@@ -2,5 +2,13 @@
 {% load applicationcontent_tags feincms_tags feincms_page_tags %}
 
 {% block content %}
-<div class="row-fluid pad">{% feincms_render_region feincms_page "main" request %}</div>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="pad" style="padding: 10px">
+      {% feincms_render_region feincms_page "main" request %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
