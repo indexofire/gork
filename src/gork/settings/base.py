@@ -164,7 +164,7 @@ AUTHENTICATION_BACKENDS = (
     'gauth.backends.PermissionBackend',
 )
 
-FEINCMS_TIDY_HTML = True
+#FEINCMS_TIDY_HTML = True
 FEINCMS_RICHTEXT_INIT_CONTEXT = {
     'TINYMCE_JS_URL': '%s/libs/tiny_mce/tiny_mce.js' % STATIC_URL,
 }

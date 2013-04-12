@@ -78,7 +78,8 @@ def vote(request):
         return ajax_error('Only the original poster may accept an answer')
 
     # voting throttle
-    past  = datetime.now() - VOTE_SESSION_LENGTH
+    #past  = datetime.now() - VOTE_SESSION_LENGTH
+    past
     count = Vote.objects.filter(author=author, date__gt=past).count()
     avail = MAX_VOTES_PER_SESSION - count
 

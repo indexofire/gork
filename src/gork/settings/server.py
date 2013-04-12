@@ -2,7 +2,7 @@
 import os
 from .base import *
 
-SITE_THEME = 'gork'
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 DATABASES = {
