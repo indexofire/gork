@@ -16,4 +16,8 @@ DATABASES = {
     }
 }
 
+
+INSTALLED_APP += (
+    'gunicorn',
+)
 SECRET_KEY = os.environ["SECRET_KEY"]
