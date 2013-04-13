@@ -5,20 +5,20 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="pad">
-    <h1 class="title">{{ SITE_NAME }}</h1>
-
-    <form id="#form-signup" method="post" action="" enctype="multipart/form-data">{% csrf_token %}
-      <ul class="inputs black-input large">
-      <!-- The autocomplete="off" attributes is the only way to prevent webkit browsers from filling the inputs with yellow -->
-      <li><span class="icon-user mid-margin-right"></span><input autocomplete="off" id="id_username" maxlength="30" name="username" type="text" class="input-unstyled" placeholder="{% trans 'Username' %}"></li>
-      <li><span class="icon-lock mid-margin-right"></span><input style="margin-left:3px" ="off" id="id_password" name="password" type="password" class="input-unstyled" placeholder="{% trans 'Password' %}"></li>
-      <li><span class="icon-lock mid-margin-right"></span><input style="margin-left:3px" ="off" id="id_password_confirm" name="password_confirm" type="password" class="input-unstyled" placeholder="{% trans 'Password' %}"></li>
-      <li><span class="icon-email mid-margin-right"></span><input style="margin-left:3px" ="off" id="id_email" name="email" type="text" class="input-unstyled" placeholder="{% trans 'Email' %}"></li>
-      <input id="id_code" name="code" type="hidden">
-      </ul>
-      <button type="submit" class="btn">{% trans 'Submit' %}</button>
-    </form>
+  <div class="row">
+    <div class="span12 pad">
+      <h3 class="title">{{ SITE_NAME }}: {% trans "Sign up" %}</h3>
+      <h5>&nbsp;</h5>
+      <form id="#form-signup" class="form-horizontal" method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_bootstrap }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">{% trans "Sign up" %}</button>
+          </div>
+        </div>
+      </form>
+  </div>
   </div>
 </div>
 {% endblock content %}

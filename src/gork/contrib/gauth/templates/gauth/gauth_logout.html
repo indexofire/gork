@@ -4,18 +4,14 @@
 {% block title %}{{ SITE_NAME }} - {% trans 'User logout' %}{% endblock %}
 
 {% block content %}
-<section role="main" id="main">
-
-<div class="with-padding">
-  <div class="twelve-columns">
-    <form method="POST" action="{% url 'gauth-logout' %}" class="form-horizontal">{% csrf_token %}
-      <fieldset>
-        <h1>{% trans "Are you sure you want to log out?" %}</h1>
-        <button type="submit" class="button blue-gradient glossy huge">{% trans "Log out" %}</button>
-    </fieldset>
-  </form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="span12 pad">
+      <h3 class="title">{% trans "Are you sure you want to log out?" %}</h3>
+      <form method="POST" action="{% url 'gauth-logout' %}" class="form-horizontal" style="padding:20px 0px 0px 20px">{% csrf_token %}
+        <button type="submit" class="btn">{% trans "Log out" %}</button>
+      </form>
+    </div>
+  </div>
 </div>
-</div>
-
-</section>
 {% endblock content %}

@@ -8,7 +8,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.template.defaultfilters import striptags
 from gauth.models import GUser
 from gauth import settings
-#from gform.models import BootstrapForm
+from gform.models import BootstrapForm
 
 
 alnum_re = re.compile(r"^\w+$")
@@ -69,7 +69,7 @@ class GUserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-class SignupForm(forms.Form):
+class SignupForm(forms.Form, BootstrapForm):
     """
     Sign up form for registeration
     """
@@ -88,12 +88,14 @@ class SignupForm(forms.Form):
         widget=forms.PasswordInput(render_value=False)
     )
     email = forms.EmailField(widget=forms.TextInput(), required=True)
+    """
     code = forms.CharField(
+        label=_("Verify code"),
         max_length=64,
         required=False,
         widget=forms.HiddenInput()
     )
-
+    """
     def clean_username(self):
         if not alnum_re.search(self.cleaned_data["username"]):
             raise forms.ValidationError(_("Usernames can only contain letters, numbers and underscores."))
@@ -116,7 +118,8 @@ class SignupForm(forms.Form):
         return self.cleaned_data
 
 
-class LoginForm(AjaxForm):
+#class LoginForm(AjaxForm):
+class LoginForm(forms.Form):
     """
     User Login Form, the only checked field is pasword. Child inherit from this
     class will add other field
@@ -152,7 +155,7 @@ class LoginForm(AjaxForm):
         }
 
 
-class SigninUsernameForm(LoginForm):
+class SigninUsernameForm(LoginForm, BootstrapForm):
     """
     Use username as login
     """
@@ -209,4 +212,3 @@ class ChangePasswordForm(forms.Form):
             if self.cleaned_data["password_new"] != self.cleaned_data["password_new_confirm"]:
                 raise forms.ValidationError(_("You must type the same password each time."))
         return self.cleaned_data["password_new_confirm"]
-
