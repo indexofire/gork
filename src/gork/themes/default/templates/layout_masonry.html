@@ -1,0 +1,41 @@
+{% extends "site_base.html" %}
+{% load i18n feincms_tags feincms_page_tags mptt_tags %}
+
+{% block content %}
+<style>
+.fluid .box.col1 { width: 15%; }
+.fluid .box.col2 { width: 30%; }
+.fluid .box.col3 { width: 45%; }
+.fluid .box.col4 { width: 60%; }
+.fluid .box.col5 { width: 75%; }
+.fluid .box.col6 { width: 90%; }
+</style>
+
+<div class="fluid container-fluid" id="fluid-container">
+
+  {% feincms_nav feincms_page level=feincms_page.level|add:2 depth=1 as nodes %}
+  {% recursetree nodes %}
+    <div class="box pad {{ node.menu_additional_class }}">
+      <h3 class="title">{{ node.title }}</h3>
+      <div class="content">
+        <p style="padding: 5px">{{ node.meta_keywords }}</p>
+        <a href="{{ node.get_absolute_url }}"><span>{% trans "Read More" %}</span></a>
+      </div>
+    </div>
+  {% endrecursetree %}
+
+</div>
+{% endblock content %}
+
+{% block foot_static %}
+{{ block.super }}
+<script src="{{ STATIC_URL }}libs/masonry/jquery.masonry.min.js"></script>
+<script>
+$('#fluid-container').masonry({
+  itemSelector: '.box',
+  columnWidth: function( containerWidth ) {
+    return containerWidth / 6;
+  }
+});
+</script>
+{% endblock foot_static %}

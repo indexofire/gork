@@ -1,0 +1,52 @@
+{% extends "site_base.html" %}
+{% load i18n feincms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+  {% if request.user.is_superuser %}
+    {% feincms_render_region feincms_page "sccdc" request %}
+    {% feincms_render_region feincms_page "xccdc" request %}
+    {% feincms_render_region feincms_page "gscdc" request %}
+    {% feincms_render_region feincms_page "jgcdc" request %}
+    {% feincms_render_region feincms_page "xhcdc" request %}
+    {% feincms_render_region feincms_page "xscdc" request %}
+    {% feincms_render_region feincms_page "yhcdc" request %}
+    {% feincms_render_region feincms_page "fycdc" request %}
+    {% feincms_render_region feincms_page "jdcdc" request %}
+    {% feincms_render_region feincms_page "tlcdc" request %}
+    {% feincms_render_region feincms_page "cacdc" request %}
+    {% feincms_render_region feincms_page "lacdc" request %}
+  {% elif request.user.username == 'sccdc' %}
+    {% feincms_render_region feincms_page "sccdc" request %}
+  {% elif request.user.username == 'xccdc' %}
+    {% feincms_render_region feincms_page "xccdc" request %}
+  {% elif request.user.username == 'gscdc' %}
+    {% feincms_render_region feincms_page "gscdc" request %}
+  {% elif request.user.username == 'jgcdc' %}
+    {% feincms_render_region feincms_page "jgcdc" request %}
+  {% elif request.user.username == 'xhcdc' %}
+    {% feincms_render_region feincms_page "xhcdc" request %}
+  {% elif request.user.username == 'xscdc' %}
+    {% feincms_render_region feincms_page "sxcdc" request %}
+  {% elif request.user.username == 'yhcdc' %}
+    {% feincms_render_region feincms_page "yhcdc" request %}
+  {% elif request.user.username == 'fycdc' %}
+    {% feincms_render_region feincms_page "fycdc" request %}
+  {% elif request.user.username == 'jdcdc' %}
+    {% feincms_render_region feincms_page "jdcdc" request %}
+  {% elif request.user.username == 'tlcdc' %}
+    {% feincms_render_region feincms_page "tlcdc" request %}
+  {% elif request.user.username == 'cacdc' %}
+    {% feincms_render_region feincms_page "cacdc" request %}
+  {% elif request.user.username == 'lacdc' %}
+    {% feincms_render_region feincms_page "lacdc" request %}
+  {% else %}
+    {% trans "You don't have permission to view the page" %}
+  {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

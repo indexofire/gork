@@ -4,6 +4,7 @@ from feincms.module.page.models import Page
 from feincms.content.application.models import ApplicationContent
 from feincms.content.richtext.models import RichTextContent
 from feincms.content.raw.models import RawContent
+from feincms.content.file.models import FileContent
 from gform.content import FormContent
 #from gbase.request_processors import authenticated_request_processor
 
@@ -65,11 +66,39 @@ Page.register_templates(
             ('application', _('Application')),
         ),
     },
+    {
+        'key': 'masonry',
+        'title': _('Masonry Show Page'),
+        'path': 'layout_masonry.html',
+        'regions': (
+            ('main', _('Main masonry list')),
+        ),
+    },
+    {
+        'key': 'cdc',
+        'title': _('CDC Permission Page'),
+        'path': 'layout_cdc.html',
+        'regions': (
+            ('sccdc', _('Shang Chen CDC Users')),
+            ('xccdc', _('Xia Chen CDC Users')),
+            ('gscdc', _('Gong Shu CDC Users')),
+            ('jgcdc', _('Jiang Gan CDC Users')),
+            ('xhcdc', _('Xi Hu CDC Users')),
+            ('xscdc', _('Xiao Shan CDC Users')),
+            ('yhcdc', _('Yu Hang CDC Users')),
+            ('fycdc', _('Fu Yang CDC Users')),
+            ('cacdc', _('Chun An CDC Users')),
+            ('jdcdc', _('Jian De CDC Users')),
+            ('lacdc', _('Lin An CDC Users')),
+            ('tlcdc', _('Tong Lu CDC Users')),
+        ),
+    },
 )
 
 Page.create_content_type(RichTextContent)
 Page.create_content_type(FormContent)
 Page.create_content_type(RawContent)
+Page.create_content_type(FileContent)
 #Page.register_request_processor(authenticated_request_processor)
 
 
