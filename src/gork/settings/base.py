@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
 ]
 
 TIME_ZONE = 'Asia/Shanghai'
-LANGUAGE_CODE = 'zh-CN'
+LANGUAGE_CODE = 'zh_CN'
 LANGUAGES = (
     ('zh-cn', _('Simplified Chinese')),
 )
@@ -57,6 +57,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'locale'),
 )
 
 TEMPLATE_DIRS = (
@@ -112,8 +116,9 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

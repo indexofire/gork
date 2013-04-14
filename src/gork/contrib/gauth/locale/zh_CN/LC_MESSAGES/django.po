@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-15 10:17+0800\n"
+"POT-Creation-Date: 2013-04-14 11:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: admin.py:30 forms.py:42 forms.py:77 forms.py:159
-#: templates/gauth/gauth_login.html:15 templates/gauth/gauth_signup.html:15
+#: admin.py:30 forms.py:42 forms.py:77 forms.py:162
 msgid "Username"
 msgstr "用户名"
 
@@ -33,11 +32,9 @@ msgstr "必填（只允许30个字符以内长度的数字，大小写字母）"
 msgid ""
 "This value may contain only letters,             numbers and @/./+/-/_ "
 "characters."
-msgstr ""
+msgstr "只能包含大小写字母，数字和@.+-_等符号"
 
-#: admin.py:39 forms.py:51 forms.py:83 forms.py:125
-#: templates/gauth/gauth_login.html:16 templates/gauth/gauth_signup.html:16
-#: templates/gauth/gauth_signup.html:17
+#: admin.py:39 forms.py:51 forms.py:83 forms.py:128
 msgid "Password"
 msgstr "密码"
 
@@ -46,147 +43,152 @@ msgid ""
 "Raw passwords are not stored, so there is no way to see             this "
 "user's password, but you can change the password using             <a href="
 "\"password/\">this form</a>."
-msgstr ""
+msgstr "原始密码没有保存，因此无法查看用户密码，但是可以通过"
+"点击 <a href=\"password/\">这里</a> 修改用户密码"
 
-#: admin.py:72
+#: admin.py:73
 msgid "Auth info"
 msgstr "用户信息"
 
-#: admin.py:73
+#: admin.py:74
 msgid "Personal info"
 msgstr "个人信息"
 
-#: admin.py:74 admin.py:242
+#: admin.py:75 admin.py:243
 msgid "Permissions"
 msgstr "权限"
 
-#: admin.py:76
+#: admin.py:77
 msgid "Important dates"
 msgstr "重要日期"
 
-#: admin.py:188
+#: admin.py:189
 msgid "Password changed successfully."
 msgstr "修改密码成功"
 
-#: admin.py:198
+#: admin.py:199
 #, python-format
 msgid "Change password: %s"
 msgstr "修改密码为: %s"
 
-#: admin.py:241
+#: admin.py:242
 msgid "Roles"
 msgstr "角色"
 
-#: admin.py:244
+#: admin.py:245
 msgid "Users"
 msgstr "用户"
 
-#: admin.py:267
+#: admin.py:268
 msgid "Children roles"
 msgstr "儿童角色"
 
-#: admin.py:279
+#: admin.py:280
 msgid "Inherited permissions"
 msgstr "权限继承"
 
-#: admin.py:291
+#: admin.py:292
 msgid "Inherited users"
 msgstr "用户继承"
 
-#: admin.py:302
+#: admin.py:303
 msgid "Current permissions"
 msgstr "当前权限"
 
-#: admin.py:313
+#: admin.py:314
 msgid "Current users"
 msgstr "当前用户"
 
 #: forms.py:45
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
-msgstr ""
+msgstr "必填，30个字符以内的大小写字母，数字和'@.+-_'符号"
 
 #: forms.py:48
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
-msgstr ""
+msgstr "只能包含字母，数字和@.+-_等字符"
 
 #: forms.py:52
 msgid ""
 "Raw passwords are not stored, so there is no way to see this user's "
 "password, but you can change the password using <a href=\"password/\">this "
 "form</a>."
-msgstr ""
+msgstr "原始密码没有保存，因此无法查看用户密码，但是可以通过"
+"点击 <a href=\"password/\">这里</a> 修改用户密码"
 
 #: forms.py:87
 msgid "Password (again)"
-msgstr ""
+msgstr "密码(重复)"
 
-#: forms.py:99
+#: forms.py:101
 msgid "Usernames can only contain letters, numbers and underscores."
-msgstr ""
+msgstr "用户名只能包含字母，数字和下划线"
 
-#: forms.py:103
+#: forms.py:105
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "用户名已被使用，请选择一个新的用户名"
 
-#: forms.py:110
+#: forms.py:112
 msgid "A user is registered with this email address."
-msgstr ""
+msgstr "用户使用电子邮件地址注册"
 
-#: forms.py:115 forms.py:210
+#: forms.py:117 forms.py:213
 msgid "You must type the same password each time."
-msgstr ""
+msgstr "必须输入相同的确认密码"
 
-#: forms.py:160
+#: forms.py:163
 msgid "The username and/or password you specified are not correct."
-msgstr ""
+msgstr "用户名或者密码不正确"
 
-#: forms.py:161
+#: forms.py:164
 msgid "This account is inactive."
-msgstr ""
+msgstr "该账户尚未激活"
 
-#: forms.py:174 templates/gauth/gauth_detail.html:67
-#: templates/gauth/gauth_signup.html:18
+#: forms.py:177 templates/gauth/gauth_detail.html:67
 msgid "Email"
-msgstr ""
+msgstr "电子邮件"
 
-#: forms.py:179
+#: forms.py:182
 msgid "Email address can not be found."
-msgstr ""
+msgstr "无法找到电子邮件地址"
 
-#: forms.py:186
+#: forms.py:189
 msgid "Current Password"
-msgstr ""
+msgstr "当前密码"
 
-#: forms.py:190
+#: forms.py:193
 msgid "New Password"
-msgstr ""
+msgstr "新密码"
 
-#: forms.py:194
+#: forms.py:197
 msgid "New Password (again)"
-msgstr ""
+msgstr "新密码(重复)"
 
-#: forms.py:204
+#: forms.py:207
 msgid "Please type your current password."
-msgstr ""
+msgstr "请输入您的当前密码"
+
+#: views.py:89
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "确认邮件已发送只至 %(email)s "
 
 #: views.py:93
 #, python-format
-msgid "Confirmation email sent to %(email)s."
-msgstr ""
-
-#: views.py:97
-#, python-format
 msgid "The code %(code)s is invalid."
-msgstr ""
+msgstr "激活码 %(code)s 无效"
 
-#: views.py:428
+#: views.py:424
 #, python-format
 msgid "You have confirmed %(email)s."
-msgstr ""
+msgstr "你已经确认 %(email)s"
 
-#: views.py:498
+#: views.py:494
 msgid "Password successfully changed."
-msgstr ""
+msgstr "密码修改成功"
+
+#: _views/dashboard.py:43
+msgid "Your profile has been updated!"
+msgstr "你的个人信息已更新!"
 
 #: extensions/avatar.py:32
 msgid "Avatar Pictures"
@@ -194,31 +196,31 @@ msgstr "头像"
 
 #: extensions/portfolio.py:11 templates/gauth/gauth_detail.html:47
 msgid "Male"
-msgstr ""
+msgstr "男性"
 
 #: extensions/portfolio.py:12 templates/gauth/gauth_detail.html:49
 msgid "Female"
-msgstr ""
+msgstr "女性"
 
 #: extensions/portfolio.py:13 templates/gauth/gauth_detail.html:51
 msgid "Unknown"
-msgstr ""
+msgstr "不详"
 
 #: extensions/portfolio.py:19 templates/gauth/gauth_detail.html:45
 msgid "Gender"
-msgstr ""
+msgstr "性别"
 
 #: extensions/portfolio.py:29
 msgid "Birthday"
-msgstr ""
+msgstr "生日"
 
 #: extensions/portfolio.py:38
 msgid "Telephone Number"
-msgstr ""
+msgstr "固定电话号码"
 
 #: extensions/portfolio.py:47
 msgid "Cell Phone Number"
-msgstr ""
+msgstr "手机电话号码"
 
 #: extensions/portfolio.py:53
 msgid "Portifolio"
@@ -236,44 +238,44 @@ msgstr "昵称"
 
 #: models/permission.py:40
 msgid "description"
-msgstr ""
+msgstr "自我描述"
 
 #: models/permission.py:40
 msgid "A description of this permission role"
-msgstr ""
+msgstr "角色权限设定"
 
 #: models/permission.py:41
 msgid "parent role"
-msgstr ""
+msgstr "父角色"
 
 #: models/permission.py:42 models/user.py:81
 msgid "user"
-msgstr ""
+msgstr "用户"
 
 #: models/permission.py:43
 msgid "permissions"
-msgstr ""
+msgstr "权限"
 
 #: models/permission.py:48
 msgid "role"
-msgstr ""
+msgstr "角色"
 
 #: models/permission.py:49
 msgid "roles"
-msgstr ""
+msgstr "角色"
 
 #: models/user.py:37
 msgid "username"
-msgstr ""
+msgstr "用户名"
 
 #: models/user.py:40
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "必填，30个字符以内的大小写字母，数字和@.+-_"
 
 #: models/user.py:44
 msgid "Enter a valid username."
-msgstr ""
+msgstr "输入一个有效的用户名"
 
 #: models/user.py:48
 msgid "nickname"
@@ -281,49 +283,50 @@ msgstr "昵称"
 
 #: models/user.py:52
 msgid "Showed in site. any characters will be valid"
-msgstr ""
+msgstr "站内显示的名称，任何字母或中文都可以"
 
 #: models/user.py:55
 msgid "email address"
-msgstr ""
+msgstr "电子邮件地址"
 
 #: models/user.py:61
 msgid "staff status"
-msgstr ""
+msgstr "职员状态"
 
 #: models/user.py:63
 msgid "Designates whether the user can log into this admin site."
-msgstr ""
+msgstr "分配该用户是否能登录后台管理界面权限"
 
 #: models/user.py:66
 msgid "active"
-msgstr ""
+msgstr "激活"
 
 #: models/user.py:68
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
-msgstr ""
+msgstr "分配该用户是否处于激活状态。建议如果要禁止用户，设置这个选项"
+"而不要删除用户。"
 
 #: models/user.py:71
 msgid "sign up date"
-msgstr ""
+msgstr "注册日期"
 
 #: models/user.py:82
 msgid "users"
-msgstr ""
+msgstr "用户群"
+
+#: models/user.py:153
+msgid "email confirmation"
+msgstr "邮件确认"
 
 #: models/user.py:154
-msgid "email confirmation"
-msgstr ""
-
-#: models/user.py:155
 msgid "email confirmations"
-msgstr ""
+msgstr "邮件确认"
 
 #: templates/gauth/gauth_detail.html:4
 msgid "User info"
-msgstr ""
+msgstr "用户信息"
 
 #: templates/gauth/gauth_detail.html:8 templates/gauth/gauth_edit.html:8
 #: templates/gauth/gauth_email_confirm.html:8
@@ -336,43 +339,43 @@ msgstr ""
 #: templates/gauth/gauth_password_reset_token_fail.html:8
 #: templates/gauth/gauth_signup_closed.html:8
 msgid "Account"
-msgstr ""
+msgstr "账户"
 
 #: templates/gauth/gauth_detail.html:9 templates/gauth/gauth_edit.html:9
 msgid "User"
-msgstr ""
+msgstr "用户"
 
 #: templates/gauth/gauth_detail.html:15
 msgid "your picture"
-msgstr ""
+msgstr "你的照片"
 
 #: templates/gauth/gauth_detail.html:17
 msgid "Job title"
-msgstr ""
+msgstr "职业"
 
 #: templates/gauth/gauth_detail.html:17
 msgid "Expertise"
-msgstr ""
+msgstr "特长"
 
 #: templates/gauth/gauth_detail.html:22
 msgid "view details"
-msgstr ""
+msgstr "查看详细信息"
 
 #: templates/gauth/gauth_detail.html:23
 msgid "edit details"
-msgstr ""
+msgstr "编辑信息"
 
 #: templates/gauth/gauth_detail.html:24
 msgid "change password"
-msgstr ""
+msgstr "修改密码"
 
 #: templates/gauth/gauth_detail.html:32
 msgid "Personal Details"
-msgstr ""
+msgstr "个人信息"
 
 #: templates/gauth/gauth_detail.html:35
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: templates/gauth/gauth_detail.html:40
 #, fuzzy
@@ -381,54 +384,54 @@ msgstr "昵称"
 
 #: templates/gauth/gauth_detail.html:55
 msgid "Day of Birth"
-msgstr ""
+msgstr "生日"
 
 #: templates/gauth/gauth_detail.html:61
 msgid "Telephone"
-msgstr ""
+msgstr "电话"
 
 #: templates/gauth/gauth_detail.html:74
 msgid "Profesional object"
-msgstr ""
+msgstr "专业对象"
 
 #: templates/gauth/gauth_edit.html:4
 msgid "Edit user"
-msgstr ""
+msgstr "编辑用户"
 
 #: templates/gauth/gauth_edit.html:10
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 #: templates/gauth/gauth_edit.html:16
 msgid "Edit account"
-msgstr ""
+msgstr "编辑账户"
 
 #: templates/gauth/gauth_email_confirm.html:4
 #: templates/gauth/gauth_email_confirm.html:9
 msgid "Email confirm"
-msgstr ""
+msgstr "确认电子邮件"
 
 #: templates/gauth/gauth_email_confirm.html:15
 msgid "Confirm Email"
-msgstr ""
+msgstr "确认电子有"
 
 #: templates/gauth/gauth_email_confirm.html:17
 #, python-format
 msgid "Confirm email address <b>%(email)s</b>?"
-msgstr ""
+msgstr "确认电子邮件地址  <b>%(email)s</b>?"
 
 #: templates/gauth/gauth_email_confirm.html:19
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #: templates/gauth/gauth_email_confirmation_sent.html:4
 #: templates/gauth/gauth_email_confirmation_sent.html:9
 msgid "Email confirmation sent"
-msgstr ""
+msgstr "确认信已发送"
 
 #: templates/gauth/gauth_email_confirmation_sent.html:14
 msgid "Confirm your email address"
-msgstr ""
+msgstr "确认你的电子邮件地址"
 
 #: templates/gauth/gauth_email_confirmation_sent.html:15
 #, python-format
@@ -437,114 +440,80 @@ msgid ""
 "link provided to finalize the signup process. If you do not receive it "
 "within a few minutes, contact us at <a href=\"mailto:"
 "%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</a>."
-msgstr ""
+msgstr "已发送一封确认邮件至<b>%(email)s</b>。点击下面的链接完成注册过程。"
+"如果你没有收到电子邮件，请联系<a href=\"mailto:"
+"%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</a>."
 
 #: templates/gauth/gauth_email_confirmed.html:4
 #: templates/gauth/gauth_email_confirmed.html:9
 #: templates/gauth/gauth_email_confirmed.html:14
 msgid "Email confirmed"
-msgstr ""
+msgstr "电子邮件已确认"
 
 #: templates/gauth/gauth_email_confirmed.html:15
 #, python-format
 msgid "You have confirmed <b>%(email)s</b>"
-msgstr ""
+msgstr "你已经确认 <b>%(email)s</b>"
 
 #: templates/gauth/gauth_index.html:4
 msgid "User list"
-msgstr ""
+msgstr "用户列表"
 
 #: templates/gauth/gauth_login.html:4
 msgid "Log in"
-msgstr ""
+msgstr "登录"
 
-#: templates/gauth/gauth_login.html:19
-msgid "Sign in"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:20 templates/gauth/gauth_signup.html:4
-msgid "Sign up"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:21
-msgid "forget your password?"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:21
-msgid "Forget?"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:165 templates/gauth/gauth_signup.html:165
-msgid "Please fill in your username"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:173 templates/gauth/gauth_signup.html:173
-msgid "Please fill in your password"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:179 templates/gauth/gauth_login.html:195
-#: templates/gauth/gauth_signup.html:190
-msgid "Checking credentials..."
-msgstr ""
-
-#: templates/gauth/gauth_login.html:204
-msgid "Authenticate successful! Log into site right now!"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:215 templates/gauth/gauth_signup.html:210
-msgid "Username or password is not correct!"
-msgstr ""
-
-#: templates/gauth/gauth_login.html:215 templates/gauth/gauth_signup.html:210
-msgid "Forget your password?"
-msgstr ""
+#: templates/gauth/gauth_login.html:10 templates/gauth/gauth_login.html:16
+msgid "Login"
+msgstr "登录"
 
 #: templates/gauth/gauth_logout.html:4
 msgid "User logout"
-msgstr ""
+msgstr "用户注销"
 
-#: templates/gauth/gauth_logout.html:13
+#: templates/gauth/gauth_logout.html:10
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "你确定要注销当前用户?"
 
-#: templates/gauth/gauth_logout.html:14
+#: templates/gauth/gauth_logout.html:12
 msgid "Log out"
-msgstr ""
+msgstr "注销"
 
 #: templates/gauth/gauth_password_change.html:4
 msgid "Change user's password"
-msgstr ""
+msgstr "修改密码"
 
 #: templates/gauth/gauth_password_change.html:13
 msgid "Change password"
-msgstr ""
+msgstr "修改密码"
 
 #: templates/gauth/gauth_password_change.html:16
 #: templates/gauth/gauth_password_reset_token.html:19
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: templates/gauth/gauth_password_reset.html:4
 msgid "Reset user's password"
-msgstr ""
+msgstr "重置用户密码"
 
 #: templates/gauth/gauth_password_reset.html:9
 msgid "Reset Password Send"
-msgstr ""
+msgstr "重置密码发送"
 
 #: templates/gauth/gauth_password_reset.html:16
 msgid "Password reset"
-msgstr ""
+msgstr "密码重置"
 
 #: templates/gauth/gauth_password_reset.html:17
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
-msgstr ""
+msgstr "忘记密码? 输入你注册时留下的密码，我们会给你发送一份电子邮件以便"
+"重新设置密码"
 
 #: templates/gauth/gauth_password_reset.html:22
 msgid "Reset my password"
-msgstr ""
+msgstr "重设密码"
 
 #: templates/gauth/gauth_password_reset.html:27
 #, python-format
@@ -552,59 +521,59 @@ msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
 "\"mailto:%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</"
 "a>."
-msgstr ""
+msgstr "如果重设密码遇到问题，请联系<a href="
+"\"mailto:%(THEME_ACCOUNT_CONTACT_EMAIL)s\">%(THEME_ACCOUNT_CONTACT_EMAIL)s</"
+"a>."
 
 #: templates/gauth/gauth_password_reset_send.html:4
 #: templates/gauth/gauth_password_reset_send.html:9
 msgid "Send reset password"
-msgstr ""
+msgstr "发送重置密码"
 
 #: templates/gauth/gauth_password_reset_token.html:4
 #: templates/gauth/gauth_password_reset_token.html:9
 msgid "Password reset token"
-msgstr ""
+msgstr "密码重置加密码"
 
 #: templates/gauth/gauth_password_reset_token.html:15
 msgid "Set your new password"
-msgstr ""
+msgstr "输入你的新密码"
 
 #: templates/gauth/gauth_password_reset_token_fail.html:4
 #: templates/gauth/gauth_password_reset_token_fail.html:9
 msgid "Password reset token fail"
-msgstr ""
+msgstr "密码加密码错误"
 
 #: templates/gauth/gauth_password_reset_token_fail.html:14
 msgid "Bad token"
-msgstr ""
+msgstr "错误的加密码"
 
 #: templates/gauth/gauth_password_reset_token_fail.html:16
 #, python-format
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a <a href=\"%(url)s\">new password reset</a>."
-msgstr ""
+msgstr "密码重置链接无效，可能由于已经被使用过了。请点击"
+"<a href=\"%(url)s\">设置新密码</a>"
 
-#: templates/gauth/gauth_signup.html:21
-msgid "Submit"
-msgstr ""
-
-#: templates/gauth/gauth_signup.html:199
-msgid "Log into site right now!"
-msgstr ""
+#: templates/gauth/gauth_signup.html:4 templates/gauth/gauth_signup.html:10
+#: templates/gauth/gauth_signup.html:17
+msgid "Sign up"
+msgstr "注册"
 
 #: templates/gauth/gauth_signup_closed.html:4
 #: templates/gauth/gauth_signup_closed.html:9
 #: templates/gauth/gauth_signup_closed.html:14
 msgid "Sign up closed"
-msgstr ""
+msgstr "注册已关闭"
 
 #: templates/gauth/gauth_signup_closed.html:16
 msgid "The code you provided was not accepted."
-msgstr ""
+msgstr "你提供的代码错误"
 
 #: templates/gauth/gauth_signup_closed.html:18
 msgid "Sign up is closed to the general public."
-msgstr ""
+msgstr "网站注册已经关闭"
 
 #: templates/gauth/email/email_confirmation_message.txt:4
 #, python-format
@@ -612,12 +581,14 @@ msgid ""
 "User '%(user_name)s' at %(site_name)s has given this as an email address.\n"
 "\n"
 "To confirm this is correct, go to %(activate_url)s\n"
-msgstr ""
+msgstr " %(site_name)s 的用户 '%(user_name)s' 已确认该电子邮件地址 \n"
+"\n"
+"如果确认信息正确，点击 %(activate_url)s\n"
 
 #: templates/gauth/email/email_confirmation_subject.txt:2
 #, python-format
 msgid "Confirm email address for %(site_name)s"
-msgstr ""
+msgstr "确认邮件 %(site_name)s"
 
 #: templates/gauth/email/password_reset.txt:1
 #, python-format
@@ -629,8 +600,14 @@ msgid ""
 "\n"
 "%(password_reset_url)s\n"
 msgstr ""
+"您收到这封邮件是由于网站上您或者其他某人发出了一个重置密码的"
+"请求( %(site_name)s  )。\n"
+"如果你不需要重置密码，处于安全考虑请忽略掉这封邮件。如果需要重置密"
+"码，请点击下方链接: \n"
+"\n"
+"%(password_reset_url)s\n"
 
 #: templates/gauth/email/password_reset_subject.txt:1
 #, python-format
 msgid "[%(site_name)s] Password reset"
-msgstr ""
+msgstr "[%(site_name)s] 密码重置"

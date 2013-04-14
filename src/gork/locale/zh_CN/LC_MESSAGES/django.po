@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-03 09:19+0800\n"
+"POT-Creation-Date: 2013-04-14 12:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,1952 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: application/ask/forms.py:10
+msgid "Post title"
+msgstr ""
+
+#: application/ask/forms.py:10
+msgid "Post content"
+msgstr ""
+
+#: application/ask/forms.py:10
+msgid "Post tags"
+msgstr ""
+
+#: application/ask/models.py:21
+msgid "Who ask or answer the question"
+msgstr ""
+
+#: application/ask/models.py:47
+msgid "Title of Question or Answer"
+msgstr ""
+
+#: application/ask/extensions/question.py:16
+msgid "Q&A Score"
+msgstr ""
+
+#: application/ask/extensions/question.py:24
+msgid "Last visited"
+msgstr ""
+
+#: application/ask/extensions/question.py:88
+msgid "Q&A"
+msgstr ""
+
+#: application/ask/templates/ask/ask_detail.html:7
+#: application/knowledge/models.py:170 application/knowledge/models.py:195
+msgid "Question"
+msgstr ""
+
+#: application/ask/templates/ask/ask_detail.html:26
+#: application/ask/templates/ask/ask_index.html:20
+msgid "Answers"
+msgstr ""
+
+#: application/ask/templates/ask/ask_detail.html:54
+msgid "Quick Reply"
+msgstr ""
+
+#: application/ask/templates/ask/ask_detail.html:61
+#: application/ask/templates/ask/ask_new_post.html:9
+msgid "Submit"
+msgstr ""
+
+#: application/ask/templates/ask/ask_index.html:12
+msgid "Score"
+msgstr ""
+
+#: application/ask/templates/ask/ask_index.html:16
+msgid "Views"
+msgstr ""
+
+#: application/ask/templates/ask/ask_index.html:31
+msgid "No question yet!"
+msgstr ""
+
+#: application/ask/views/main.py:40
+msgid "You have no permission to view the question."
+msgstr ""
+
+#: application/know/admin.py:80 application/know/models/article.py:35
+msgid "created"
+msgstr ""
+
+#: application/know/forms.py:47
+msgid "Spam protection failed to find both a logged in user and an IP address."
+msgstr ""
+
+#: application/know/forms.py:58
+#, python-format
+msgid ""
+"Spam protection: You are only allowed                     to create or edit "
+"%(revisions)d article per %(interval_name)s."
+msgstr ""
+
+#: application/know/forms.py:74
+msgid "minute"
+msgstr ""
+
+#: application/know/forms.py:74
+#, python-format
+msgid "%d minutes"
+msgstr ""
+
+#: application/know/forms.py:81
+msgid "hour"
+msgstr ""
+
+#: application/know/forms.py:86 application/know/forms.py:97
+#: application/know/forms.py:248 application/know/templates/know/dir.html:48
+#: application/know/templates/know/search.html:24
+msgid "Title"
+msgstr ""
+
+#: application/know/forms.py:86
+msgid "Initial title of the article. May be overridden with revision titles."
+msgstr ""
+
+#: application/know/forms.py:88
+msgid "Type in some contents"
+msgstr ""
+
+#: application/know/forms.py:89
+msgid ""
+"This is just the initial contents of your article. After creating it, you "
+"can use more complex features like adding plugins, meta data, related "
+"articles etc..."
+msgstr ""
+
+#: application/know/forms.py:99 application/know/forms.py:258
+msgid "Contents"
+msgstr ""
+
+#: application/know/forms.py:105 application/know/forms.py:264
+msgid "Summary"
+msgstr ""
+
+#: application/know/forms.py:106
+msgid ""
+"Give a short reason for your edit, which will be stated in the revision log."
+msgstr ""
+
+#: application/know/forms.py:159
+msgid ""
+"While you were editing, someone else changed the revision. Your contents "
+"have been automatically merged with the new contents. Please review the text "
+"below."
+msgstr ""
+
+#: application/know/forms.py:161
+msgid "No changes made. Nothing to save."
+msgstr ""
+
+#: application/know/forms.py:199
+msgid "Select an option"
+msgstr ""
+
+#: application/know/forms.py:251 application/know/templates/know/dir.html:49
+#: contrib/gtag/models.py:11
+msgid "Slug"
+msgstr ""
+
+#: application/know/forms.py:252
+msgid ""
+"This will be the address where your             article can be found. Use "
+"only alphanumeric             characters and - or _. Note that you "
+"cannot             change the slug after creating the article."
+msgstr ""
+
+#: application/know/forms.py:265
+msgid "Write a brief message for the article's history log."
+msgstr ""
+
+#: application/know/forms.py:272
+msgid "A slug may not begin with an underscore."
+msgstr ""
+
+#: application/know/forms.py:281
+#, python-format
+msgid "A deleted article with slug \"%s\" already exists."
+msgstr ""
+
+#: application/know/forms.py:283
+#, python-format
+msgid "A slug named \"%s\" already exists."
+msgstr ""
+
+#: application/know/forms.py:301
+msgid "Yes, I am sure"
+msgstr ""
+
+#: application/know/forms.py:306
+#: application/know/templates/know/deleted.html:47
+msgid "Purge"
+msgstr ""
+
+#: application/know/forms.py:307
+msgid ""
+"Purge the article: Completely remove it             (and all its contents) "
+"with no undo. Purging is a             good idea if you want to free the "
+"slug such that             users can create new articles in its place."
+msgstr ""
+
+#: application/know/forms.py:321
+#: application/know/plugins/attachments/forms.py:145
+#: application/know/plugins/images/forms.py:66
+msgid "You are not sure enough!"
+msgstr ""
+
+#: application/know/forms.py:323
+msgid "While you tried to delete this article, it was modified. TAKE CARE!"
+msgstr ""
+
+#: application/know/forms.py:330
+msgid "Lock article"
+msgstr ""
+
+#: application/know/forms.py:331
+msgid "Deny all users access to edit this article."
+msgstr ""
+
+#: application/know/forms.py:335 contrib/gauth/admin.py:75
+#: contrib/gauth/admin.py:243
+msgid "Permissions"
+msgstr ""
+
+#: application/know/forms.py:341
+msgid "Owner"
+msgstr ""
+
+#: application/know/forms.py:342
+msgid "Enter the username of the owner."
+msgstr ""
+
+#: application/know/forms.py:346 application/know/forms.py:404
+#: application/know/plugins/notifications/util.py:18
+msgid "(none)"
+msgstr ""
+
+#: application/know/forms.py:353
+msgid "Inherit permissions"
+msgstr ""
+
+#: application/know/forms.py:354
+msgid ""
+"Check here to apply the above permissions             (excluding group and "
+"owner of the article) recursively             to articles below this one."
+msgstr ""
+
+#: application/know/forms.py:361
+msgid "Inherit owner"
+msgstr ""
+
+#: application/know/forms.py:362
+msgid ""
+"Check here to apply the ownership setting             recursively to "
+"articles below this one."
+msgstr ""
+
+#: application/know/forms.py:368
+msgid "Inherit group"
+msgstr ""
+
+#: application/know/forms.py:369
+msgid ""
+"Check here to apply the group setting             recursively to articles "
+"below this one."
+msgstr ""
+
+#: application/know/forms.py:376
+msgid "Permission settings for the article were updated."
+msgstr ""
+
+#: application/know/forms.py:378
+msgid "Your permission settings were unchanged, so nothing saved."
+msgstr ""
+
+#: application/know/forms.py:427
+msgid "No user with that username"
+msgstr ""
+
+#: application/know/forms.py:453
+msgid "Article locked for editing"
+msgstr ""
+
+#: application/know/forms.py:460
+msgid "Article unlocked for editing"
+msgstr ""
+
+#: application/know/forms.py:490
+msgid "Filter..."
+msgstr ""
+
+#: application/know/forms.py:505 application/know/templates/know/base.html:90
+msgid "Search..."
+msgstr ""
+
+#: application/know/conf/settings.py:20
+msgid "Table of Contents"
+msgstr ""
+
+#: application/know/core/plugins/base.py:68
+msgid "Settings for plugin"
+msgstr ""
+
+#: application/know/models/article.py:25
+#: application/know/models/pluginbase.py:183
+#: application/know/plugins/attachments/models.py:24
+msgid "current revision"
+msgstr ""
+
+#: application/know/models/article.py:29
+msgid ""
+"The revision being displayed for this article.             If you need to do "
+"a roll-back, simply change the value of             this field."
+msgstr ""
+
+#: application/know/models/article.py:39
+msgid "modified"
+msgstr ""
+
+#: application/know/models/article.py:40
+msgid "Article properties last modified"
+msgstr ""
+
+#: application/know/models/article.py:44
+msgid "owner"
+msgstr ""
+
+#: application/know/models/article.py:48
+msgid ""
+"The owner of the article, usually the creator.             The owner always "
+"has both read and write access."
+msgstr ""
+
+#: application/know/models/article.py:54
+msgid "group"
+msgstr ""
+
+#: application/know/models/article.py:57
+msgid ""
+"Like in a UNIX file system, permissions can             be given to a user "
+"according to group membership. Groups             are handled through the "
+"Django auth system."
+msgstr ""
+
+#: application/know/models/article.py:63
+msgid "group read access"
+msgstr ""
+
+#: application/know/models/article.py:67
+msgid "group write access"
+msgstr ""
+
+#: application/know/models/article.py:71
+msgid "others read access"
+msgstr ""
+
+#: application/know/models/article.py:75
+msgid "others write access"
+msgstr ""
+
+#: application/know/models/article.py:221
+#, python-format
+msgid "Article without content (%(id)d)"
+msgstr ""
+
+#: application/know/models/article.py:268
+msgid "content type"
+msgstr ""
+
+#: application/know/models/article.py:272
+msgid "object ID"
+msgstr ""
+
+#: application/know/models/article.py:285
+msgid "Article for object"
+msgstr ""
+
+#: application/know/models/article.py:286
+msgid "Articles for object"
+msgstr ""
+
+#: application/know/models/article.py:298
+msgid "revision number"
+msgstr ""
+
+#: application/know/models/article.py:308
+msgid "IP address"
+msgstr ""
+
+#: application/know/models/article.py:315
+#: application/knowledge/templates/know/thread.html:20
+#: application/knowledge/templates/know/thread.html:44
+#: contrib/gauth/models/permission.py:42 contrib/gauth/models/user.py:81
+msgid "user"
+msgstr ""
+
+#: application/know/models/article.py:336
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:23
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:19
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:40
+#: application/know/templates/know/includes/revision_info.html:15
+msgid "deleted"
+msgstr ""
+
+#: application/know/models/article.py:339
+#: application/know/templates/know/article.html:20
+#: application/know/templates/know/includes/revision_info.html:21
+msgid "locked"
+msgstr ""
+
+#: application/know/models/article.py:361
+#: application/know/models/pluginbase.py:38
+msgid "article"
+msgstr ""
+
+#: application/know/models/article.py:366
+msgid "article contents"
+msgstr ""
+
+#: application/know/models/article.py:372
+msgid "article title"
+msgstr ""
+
+#: application/know/models/article.py:375
+msgid ""
+"Each revision contains a title field that must be             filled out, "
+"even if the title has not changed"
+msgstr ""
+
+#: application/know/models/pluginbase.py:83
+msgid "original article"
+msgstr ""
+
+#: application/know/models/pluginbase.py:84
+msgid "Permissions are inherited from this article"
+msgstr ""
+
+#: application/know/models/pluginbase.py:152
+msgid "A plugin was changed"
+msgstr ""
+
+#: application/know/models/pluginbase.py:187
+msgid ""
+"The revision being displayed for this plugin.             If you need to do "
+"a roll-back, simply change the value of             this field."
+msgstr ""
+
+#: application/know/models/urlpath.py:42
+msgid "Cache lookup value for articles"
+msgstr ""
+
+#: application/know/models/urlpath.py:48
+msgid "slug"
+msgstr ""
+
+#: application/know/models/urlpath.py:154
+msgid "(root)"
+msgstr ""
+
+#: application/know/models/urlpath.py:164
+msgid "URL path"
+msgstr ""
+
+#: application/know/models/urlpath.py:165
+msgid "URL paths"
+msgstr ""
+
+#: application/know/models/urlpath.py:171
+msgid "Sorry but you cannot have a root article with a slug."
+msgstr ""
+
+#: application/know/models/urlpath.py:173
+msgid "A non-root note must always have a slug."
+msgstr ""
+
+#: application/know/models/urlpath.py:176
+#, python-format
+msgid "There is already a root node on %s"
+msgstr ""
+
+#: application/know/models/urlpath.py:297
+msgid ""
+"Articles who lost their parents\n"
+"===============================\n"
+"\n"
+"The children of this article have had their parents deleted. You should "
+"probably find a new home for them."
+msgstr ""
+
+#: application/know/models/urlpath.py:300
+msgid "Lost and found"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:15
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:14
+#: application/knowledge/models.py:176
+msgid "Description"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:16
+msgid "A short summary of what the file contains"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:59
+msgid "File or zip archive"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:64
+msgid "Unzip file"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:65
+msgid ""
+"Create individual attachments for files in a .zip file - directories do not "
+"work."
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:85
+msgid "Not a zip file"
+msgstr ""
+
+#: application/know/plugins/attachments/forms.py:139
+msgid "Yes I am sure..."
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:28
+msgid ""
+"The revision of this attachment currently in use (on all articles using the "
+"attachment)"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:33
+msgid "original filename"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:48
+msgid "attachment"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:49
+msgid "attachments"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:103
+msgid "file"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:112
+msgid "attachment revision"
+msgstr ""
+
+#: application/know/plugins/attachments/models.py:113
+msgid "attachment revisions"
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:45
+#, python-format
+msgid "Successfully added: %s"
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:47
+#, python-format
+msgid "%s was successfully added."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:110
+#, python-format
+msgid "%s uploaded and replaces old attachment."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:112
+#, python-format
+msgid "Your file could not be saved: %s"
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:116
+msgid ""
+"Your file could not be saved, probably because of a permission error on the "
+"web server."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:124
+msgid ""
+"Your new file will automatically be renamed to match the file already "
+"present. Files with different extensions are not allowed."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:181
+#, python-format
+msgid "Current revision changed for %s."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:201
+#, python-format
+msgid "Added a reference to \"%(att)s\" from \"%(art)s\"."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:231
+#, python-format
+msgid "The file %s was deleted."
+msgstr ""
+
+#: application/know/plugins/attachments/views.py:234
+#, python-format
+msgid "This article is no longer related to the file %s."
+msgstr ""
+
+#: application/know/plugins/attachments/wiki_plugin.py:31
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:5
+msgid "Attachments"
+msgstr ""
+
+#: application/know/plugins/attachments/wiki_plugin.py:37
+#, python-format
+msgid "A file was changed: %s"
+msgstr ""
+
+#: application/know/plugins/attachments/wiki_plugin.py:37
+#, python-format
+msgid "A file was deleted: %s"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:5
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:10
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:34
+#: application/know/templates/know/delete.html:8
+#: themes/default/templates/admin/delete_confirmation.html:9
+#: themes/default/templates/admin/submit_line.html:4
+msgid "Delete"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:12
+msgid ""
+"\n"
+"    The file may be referenced on other articles. Deleting it means that "
+"they will loose their references to this file. The following articles "
+"reference this file:\n"
+"    "
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:27
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:48
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:49
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:37
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:71
+#: application/know/plugins/images/templates/know/plugins/images/purge.html:21
+#: application/know/plugins/images/templates/know/plugins/images/revision_add.html:21
+#: application/know/templates/know/create.html:52
+#: application/know/templates/know/delete.html:12
+#: application/know/templates/know/delete.html:46
+msgid "Go back"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:31
+msgid "Delete it!"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:37
+#: themes/default/templates/admin/edit_inline/stacked.html:70
+#: themes/default/templates/admin/edit_inline/tabular.html:116
+msgid "Remove"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:39
+msgid ""
+"\n"
+"    You can remove a reference to a file, but it will retain its references "
+"on other articles.\n"
+"    "
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/delete.html:52
+msgid "Remove reference"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:5
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:9
+msgid "History of"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:12
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:24
+msgid "Date"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:13
+#: contrib/gauth/templates/gauth/gauth_detail.html:9
+#: contrib/gauth/templates/gauth/gauth_edit.html:9
+#: themes/default/templates/admin/object_history.html:21
+msgid "User"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:15
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:22
+msgid "File"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:16
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:28
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:26
+#: application/know/plugins/images/templates/know/plugins/images/index.html:22
+msgid "Size"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:17
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:27
+#: themes/default/templates/admin/object_history.html:22
+msgid "Action"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:28
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:33
+msgid "<em>No description</em>"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:36
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:51
+msgid "Download"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/history.html:41
+msgid "Use this!"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:10
+msgid ""
+"The following files are available for this article. Copy the markdown tag to "
+"directly refer to a file from the article text."
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:26
+#: application/know/plugins/images/templates/know/plugins/images/index.html:20
+msgid "Markdown tag"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:27
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:25
+#: application/know/plugins/images/templates/know/plugins/images/index.html:21
+msgid "Uploaded by"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:32
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:5
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:9
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:34
+msgid "Replace"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:36
+msgid "Detach"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:45
+msgid "File history"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:45
+msgid "revisions"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:60
+msgid "There are no attachments for this article."
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:72
+msgid "Upload new file"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:84
+msgid "Upload file"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:96
+msgid "Search and add file"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:102
+msgid ""
+"You can reuse files from other articles. These files are subject to updates "
+"on other articles which may or may not be a good thing."
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:107
+#: themes/default/templates/admin/search_form.html:6
+msgid "Search"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:118
+msgid "Restore attachments"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:131
+#: application/know/templates/know/deleted.html:25
+#: application/know/templates/know/deleted.html:30
+msgid "Restore"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:138
+msgid "Nothing to restore"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/index.html:154
+msgid ""
+"The article is currently locked for editing, and therefore no new "
+"attachments can be added."
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/render.html:5
+msgid "Click to download"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:12
+#, python-format
+msgid ""
+"\n"
+"  Replacing an attachment means adding a new file that will be used in its "
+"place. All references to the file will be replaced by the one you upload and "
+"the file will be downloaded as <strong>%(filename)s</strong>. Please note "
+"that this attachment is in use on other articles, you may distort contents. "
+"However, do not hestitate to take advantage of this and make replacements "
+"for the listed articles where necessary. This way of working is more "
+"efficient....\n"
+"  "
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:17
+#, python-format
+msgid ""
+"\n"
+"  Articles using %(filename)s\n"
+"  "
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:26
+#, python-format
+msgid ""
+"\n"
+"  Replacing an attachment means adding a new file that will be used in its "
+"place. All references to the file will be replaced by the one you upload and "
+"the file will be downloaded as <strong>%(filename)s</strong>.\n"
+"  "
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/replace.html:41
+#: application/know/plugins/images/templates/know/plugins/images/index.html:35
+#: application/know/plugins/images/templates/know/plugins/images/revision_add.html:25
+msgid "Upload replacement"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:5
+msgid "Add file to"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:9
+msgid "Add attachment from other article"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:15
+msgid "Search files and articles"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:23
+msgid "Main article"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:55
+msgid "Add to article"
+msgstr ""
+
+#: application/know/plugins/attachments/templates/know/plugins/attachments/search.html:63
+msgid "Your search did not return any results"
+msgstr ""
+
+#: application/know/plugins/help/wiki_plugin.py:14
+msgid "Help"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:1
+msgid "Adding new articles"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:3
+msgid ""
+"To create a new wiki article, create a link to it. Clicking the link gives "
+"you the creation page."
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:6
+#: application/know/plugins/links/templates/know/plugins/links/sidebar.html:20
+msgid "An external link"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:9
+msgid "Headers"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:10
+msgid ""
+"Use these codes for headers and to automatically generate Tables of Contents."
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:25
+msgid "Typography"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:30
+msgid "Lists"
+msgstr ""
+
+#: application/know/plugins/help/templates/know/plugins/help/sidebar.html:38
+msgid "Tables"
+msgstr ""
+
+#: application/know/plugins/images/forms.py:17
+#, python-format
+msgid ""
+"New image %s was successfully uploaded. You can use it by selecting it from "
+"the list of available images."
+msgstr ""
+
+#: application/know/plugins/images/forms.py:61
+msgid "Are you sure?"
+msgstr ""
+
+#: application/know/plugins/images/models.py:44
+msgid "image"
+msgstr ""
+
+#: application/know/plugins/images/models.py:45
+msgid "images"
+msgstr ""
+
+#: application/know/plugins/images/models.py:49
+#, python-format
+msgid "Image: %s"
+msgstr ""
+
+#: application/know/plugins/images/models.py:49
+msgid "Current revision not set!!"
+msgstr ""
+
+#: application/know/plugins/images/models.py:110
+msgid "image revision"
+msgstr ""
+
+#: application/know/plugins/images/models.py:111
+msgid "image revisions"
+msgstr ""
+
+#: application/know/plugins/images/models.py:116
+#, python-format
+msgid "Image Revsion: %d"
+msgstr ""
+
+#: application/know/plugins/images/views.py:61
+#, python-format
+msgid "%s has been restored"
+msgstr ""
+
+#: application/know/plugins/images/views.py:63
+#, python-format
+msgid "%s has been marked as deleted"
+msgstr ""
+
+#: application/know/plugins/images/views.py:108
+#, python-format
+msgid "%(file)s has been changed to revision #%(revision)d"
+msgstr ""
+
+#: application/know/plugins/images/views.py:141
+#, python-format
+msgid "%(file)s has been saved."
+msgstr ""
+
+#: application/know/plugins/images/wiki_plugin.py:16
+#: application/know/plugins/images/templates/know/plugins/images/index.html:5
+msgid "Images"
+msgstr ""
+
+#: application/know/plugins/images/wiki_plugin.py:27
+#, python-format
+msgid "An image was added: %s"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:8
+msgid ""
+"The following images are available for this article. Copy the markdown tag "
+"to directly refer to an image from the article text."
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:12
+msgid "Back to edit page"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:19
+msgid "No file"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:40
+msgid "Restore image"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:45
+msgid "Remove image"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:52
+msgid "Completely delete"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:66
+#: application/know/templates/know/history.html:5
+#: themes/default/templates/admin/change_form.html:49
+#: themes/default/templates/admin/object_history.html:9
+msgid "History"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:85
+msgid "Revert to this version"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/index.html:98
+msgid "There are no images for this article."
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/purge.html:5
+#: application/know/templates/know/deleted.html:40
+msgid "Purge deletion"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/purge.html:14
+msgid "Purge image: Completely remove image file and all revisions."
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/purge.html:25
+msgid "Remove it completely!"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/render.html:16
+msgid "Image not found"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/revision_add.html:5
+msgid "Replace image"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/revision_add.html:14
+msgid "Choose an image file to replace current image."
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:30
+msgid "Image id"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:32
+#: application/know/plugins/links/templates/know/plugins/links/sidebar.html:14
+msgid "Insert"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:48
+msgid "No images found for this article"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:57
+msgid "Manage images"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:63
+msgid "Add new image"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:104
+msgid "Add image"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:112
+msgid "You do not have permissions to add images."
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:119
+msgid "How to use images"
+msgstr ""
+
+#: application/know/plugins/images/templates/know/plugins/images/sidebar.html:122
+msgid ""
+"After uploading an image, it is attached to this particular artice and can "
+"be used only here. Other users may replace the image, but older versions are "
+"kept. You probably want to show the image with a nice caption. To achieve "
+"this, press the Insert button and fill in the caption fields and possibly "
+"choose to have you image floating right or left of the content. You can use "
+"Markdown in the caption. The markdown code syntax for images looks like "
+"this, possible values for align are left and right:"
+msgstr ""
+
+#: application/know/plugins/links/wiki_plugin.py:20
+msgid "Links"
+msgstr ""
+
+#: application/know/plugins/links/templates/know/plugins/links/sidebar.html:3
+msgid "Link to another wiki page"
+msgstr ""
+
+#: application/know/plugins/links/templates/know/plugins/links/sidebar.html:6
+msgid ""
+"Type in something from another wiki page's title and auto-complete will help "
+"you create a tag for you wiki link. Tags for links look like this:"
+msgstr ""
+
+#: application/know/plugins/links/templates/know/plugins/links/sidebar.html:23
+msgid ""
+"You can link to another website simply by inserting an address example.com "
+"or http://example.com or by using the markdown syntax:"
+msgstr ""
+
+#: application/know/plugins/macros/wiki_plugin.py:13
+msgid "Macros"
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:72
+msgid "Article list"
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:73
+msgid "Insert a list of articles in this level."
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:74
+msgid "[article_list depth:2]"
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:75
+msgid "Maximum depth to show levels for."
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:81
+msgid "Table of contents"
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:82
+msgid "Insert a table of contents matching the headings."
+msgstr ""
+
+#: application/know/plugins/macros/mdx/macro.py:83
+msgid "[TOC]"
+msgstr ""
+
+#: application/know/plugins/macros/templates/know/plugins/macros/article_list.html:6
+msgid "Article index"
+msgstr ""
+
+#: application/know/plugins/macros/templates/know/plugins/macros/article_list.html:10
+msgid "Nothing below this level"
+msgstr ""
+
+#: application/know/plugins/notifications/forms.py:13
+msgid "Notifications"
+msgstr ""
+
+#: application/know/plugins/notifications/forms.py:19
+msgid "When this article is edited"
+msgstr ""
+
+#: application/know/plugins/notifications/forms.py:23
+msgid "Also receive emails about article edits"
+msgstr ""
+
+#: application/know/plugins/notifications/forms.py:51
+msgid "Your notification settings were updated."
+msgstr ""
+
+#: application/know/plugins/notifications/forms.py:53
+msgid "Your notification settings were unchanged, so nothing saved."
+msgstr ""
+
+#: application/know/plugins/notifications/models.py:17
+#, python-format
+msgid "%(user)s subscribing to %(article)s (%(type)s)"
+msgstr ""
+
+#: application/know/plugins/notifications/models.py:42
+#, python-format
+msgid "Article deleted: %s"
+msgstr ""
+
+#: application/know/plugins/notifications/models.py:45
+#, python-format
+msgid "Article modified: %s"
+msgstr ""
+
+#: application/know/plugins/notifications/models.py:48
+#, python-format
+msgid "New article created: %s"
+msgstr ""
+
+#: application/know/templates/know/article.html:31
+msgid "This article was last modified:"
+msgstr ""
+
+#: application/know/templates/know/base.html:16
+#: application/know/templates/know/base.html:40
+#: application/know/templates/know/includes/breadcrumbs.html:24
+#: application/know/templates/know/includes/breadcrumbs.html:50
+msgid "Sub-articles for"
+msgstr ""
+
+#: application/know/templates/know/base.html:28
+#: application/know/templates/know/includes/breadcrumbs.html:36
+msgid "No sub-articles"
+msgstr ""
+
+#: application/know/templates/know/base.html:31
+#: application/know/templates/know/includes/breadcrumbs.html:39
+msgid "...and more"
+msgstr ""
+
+#: application/know/templates/know/base.html:35
+#: application/know/templates/know/includes/breadcrumbs.html:43
+msgid "Browse articles in this level"
+msgstr ""
+
+#: application/know/templates/know/base.html:49
+#: application/know/templates/know/includes/breadcrumbs.html:59
+msgid "New article next to"
+msgstr ""
+
+#: application/know/templates/know/base.html:54
+#: application/know/templates/know/includes/breadcrumbs.html:64
+msgid "New article below"
+msgstr ""
+
+#: application/know/templates/know/base.html:73
+msgid "No notifications"
+msgstr ""
+
+#: application/know/templates/know/base.html:75
+msgid "Clear notifications list"
+msgstr ""
+
+#: application/know/templates/know/base.html:82
+#: application/know/templates/know/accounts/login.html:4
+#: contrib/gauth/templates/gauth/gauth_login.html:4
+#: themes/default/templates/admin/login.html:40
+msgid "Log in"
+msgstr "登录"
+
+#: application/know/templates/know/base.html:83
+#: application/know/templates/know/accounts/login.html:19
+#: application/know/templates/know/accounts/signup.html:3
+#: application/know/templates/know/accounts/signup.html:6
+#: contrib/gauth/templates/gauth/gauth_signup.html:4
+#: contrib/gauth/templates/gauth/gauth_signup.html:10
+#: contrib/gauth/templates/gauth/gauth_signup.html:17
+msgid "Sign up"
+msgstr "注册"
+
+#: application/know/templates/know/create.html:5
+#: application/know/templates/know/create.html:45
+msgid "Add new article"
+msgstr ""
+
+#: application/know/templates/know/create.html:56
+msgid "Create article"
+msgstr ""
+
+#: application/know/templates/know/create_root.html:4
+msgid "Create root article"
+msgstr ""
+
+#: application/know/templates/know/create_root.html:22
+msgid "Congratulations!"
+msgstr ""
+
+#: application/know/templates/know/create_root.html:24
+msgid ""
+"You have django-wiki installed... but there are no articles. So it's time to "
+"create the first one, the root article. In the beginning, it will only be "
+"editable by administrators, but you can define permissions after."
+msgstr ""
+
+#: application/know/templates/know/create_root.html:27
+msgid "Root article"
+msgstr ""
+
+#: application/know/templates/know/create_root.html:32
+msgid "Create root"
+msgstr ""
+
+#: application/know/templates/know/delete.html:5
+#: application/know/templates/know/delete.html:50
+#: application/know/templates/know/edit.html:37
+msgid "Delete article"
+msgstr ""
+
+#: application/know/templates/know/delete.html:11
+msgid "You cannot delete a root article."
+msgstr ""
+
+#: application/know/templates/know/delete.html:17
+msgid ""
+"You cannot delete this article because you do not have permission to delete "
+"articles with children. Try to remove the children manually one-by-one."
+msgstr ""
+
+#: application/know/templates/know/delete.html:23
+msgid ""
+"You are deleting an article. This means that its children will be deleted as "
+"well. If you choose to purge, children will also be purged!"
+msgstr ""
+
+#: application/know/templates/know/delete.html:25
+msgid "Articles that will be deleted"
+msgstr ""
+
+#: application/know/templates/know/delete.html:31
+msgid "...and more!"
+msgstr ""
+
+#: application/know/templates/know/delete.html:39
+msgid "You are deleting an article. Please confirm."
+msgstr ""
+
+#: application/know/templates/know/deleted.html:5
+msgid "Article deleted"
+msgstr ""
+
+#: application/know/templates/know/deleted.html:14
+msgid "Article Deleted"
+msgstr ""
+
+#: application/know/templates/know/deleted.html:17
+msgid "The article you were looking for has been deleted."
+msgstr ""
+
+#: application/know/templates/know/deleted.html:26
+msgid "You may restore this article and its children by clicking restore."
+msgstr ""
+
+#: application/know/templates/know/deleted.html:41
+msgid ""
+"You may remove this article and any children permanently and free their "
+"slugs by clicking the below button. This action cannot be undone."
+msgstr ""
+
+#: application/know/templates/know/dir.html:5
+msgid "Listing articles in"
+msgstr ""
+
+#: application/know/templates/know/dir.html:17
+msgid "Up one level"
+msgstr ""
+
+#: application/know/templates/know/dir.html:22
+msgid "Add article"
+msgstr ""
+
+#: application/know/templates/know/dir.html:30
+msgid "clear"
+msgstr ""
+
+#: application/know/templates/know/dir.html:40
+msgid "article,articles"
+msgstr ""
+
+#: application/know/templates/know/dir.html:40
+msgid "is,are"
+msgstr ""
+
+#: application/know/templates/know/dir.html:40
+#, python-format
+msgid ""
+"\n"
+"      Browsing <strong><a href=\"%(self_url)s\">/%(path)s</a></strong>. "
+"There %(articles_plur_verb)s <strong>%(cnt)s %(articles_plur)s</strong> in "
+"this level.\n"
+"    "
+msgstr ""
+
+#: application/know/templates/know/dir.html:50
+#: application/know/templates/know/search.html:25
+msgid "Last modified"
+msgstr ""
+
+#: application/know/templates/know/dir.html:74
+#: application/know/templates/know/search.html:50
+msgid "There are no articles in this level"
+msgstr ""
+
+#: application/know/templates/know/edit.html:5
+#: application/know/templates/know/includes/article_menu.html:34
+#: contrib/gauth/templates/gauth/gauth_edit.html:10
+msgid "Edit"
+msgstr ""
+
+#: application/know/templates/know/edit.html:28
+#: themes/default/templates/admin/feincms/page/page/item_editor.html:15
+msgid "Preview"
+msgstr ""
+
+#: application/know/templates/know/edit.html:32
+#: application/know/templates/know/edit.html:54
+#: application/know/templates/know/settings.html:16
+msgid "Save changes"
+msgstr ""
+
+#: application/know/templates/know/edit.html:50
+msgid "Back to editor"
+msgstr ""
+
+#: application/know/templates/know/error.html:5
+#: application/know/templates/know/error.html:26
+msgid "Error"
+msgstr ""
+
+#: application/know/templates/know/error.html:15
+msgid "Not found"
+msgstr ""
+
+#: application/know/templates/know/error.html:18
+msgid "This article was not found, and neither was its parent article."
+msgstr ""
+
+#: application/know/templates/know/error.html:20
+msgid "Start page"
+msgstr ""
+
+#: application/know/templates/know/error.html:30
+msgid "There was some sort of error accessing this page. Sorry!"
+msgstr ""
+
+#: application/know/templates/know/error.html:38
+msgid "Back to"
+msgstr ""
+
+#: application/know/templates/know/history.html:49
+msgid ""
+"Click each revision to see a list of edited lines. Click the Preview button "
+"to see how the article looked at this stage. At the bottom of this page, you "
+"can change to a particular revision or merge an old revision with the "
+"current one."
+msgstr ""
+
+#: application/know/templates/know/history.html:72
+msgid "no log message"
+msgstr ""
+
+#: application/know/templates/know/history.html:84
+#: application/know/templates/know/history.html:89
+msgid "Preview this revision"
+msgstr ""
+
+#: application/know/templates/know/history.html:103
+msgid "Auto log:"
+msgstr ""
+
+#: application/know/templates/know/history.html:111
+#: themes/default/templates/admin/app_index.html:39
+#: themes/default/templates/admin/index.html:41
+msgid "Change"
+msgstr ""
+
+#: application/know/templates/know/history.html:129
+msgid "Merge selected with current..."
+msgstr ""
+
+#: application/know/templates/know/history.html:133
+msgid "Switch to selected version"
+msgstr ""
+
+#: application/know/templates/know/history.html:149
+#: application/know/templates/know/history.html:176
+msgid "Back to history view"
+msgstr ""
+
+#: application/know/templates/know/history.html:154
+#: application/know/templates/know/history.html:159
+msgid "Switch to this version"
+msgstr ""
+
+#: application/know/templates/know/history.html:167
+msgid "Merge with current"
+msgstr ""
+
+#: application/know/templates/know/history.html:168
+msgid ""
+"When you merge a revision with the current, all data will be retained from "
+"both versions and merged at its approximate location from each revision."
+msgstr ""
+
+#: application/know/templates/know/history.html:168
+msgid "After this, it's important to do a manual review."
+msgstr ""
+
+#: application/know/templates/know/history.html:181
+#: application/know/templates/know/history.html:186
+msgid "Create new merged version"
+msgstr ""
+
+#: application/know/templates/know/permission_denied.html:8
+msgid "Permission Denied"
+msgstr ""
+
+#: application/know/templates/know/permission_denied.html:11
+msgid "Sorry, you don't have permission to access this page."
+msgstr ""
+
+#: application/know/templates/know/permission_denied.html:16
+msgid "This article is locked for editing."
+msgstr ""
+
+#: application/know/templates/know/permission_denied.html:22
+msgid "Back to article"
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:8
+msgid "Previewing revision"
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:15
+msgid "Previewing merge between"
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:17
+msgid "and"
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:22
+#: application/know/views/article.py:694
+msgid "You cannot merge with a deleted revision"
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:31
+msgid "This revision has been deleted."
+msgstr ""
+
+#: application/know/templates/know/preview_inline.html:32
+msgid "Restoring to this revision will mark the article as deleted."
+msgstr ""
+
+#: application/know/templates/know/search.html:5
+#: application/know/templates/know/search.html:9
+msgid "Search results for:"
+msgstr ""
+
+#: application/know/templates/know/search.html:17
+#, python-format
+msgid "Your search returned <strong>%(cnt)s</strong> results."
+msgstr ""
+
+#: application/know/templates/know/settings.html:5
+#: application/know/templates/know/includes/article_menu.html:9
+msgid "Settings"
+msgstr ""
+
+#: application/know/templates/know/source.html:5
+msgid "Source of"
+msgstr ""
+
+#: application/know/templates/know/source.html:10
+msgid "This article is currently locked for editing."
+msgstr ""
+
+#: application/know/templates/know/accounts/login.html:7
+msgid "Please log in"
+msgstr ""
+
+#: application/know/templates/know/accounts/login.html:13
+msgid "Log me in..."
+msgstr ""
+
+#: application/know/templates/know/accounts/login.html:19
+msgid "Don't have an account?"
+msgstr ""
+
+#: application/know/templates/know/accounts/signup.html:12
+msgid "Sign me up..."
+msgstr "注册"
+
+#: application/know/templates/know/includes/anonymous_blocked.html:7
+#, python-format
+msgid ""
+"\n"
+"  You need to <a href=\"%(login_url)s\">log in</a> or <a href="
+"\"%(signup_url)s\">sign up</a> to use this function.\n"
+"  "
+msgstr ""
+
+#: application/know/templates/know/includes/anonymous_blocked.html:11
+msgid "You need to log in or sign up to use this function."
+msgstr ""
+
+#: application/know/templates/know/includes/article_menu.html:26
+msgid "Changes"
+msgstr ""
+
+#: application/know/templates/know/includes/article_menu.html:41
+msgid "View Source"
+msgstr ""
+
+#: application/know/templates/know/includes/article_menu.html:49
+msgid "View"
+msgstr ""
+
+#: application/know/templates/know/includes/revision_info.html:10
+msgid "by"
+msgstr ""
+
+#: application/know/templates/know/includes/revision_info.html:10
+msgid "anonymous (IP logged)"
+msgstr ""
+
+#: application/know/templates/know/includes/revision_info.html:18
+msgid "restored"
+msgstr ""
+
+#: application/know/templates/know/includes/revision_info.html:24
+msgid "unlocked"
+msgstr ""
+
+#: application/know/views/article.py:90
+#, python-format
+msgid "New article '%s' created."
+msgstr ""
+
+#: application/know/views/article.py:97
+#, python-format
+msgid "There was an error creating this article: %s"
+msgstr ""
+
+#: application/know/views/article.py:99
+msgid "There was an error creating this article."
+msgstr ""
+
+#: application/know/views/article.py:178
+msgid ""
+"This article cannot be deleted because it has children or is a root article."
+msgstr ""
+
+#: application/know/views/article.py:186
+msgid ""
+"This article together with all its contents are now completely gone! Thanks!"
+msgstr ""
+
+#: application/know/views/article.py:193
+#, python-format
+msgid ""
+"The article \"%s\" is now marked as deleted! Thanks for keeping the site "
+"free from unwanted material!"
+msgstr ""
+
+#: application/know/views/article.py:283
+msgid "Your changes were saved."
+msgstr ""
+
+#: application/know/views/article.py:291
+msgid "Please note that your article text has not yet been saved!"
+msgstr ""
+
+#: application/know/views/article.py:316
+msgid "A new revision of the article was succesfully added."
+msgstr ""
+
+#: application/know/views/article.py:371
+msgid "Restoring article"
+msgstr ""
+
+#: application/know/views/article.py:373
+#, python-format
+msgid "The article \"%s\" and its children are now restored."
+msgstr ""
+
+#: application/know/views/article.py:604
+#, python-format
+msgid ""
+"The article %(title)s is now set to         display revision #"
+"%(revision_number)d"
+msgstr ""
+
+#: application/know/views/article.py:673
+msgid "New title"
+msgstr ""
+
+#: application/know/views/article.py:705
+#, python-format
+msgid "Merge between revision #%(r1)d and revision #%(r2)d"
+msgstr ""
+
+#: application/know/views/article.py:713
+#, python-format
+msgid ""
+"A new revision was created: Merge between revision #%(r1)d and revision #"
+"%(r2)d"
+msgstr ""
+
+#: application/knowledge/forms.py:40 application/knowledge/models.py:14
+msgid "Internal"
+msgstr ""
+
+#: application/knowledge/models.py:12
+msgid "Public"
+msgstr ""
+
+#: application/knowledge/models.py:13
+msgid "Private"
+msgstr ""
+
+#: application/knowledge/models.py:18
+msgid "Inherit"
+msgstr ""
+
+#: application/knowledge/models.py:42
+msgid "Category"
+msgstr ""
+
+#: application/knowledge/models.py:43
+#: application/knowledge/templates/know/sidebar.html:18
+msgid "Categories"
+msgstr ""
+
+#: application/knowledge/models.py:66
+msgid "Alert"
+msgstr ""
+
+#: application/knowledge/models.py:67
+msgid "Check this if you want to be alerted when a new response is added."
+msgstr ""
+
+#: application/knowledge/models.py:74
+#: contrib/gauth/templates/gauth/gauth_detail.html:35
+#: contrib/gtag/models.py:10
+msgid "Name"
+msgstr ""
+
+#: application/knowledge/models.py:75
+msgid "Enter your first and last name."
+msgstr ""
+
+#: application/knowledge/models.py:80 contrib/gauth/forms.py:177
+#: contrib/gauth/templates/gauth/gauth_detail.html:67
+msgid "Email"
+msgstr ""
+
+#: application/knowledge/models.py:81
+msgid "Enter a valid email address."
+msgstr ""
+
+#: application/knowledge/models.py:171
+msgid "Enter your question or suggestion."
+msgstr ""
+
+#: application/knowledge/models.py:177
+msgid "Please offer details. Markdown enabled."
+msgstr ""
+
+#: application/knowledge/models.py:180 application/knowledge/models.py:281
+msgid "Status"
+msgstr ""
+
+#: application/knowledge/models.py:196
+msgid "Questions"
+msgstr ""
+
+#: application/knowledge/models.py:277 application/knowledge/models.py:294
+msgid "Response"
+msgstr ""
+
+#: application/knowledge/models.py:278
+msgid "Please enter your response. Markdown enabled."
+msgstr ""
+
+#: application/knowledge/models.py:295
+msgid "Responses"
+msgstr ""
+
+#: application/knowledge/templates/know/ask.html:5
+#: application/knowledge/templates/know/ask.html:9
+#: application/knowledge/templates/know/list.html:39
+msgid "Ask a Question"
+msgstr ""
+
+#: application/knowledge/templates/know/ask.html:15
+msgid "Please log in to ask a question."
+msgstr ""
+
+#: application/knowledge/templates/know/form.html:9
+msgid "required"
+msgstr ""
+
+#: application/knowledge/templates/know/index.html:5
+msgid "Support"
+msgstr ""
+
+#: application/knowledge/templates/know/index.html:10
+#, python-format
+msgid "Top %(count)s Questions"
+msgstr ""
+
+#: application/knowledge/templates/know/inner.html:12
+msgid "Start typing your question here."
+msgstr ""
+
+#: application/knowledge/templates/know/list.html:17
+msgid "No results found."
+msgstr ""
+
+#: application/knowledge/templates/know/list.html:25
+msgid "previous"
+msgstr ""
+
+#: application/knowledge/templates/know/list.html:28
+#, python-format
+msgid "page %(number)s of %(page)s"
+msgstr ""
+
+#: application/knowledge/templates/know/list.html:31
+msgid "next"
+msgstr ""
+
+#: application/knowledge/templates/know/question_list.html:5
+msgid "no responses"
+msgstr ""
+
+#: application/knowledge/templates/know/question_list.html:5
+msgid "accepted"
+msgstr ""
+
+#: application/knowledge/templates/know/question_list.html:5
+#: application/knowledge/templates/know/thread.html:19
+#: application/knowledge/templates/know/thread.html:43
+msgid "staff"
+msgstr ""
+
+#: application/knowledge/templates/know/sidebar.html:5
+msgid "My Questions"
+msgstr ""
+
+#: application/knowledge/templates/know/sidebar.html:29
+msgid "Navigate"
+msgstr ""
+
+#: application/knowledge/templates/know/sidebar.html:33
+msgid "Ask a question or give suggestion."
+msgstr ""
+
+#: application/knowledge/templates/know/sidebar.html:34
+msgid "Return to homepage."
+msgstr ""
+
+#: application/knowledge/templates/know/thread.html:40
+msgid "accepted answer"
+msgstr ""
+
+#: application/knowledge/templates/know/thread.html:41
+msgid "poster"
+msgstr ""
+
+#: application/knowledge/templates/know/thread.html:55
+msgid "No responses yet."
+msgstr ""
+
+#: application/knowledge/templates/know/thread.html:68
+msgid "This question has been closed."
+msgstr ""
+
+#: application/knowledge/templates/know/thread.html:70
+msgid "Please log in to respond."
+msgstr ""
+
+#: application/knowledge/templates/know/welcome.html:4
+msgid "Welcome to our Support Center."
+msgstr ""
+
+#: application/knowledge/templates/know/welcome.html:5
+msgid "Search for answers to your questions below, or ask your own."
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:6
+#: application/knowledge/templates/know/emails/message.txt:4
+#, python-format
+msgid "Hello %(name)s,"
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:9
+#, python-format
+msgid ""
+"\n"
+"        We just wanted to let you know that a new response has been added to "
+"the question \"%(title)s\". You can visit it here: <a href=\"%(domain)s"
+"%(url)s\">%(domain)s%(url)s</a>.\n"
+"        "
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:17
+#: application/knowledge/templates/know/emails/message.txt:13
+msgid ""
+"You are receiving these messages because you checked the 'alert' box when "
+"you originally posted."
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:21
+#, python-format
+msgid ""
+"\n"
+"        We just wanted to let you know that a new question has been added: "
+"\"%(title)s\". You can visit it here: <a href=\"%(domain)s%(url)s\">"
+"%(domain)s%(url)s</a>\n"
+"        "
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:29
+#: application/knowledge/templates/know/emails/message.txt:23
+msgid "You are receiving these messages because you are a staff member."
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.html:32
+#, python-format
+msgid ""
+"Thank you,\n"
+"    %(name)s team"
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.txt:7
+#, python-format
+msgid ""
+"\n"
+"    We just wanted to let you know that a new response has been added to the "
+"question \"%(title)s\". You can visit it here: %(domain)s%(url)s\n"
+"    "
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.txt:17
+#, python-format
+msgid ""
+"\n"
+"    We just wanted to let you know that a new question has been added: "
+"\"%(title)s\". You can visit it here: %(domain)s%(url)s\n"
+"    "
+msgstr ""
+
+#: application/knowledge/templates/know/emails/message.txt:26
+#, python-format
+msgid ""
+"Thank you,\n"
+"%(name)s team"
+msgstr ""
+
+#: application/knowledge/templates/know/emails/subject.txt:1
+#, python-format
+msgid "New response on \"%(title)s\" on %(name)s."
+msgstr ""
+
+#: application/knowledge/templates/know/emails/subject.txt:1
+#, python-format
+msgid "New question \"%(title)s\" on %(name)s."
+msgstr ""
+
 #: contrib/gauth/admin.py:30 contrib/gauth/forms.py:42
-#: contrib/gauth/forms.py:77 contrib/gauth/forms.py:159
-#: contrib/gauth/templates/gauth/gauth_login.html:16
-#: contrib/gauth/templates/gauth/gauth_signup.html:15
+#: contrib/gauth/forms.py:77 contrib/gauth/forms.py:162
 msgid "Username"
 msgstr ""
 
@@ -38,10 +1980,7 @@ msgid ""
 msgstr ""
 
 #: contrib/gauth/admin.py:39 contrib/gauth/forms.py:51
-#: contrib/gauth/forms.py:83 contrib/gauth/forms.py:125
-#: contrib/gauth/templates/gauth/gauth_login.html:17
-#: contrib/gauth/templates/gauth/gauth_signup.html:16
-#: contrib/gauth/templates/gauth/gauth_signup.html:17
+#: contrib/gauth/forms.py:83 contrib/gauth/forms.py:128
 #: themes/default/templates/admin/auth/user/change_password.html:38
 msgid "Password"
 msgstr ""
@@ -53,56 +1992,52 @@ msgid ""
 "\"password/\">this form</a>."
 msgstr ""
 
-#: contrib/gauth/admin.py:72
+#: contrib/gauth/admin.py:73
 msgid "Auth info"
 msgstr ""
 
-#: contrib/gauth/admin.py:73
+#: contrib/gauth/admin.py:74
 msgid "Personal info"
 msgstr ""
 
-#: contrib/gauth/admin.py:74 contrib/gauth/admin.py:242
-msgid "Permissions"
-msgstr ""
-
-#: contrib/gauth/admin.py:76
+#: contrib/gauth/admin.py:77
 msgid "Important dates"
 msgstr ""
 
-#: contrib/gauth/admin.py:188
+#: contrib/gauth/admin.py:189
 msgid "Password changed successfully."
 msgstr ""
 
-#: contrib/gauth/admin.py:198
+#: contrib/gauth/admin.py:199
 #, python-format
 msgid "Change password: %s"
 msgstr ""
 
-#: contrib/gauth/admin.py:241
+#: contrib/gauth/admin.py:242
 msgid "Roles"
 msgstr ""
 
-#: contrib/gauth/admin.py:244
+#: contrib/gauth/admin.py:245
 msgid "Users"
 msgstr ""
 
-#: contrib/gauth/admin.py:267
+#: contrib/gauth/admin.py:268
 msgid "Children roles"
 msgstr ""
 
-#: contrib/gauth/admin.py:279
+#: contrib/gauth/admin.py:280
 msgid "Inherited permissions"
 msgstr ""
 
-#: contrib/gauth/admin.py:291
+#: contrib/gauth/admin.py:292
 msgid "Inherited users"
 msgstr ""
 
-#: contrib/gauth/admin.py:302
+#: contrib/gauth/admin.py:303
 msgid "Current permissions"
 msgstr ""
 
-#: contrib/gauth/admin.py:313
+#: contrib/gauth/admin.py:314
 msgid "Current users"
 msgstr ""
 
@@ -126,53 +2061,47 @@ msgstr ""
 msgid "Password (again)"
 msgstr ""
 
-#: contrib/gauth/forms.py:99
+#: contrib/gauth/forms.py:101
 msgid "Usernames can only contain letters, numbers and underscores."
 msgstr ""
 
-#: contrib/gauth/forms.py:103
+#: contrib/gauth/forms.py:105
 msgid "This username is already taken. Please choose another."
 msgstr ""
 
-#: contrib/gauth/forms.py:110
+#: contrib/gauth/forms.py:112
 msgid "A user is registered with this email address."
 msgstr ""
 
-#: contrib/gauth/forms.py:115 contrib/gauth/forms.py:210
+#: contrib/gauth/forms.py:117 contrib/gauth/forms.py:213
 msgid "You must type the same password each time."
 msgstr ""
 
-#: contrib/gauth/forms.py:160
+#: contrib/gauth/forms.py:163
 msgid "The username and/or password you specified are not correct."
 msgstr ""
 
-#: contrib/gauth/forms.py:161
+#: contrib/gauth/forms.py:164
 msgid "This account is inactive."
 msgstr ""
 
-#: contrib/gauth/forms.py:174
-#: contrib/gauth/templates/gauth/gauth_detail.html:67
-#: contrib/gauth/templates/gauth/gauth_signup.html:18
-msgid "Email"
-msgstr ""
-
-#: contrib/gauth/forms.py:179
+#: contrib/gauth/forms.py:182
 msgid "Email address can not be found."
 msgstr ""
 
-#: contrib/gauth/forms.py:186
+#: contrib/gauth/forms.py:189
 msgid "Current Password"
 msgstr ""
 
-#: contrib/gauth/forms.py:190
+#: contrib/gauth/forms.py:193
 msgid "New Password"
 msgstr ""
 
-#: contrib/gauth/forms.py:194
+#: contrib/gauth/forms.py:197
 msgid "New Password (again)"
 msgstr ""
 
-#: contrib/gauth/forms.py:204
+#: contrib/gauth/forms.py:207
 msgid "Please type your current password."
 msgstr ""
 
@@ -257,10 +2186,6 @@ msgstr ""
 
 #: contrib/gauth/models/permission.py:41
 msgid "parent role"
-msgstr ""
-
-#: contrib/gauth/models/permission.py:42 contrib/gauth/models/user.py:81
-msgid "user"
 msgstr ""
 
 #: contrib/gauth/models/permission.py:43
@@ -352,12 +2277,6 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_detail.html:9
-#: contrib/gauth/templates/gauth/gauth_edit.html:9
-#: themes/default/templates/admin/object_history.html:21
-msgid "User"
-msgstr ""
-
 #: contrib/gauth/templates/gauth/gauth_detail.html:15
 msgid "your picture"
 msgstr ""
@@ -386,10 +2305,6 @@ msgstr ""
 msgid "Personal Details"
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_detail.html:35
-msgid "Name"
-msgstr ""
-
 #: contrib/gauth/templates/gauth/gauth_detail.html:40
 msgid "Nickname"
 msgstr ""
@@ -408,10 +2323,6 @@ msgstr ""
 
 #: contrib/gauth/templates/gauth/gauth_edit.html:4
 msgid "Edit user"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_edit.html:10
-msgid "Edit"
 msgstr ""
 
 #: contrib/gauth/templates/gauth/gauth_edit.html:16
@@ -469,67 +2380,20 @@ msgstr ""
 msgid "User list"
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_login.html:4
-#: themes/default/templates/admin/login.html:46
-msgid "Log in"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:26
-msgid "Sign in"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:27
-#: contrib/gauth/templates/gauth/gauth_signup.html:4
-msgid "Sign up"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:28
-msgid "forget your password?"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:28
-msgid "Forget?"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:172
-#: contrib/gauth/templates/gauth/gauth_signup.html:165
-msgid "Please fill in your username"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:180
-#: contrib/gauth/templates/gauth/gauth_signup.html:173
-msgid "Please fill in your password"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:186
-#: contrib/gauth/templates/gauth/gauth_login.html:202
-#: contrib/gauth/templates/gauth/gauth_signup.html:190
-msgid "Checking credentials..."
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:211
-msgid "Authenticate successful! Log into site right now!"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:222
-#: contrib/gauth/templates/gauth/gauth_signup.html:210
-msgid "Username or password is not correct!"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_login.html:222
-#: contrib/gauth/templates/gauth/gauth_signup.html:210
-msgid "Forget your password?"
+#: contrib/gauth/templates/gauth/gauth_login.html:10
+#: contrib/gauth/templates/gauth/gauth_login.html:16
+msgid "Login"
 msgstr ""
 
 #: contrib/gauth/templates/gauth/gauth_logout.html:4
 msgid "User logout"
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_logout.html:13
+#: contrib/gauth/templates/gauth/gauth_logout.html:10
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_logout.html:14
+#: contrib/gauth/templates/gauth/gauth_logout.html:12
 msgid "Log out"
 msgstr ""
 
@@ -610,14 +2474,6 @@ msgid ""
 "used.  Please request a <a href=\"%(url)s\">new password reset</a>."
 msgstr ""
 
-#: contrib/gauth/templates/gauth/gauth_signup.html:21
-msgid "Submit"
-msgstr ""
-
-#: contrib/gauth/templates/gauth/gauth_signup.html:199
-msgid "Log into site right now!"
-msgstr ""
-
 #: contrib/gauth/templates/gauth/gauth_signup_closed.html:4
 #: contrib/gauth/templates/gauth/gauth_signup_closed.html:9
 #: contrib/gauth/templates/gauth/gauth_signup_closed.html:14
@@ -661,44 +2517,44 @@ msgstr ""
 msgid "[%(site_name)s] Password reset"
 msgstr ""
 
-#: contrib/gbase/models.py:26
+#: contrib/gbase/models.py:27
 msgid "Index Page"
 msgstr ""
 
-#: contrib/gbase/models.py:29 contrib/gbase/models.py:37
-#: contrib/gbase/models.py:45 contrib/gbase/models.py:54
+#: contrib/gbase/models.py:30 contrib/gbase/models.py:38
+#: contrib/gbase/models.py:46 contrib/gbase/models.py:55
 msgid "Main content area"
 msgstr ""
 
-#: contrib/gbase/models.py:34
+#: contrib/gbase/models.py:35
 msgid "One Columns Page"
 msgstr ""
 
-#: contrib/gbase/models.py:42
+#: contrib/gbase/models.py:43
 msgid "Two Columns Page"
 msgstr ""
 
-#: contrib/gbase/models.py:46
+#: contrib/gbase/models.py:47
 msgid "Left Side"
 msgstr ""
 
-#: contrib/gbase/models.py:51
+#: contrib/gbase/models.py:52
 msgid "Three Columns Page"
 msgstr ""
 
-#: contrib/gbase/models.py:55
+#: contrib/gbase/models.py:56
 msgid "Sidebar"
 msgstr ""
 
-#: contrib/gbase/models.py:56
+#: contrib/gbase/models.py:57
 msgid "Right Side"
 msgstr ""
 
-#: contrib/gbase/models.py:61
+#: contrib/gbase/models.py:62
 msgid "Application Page"
 msgstr ""
 
-#: contrib/gbase/models.py:64
+#: contrib/gbase/models.py:65
 msgid "Application"
 msgstr ""
 
@@ -862,42 +2718,191 @@ msgstr ""
 msgid "form submissions"
 msgstr ""
 
+#: contrib/gnotify/models.py:17
+msgid "unique key"
+msgstr ""
+
+#: contrib/gnotify/models.py:22
+msgid "verbose name"
+msgstr ""
+
+#: contrib/gnotify/models.py:33
+msgid "type"
+msgstr ""
+
+#: contrib/gnotify/models.py:34
+msgid "types"
+msgstr ""
+
+#: contrib/gnotify/models.py:44
+msgid "interval"
+msgstr ""
+
+#: contrib/gnotify/models.py:49
+#, python-format
+msgid "Settings for %s"
+msgstr ""
+
+#: contrib/gnotify/models.py:54 contrib/gnotify/models.py:55
+msgid "settings"
+msgstr ""
+
+#: contrib/gnotify/models.py:70
+msgid "Leave this blank to subscribe to any kind of object"
+msgstr ""
+
+#: contrib/gnotify/models.py:83
+#, python-format
+msgid "Subscription for: %s"
+msgstr ""
+
+#: contrib/gnotify/models.py:88
+msgid "subscription"
+msgstr ""
+
+#: contrib/gnotify/models.py:89
+msgid "subscriptions"
+msgstr ""
+
+#: contrib/gnotify/models.py:104
+msgid "link for notification"
+msgstr ""
+
+#: contrib/gnotify/models.py:112
+msgid "occurrences"
+msgstr ""
+
+#: contrib/gnotify/models.py:113
+msgid ""
+"If the same notification was fired multiple times with no intermediate "
+"notifications"
+msgstr ""
+
+#: contrib/gnotify/models.py:162
+msgid "notification"
+msgstr ""
+
+#: contrib/gnotify/models.py:163
+msgid "notifications"
+msgstr ""
+
+#: contrib/gnotify/settings.py:18
+msgid "You have new notifications"
+msgstr ""
+
+#: contrib/gnotify/settings.py:36
+msgid "instant"
+msgstr ""
+
+#: contrib/gnotify/settings.py:37
+msgid "daily"
+msgstr ""
+
+#: contrib/gnotify/settings.py:38
+msgid "weekly"
+msgstr ""
+
+#: contrib/gnotify/views.py:32
+#, python-format
+msgid "%d times"
+msgstr ""
+
+#: contrib/gnotify/templates/emails/notification_email_message.txt:2
+#, python-format
+msgid "Dear %(username)s,"
+msgstr ""
+
+#: contrib/gnotify/templates/emails/notification_email_message.txt:4
+#, python-format
+msgid " These are the %(digest)s notifications from %(site)s."
+msgstr ""
+
+#: contrib/gnotify/templates/emails/notification_email_message.txt:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: contrib/gnotify/templates/emails/notification_email_message.txt:12
+msgid "Sincerely"
+msgstr ""
+
+#: contrib/gnotify/templates/emails/notification_email_subject.txt:2
+#, python-format
+msgid " %(digest)s Notifications %(site)s."
+msgstr ""
+
+#: contrib/gtag/forms.py:22
+msgid "Please provide a comma-separated list of tags."
+msgstr ""
+
+#: contrib/gtag/managers.py:37 contrib/gtag/models.py:53
+msgid "Tags"
+msgstr ""
+
+#: contrib/gtag/managers.py:37
+msgid "A comma-separated list of tags."
+msgstr ""
+
+#: contrib/gtag/models.py:52
+msgid "Tag"
+msgstr ""
+
+#: contrib/gtag/models.py:58
+#, python-format
+msgid "%(object)s tagged with %(tag)s"
+msgstr ""
+
+#: contrib/gtag/models.py:105
+msgid "Object id"
+msgstr ""
+
+#: contrib/gtag/models.py:108
+msgid "Content type"
+msgstr ""
+
+#: contrib/gtag/models.py:144
+msgid "Tagged Item"
+msgstr ""
+
+#: contrib/gtag/models.py:145
+msgid "Tagged Items"
+msgstr ""
+
 #: settings/base.py:36
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "简体中文"
 
 #: themes/default/templates/site_base.html:60
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 #: themes/default/templates/site_base.html:62
 msgid "Preferences"
-msgstr ""
+msgstr "个人设置"
 
 #: themes/default/templates/site_base.html:63
 msgid "Messages"
-msgstr ""
+msgstr "站内短信"
 
 #: themes/default/templates/site_base.html:65
 msgid "Dashboard"
-msgstr ""
+msgstr "后台管理"
 
 #: themes/default/templates/site_base.html:68
 msgid "Logout"
-msgstr ""
+msgstr "注销"
 
 #: themes/default/templates/site_base.html:80
 msgid "Sign Up"
-msgstr ""
+msgstr "注册"
 
 #: themes/default/templates/site_base.html:83
 #: themes/default/templates/site_base.html:90
 msgid "Sign In"
-msgstr ""
+msgstr "登录"
 
 #: themes/default/templates/site_base.html:89
 msgid "Remember Me"
-msgstr ""
+msgstr "记住我"
 
 #: themes/default/templates/admin/404.html:4
 #: themes/default/templates/admin/404.html:8
@@ -909,9 +2914,9 @@ msgid "We're sorry, but the requested page could not be found."
 msgstr ""
 
 #: themes/default/templates/admin/500.html:4
-#: themes/default/templates/admin/base.html:12
+#: themes/default/templates/admin/base.html:14
 msgid "Home"
-msgstr ""
+msgstr "首页"
 
 #: themes/default/templates/admin/500.html:4
 msgid "Server error"
@@ -976,12 +2981,7 @@ msgstr ""
 #: themes/default/templates/admin/change_form.html:33
 #: themes/default/templates/admin/index.html:38
 msgid "Add"
-msgstr ""
-
-#: themes/default/templates/admin/app_index.html:39
-#: themes/default/templates/admin/index.html:41
-msgid "Change"
-msgstr ""
+msgstr "新增"
 
 #: themes/default/templates/admin/app_index.html:48
 #: themes/default/templates/admin/index.html:51
@@ -990,16 +2990,10 @@ msgstr ""
 
 #: themes/default/templates/admin/base_site.html:4
 msgid "HZCDCLabs Site Manager"
-msgstr ""
+msgstr "HZCDCLabs网站管理"
 
 #: themes/default/templates/admin/base_site.html:8
-#: themes/default/templates/admin/login.html:34
 msgid "Django administration"
-msgstr ""
-
-#: themes/default/templates/admin/change_form.html:49
-#: themes/default/templates/admin/object_history.html:9
-msgid "History"
 msgstr ""
 
 #: themes/default/templates/admin/change_form.html:51
@@ -1010,7 +3004,7 @@ msgstr ""
 
 #: themes/default/templates/admin/change_form.html:66
 #: themes/default/templates/admin/change_list.html:79
-#: themes/default/templates/admin/login.html:22
+#: themes/default/templates/admin/login.html:18
 #: themes/default/templates/admin/auth/user/change_password.html:27
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
@@ -1025,11 +3019,6 @@ msgstr ""
 #: themes/default/templates/admin/change_list.html:111
 #: themes/default/templates/admin/feincms/tree_editor.html:51
 msgid "Filter"
-msgstr ""
-
-#: themes/default/templates/admin/delete_confirmation.html:9
-#: themes/default/templates/admin/submit_line.html:4
-msgid "Delete"
 msgstr ""
 
 #: themes/default/templates/admin/delete_confirmation.html:15
@@ -1113,20 +3102,20 @@ msgid ""
 "the appropriate user."
 msgstr ""
 
-#: themes/default/templates/admin/login.html:38
+#: themes/default/templates/admin/login.html:28
+msgid "Administration"
+msgstr ""
+
+#: themes/default/templates/admin/login.html:31
 msgid "Username:"
 msgstr ""
 
-#: themes/default/templates/admin/login.html:41
+#: themes/default/templates/admin/login.html:35
 msgid "Password:"
 msgstr ""
 
 #: themes/default/templates/admin/object_history.html:20
 msgid "Date/time"
-msgstr ""
-
-#: themes/default/templates/admin/object_history.html:22
-msgid "Action"
 msgstr ""
 
 #: themes/default/templates/admin/object_history.html:36
@@ -1137,10 +3126,6 @@ msgstr ""
 
 #: themes/default/templates/admin/pagination.html:10
 msgid "Show all"
-msgstr ""
-
-#: themes/default/templates/admin/search_form.html:6
-msgid "Search"
 msgstr ""
 
 #: themes/default/templates/admin/search_form.html:8
@@ -1192,11 +3177,6 @@ msgstr ""
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: themes/default/templates/admin/edit_inline/stacked.html:70
-#: themes/default/templates/admin/edit_inline/tabular.html:116
-msgid "Remove"
-msgstr ""
-
 #: themes/default/templates/admin/edit_inline/tabular.html:15
 msgid "Delete?"
 msgstr ""
@@ -1237,8 +3217,4 @@ msgstr ""
 
 #: themes/default/templates/admin/feincms/page/page/item_editor.html:10
 msgid "Edit on site"
-msgstr ""
-
-#: themes/default/templates/admin/feincms/page/page/item_editor.html:15
-msgid "Preview"
 msgstr ""
