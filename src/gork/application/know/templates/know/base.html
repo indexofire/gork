@@ -110,6 +110,9 @@
 {% endblock content %}
 
 {% block breadcrumbs %}
-{{ block.super }}
+<li>
+  <i class="icon-home"></i>
+  <a href="/">{% trans "Home" %}</a>
+</li>
   {% block wiki_breadcrumbs %}{% endblock %}
 {% endblock breadcrumbs %}

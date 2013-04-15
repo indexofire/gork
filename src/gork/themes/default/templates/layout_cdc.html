@@ -5,6 +5,9 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
+      <div class="pad">
+        <h3 class="title">{{ feincms_page.title }}</h3>
+        <div style="padding: 10px">
   {% if request.user.is_superuser %}
     {% feincms_render_region feincms_page "sccdc" request %}
     {% feincms_render_region feincms_page "xccdc" request %}
@@ -45,6 +48,8 @@
   {% else %}
     {% trans "You don't have permission to view the page" %}
   {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
