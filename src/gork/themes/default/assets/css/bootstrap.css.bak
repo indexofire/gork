@@ -6090,7 +6090,7 @@ body {
   text-shadow: 0 1px 0 #ffffff;
   line-height: 30px;
   padding: 0px 15px 0px 5px;
-  background: url('../../../img/breadcrumb_divider.svg') no-repeat 100% 50%;
+  background: url('../img/breadcrumb_divider.svg') no-repeat 100% 50%;
 }
 .breadcrumbs .active a {
   color: #333333;
@@ -6163,10 +6163,16 @@ ul.nav li.nav-header:hover {
   margin: 0px;
   background-color: #ECECEC;
   padding-left: 20px;
-  border-bottom: 1px solid #E3E3E3;
+  border-bottom: 1px solid #E6E6E6;
 }
 .accordion-group {
   border: 0px;
+}
+#id_title {
+  font-size: 20px;
+  height: 30px;
+  padding: 6px;
+  width: 98%;
 }
 #article-container {
   padding: 10px;
