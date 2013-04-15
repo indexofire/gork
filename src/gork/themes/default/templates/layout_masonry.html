@@ -16,10 +16,10 @@
   {% feincms_nav feincms_page level=feincms_page.level|add:2 depth=1 as nodes %}
   {% recursetree nodes %}
     <div class="box pad {{ node.menu_additional_class }}">
-      <h3 class="title">{{ node.title }}</h3>
+      <h3 class="title"><a href="{{ node.get_absolute_url }}">{{ node.title }}</a></h3>
       <div class="content h5">
         <p>{{ node.meta_keywords }}</p>
-        <a href="{{ node.get_absolute_url }}"><span>{% trans "Read More" %}</span></a>
+        <h5 class="pull-right"><a href="{{ node.get_absolute_url }}">{% trans "Read More" %}</a></h5>
       </div>
     </div>
   {% endrecursetree %}
