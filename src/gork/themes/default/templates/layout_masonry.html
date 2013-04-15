@@ -17,8 +17,8 @@
   {% recursetree nodes %}
     <div class="box pad {{ node.menu_additional_class }}">
       <h3 class="title">{{ node.title }}</h3>
-      <div class="content">
-        <p style="padding: 5px">{{ node.meta_keywords }}</p>
+      <div class="content h5">
+        <p>{{ node.meta_keywords }}</p>
         <a href="{{ node.get_absolute_url }}"><span>{% trans "Read More" %}</span></a>
       </div>
     </div>
