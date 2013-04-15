@@ -6090,7 +6090,7 @@ body {
   text-shadow: 0 1px 0 #ffffff;
   line-height: 30px;
   padding: 0px 15px 0px 5px;
-  background: url('../../../img/breadcrumb_divider.svg') no-repeat 100% 50%;
+  background: url('../img/breadcrumb_divider.svg') no-repeat 100% 50%;
 }
 .breadcrumbs .active a {
   color: #333333;
