@@ -16,7 +16,7 @@ EDITOR = getattr(django_settings, 'WIKI_EDITOR', 'know.editors.markitup.MarkItUp
 
 MARKDOWN_KWARGS = {
     'extensions': ['footnotes', 'headerid', 'extra', ],
-    'safe_mode': 'replace',
+    #'safe_mode': 'replace',
     'extension_configs': {'toc': {'title': _('Table of Contents')}},
 }
 MARKDOWN_KWARGS.update(getattr(django_settings, 'WIKI_MARKDOWN_KWARGS', {}))
