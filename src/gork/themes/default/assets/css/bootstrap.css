@@ -6037,7 +6037,7 @@ a.badge:focus {
   line-height: 30px;
 }
 body {
-  background-image: url('../../../img/bg.png') !important;
+  background-image: url('../img/bg.png') !important;
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
