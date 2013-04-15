@@ -15,7 +15,7 @@
 {% endblock breadcrumbs %}
 
 {% block admin_content %}
-<div class="span8 pad">
+<div class="span10 pad">
 <div class="holder">
 <div id="content-main">
 {% if app_list %}
@@ -23,7 +23,7 @@
 
 <table class="table table-bordered table-striped" summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
   <tr>
-    <th colspan="2" class="title"><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></th>
+    <th colspan="2"><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></th>
   </tr>
   {% for model in app.models %}
   <tr>
@@ -56,7 +56,7 @@
 {% endblock admin_content %}
 
 {% block sidebar %}
-<div class="span4 pad">
+<div class="span2 pad">
   <ul class="nav nav-list">
     <li class="nav-header">{% trans 'Recent Actions' %}</li>
     <li class="divider"></li>

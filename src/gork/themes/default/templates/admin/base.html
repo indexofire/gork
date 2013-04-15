@@ -16,26 +16,27 @@
 
 {% block content %}
 <div class="container-fluid">
-{% block userlinks %}{% endblock userlinks %}
+  {% block userlinks %}{% endblock userlinks %}
 
-{% block mainbody %}
-<div class="main {% block coltype %}colM{% endblock %}">
-{% if messages %}
-  <div class="alert alert-success">
-    <ul class="messagelist">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  </div>
-{% endif %}
+  {% block mainbody %}
+  <div class="main {% block coltype %}colM{% endblock %}">
+  {% if messages %}
+    <div class="alert alert-success">
+      <ul class="messagelist">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 
-{% block pretitle %}{% endblock pretitle %}
-{% block content_title %}
-{% if title %}
+  {% block pretitle %}{% endblock pretitle %}
+
+  {% block content_title %}
+  {% if title %}
   <div><h3>{{ title }}</h3></div>
-{% endif %}
-{% endblock content_title %}
+  {% endif %}
+  {% endblock content_title %}
 
   <div class="row-fluid show-grid">
     {% block admin_content %}
@@ -50,5 +51,6 @@
 </div>
 {% endblock mainbody %}
 <!-- end block content -->
+
 </div>
 {% endblock content %}
