@@ -22,9 +22,7 @@ class ArticleManager(ActiveAwareContentManagerMixin, models.Manager):
 
 class Article(Base, ContentModelMixin):
     active = models.BooleanField(
-        _('active'),
         default=True,
-        help_text=_('article status'),
     )
     title = models.CharField(
         _('title'),
@@ -34,7 +32,7 @@ class Article(Base, ContentModelMixin):
     slug = models.SlugField(
         _('slug'),
         max_length=255,
-        help_text=_('generated from the title, only english character or numbers'),
+        help_text=_('generated from the title, only english character, numbers or -'),
         unique=True,
         editable=True,
     )
@@ -42,13 +40,13 @@ class Article(Base, ContentModelMixin):
         settings.AUTH_USER_MODEL,
         null=False,
         blank=False,
-        )
+    )
     publish_date = models.DateTimeField(
         auto_now_add=True,
         blank=False,
         null=False,
         default=datetime.now(),
-        )
+    )
 
     class Meta:
         ordering = ['title']
@@ -56,15 +54,16 @@ class Article(Base, ContentModelMixin):
         verbose_name_plural = _('articles')
 
     objects = ArticleManager()
+    #_feincms_content_types = []
+    #feincms_item_editor_context_processors = {}
 
     @classmethod
     def get_urlpatterns(cls):
         """get url pattern of article object"""
-        return patterns('article.views',
+        return patterns(
+            'article.views',
             url(r'^$', 'ArticleList.as_view()', name='article_index'),
-            url(r'^(?P<slug>[a-z0-9_-]+)/$', 'ArticleDetail.as_view()',
-                name='article_detail',
-            ),
+            url(r'^(?P<slug>[a-z0-9_-]+)/$', 'ArticleDetail.as_view()', name='article_detail'),
         )
 
     @classmethod
@@ -127,6 +126,7 @@ class Article(Base, ContentModelMixin):
                 cls._profile_extensions.add(ext)
             except Exception:
                 raise
+
 
 ModelAdmin = get_callable(
     getattr(

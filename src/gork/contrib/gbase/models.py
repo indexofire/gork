@@ -107,5 +107,20 @@ Page.create_content_type(
     APPLICATIONS=(
         ('know.urls', 'Knowledge Application'),
         ('ask.urls', 'Ask Application'),
+        ('article.urls', 'Article Application'),
     ),
+)
+
+from article.models import Article
+Article.register_regions(
+    ('top', _('Top content')),
+    ('main', _('Main content')),
+)
+Article.create_content_type(RichTextContent)
+
+Article.register_extensions(
+    'feincms.module.extensions.datepublisher',
+    #'article.extensions.category',
+    #'article.extensions.tags',
+    #'article.extensions.thumbnails',
 )

@@ -2,11 +2,31 @@
 {% load feincms_tags i18n %}
 
 {% block article-content %}
-<div class="top">
-  {% feincms_render_region object 'top' request %}
+<div class="pad">
+  <h3 class="title">{{ article.title }}</h3>
+  <div class="top">
+    {% feincms_render_region article 'top' request %}
+  </div>
+  <div class="article full">
+    {% feincms_render_region article 'main' request %}
+  </div>
 </div>
-<div class="article full">
-    {% feincms_render_region object 'main' request %}
-</div>
+{% endblock article-content %}
 
-{% endblock %}
+{% block article-sidebar %}
+<div class="pad">
+  <h3 class="title">{% trans "Article Category" %}</h3>
+  <ul>
+    {% for category in categories %}
+    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+    {% empty %}
+    {% trans 'no category yet' %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock article-sidebar %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li>{{ article.title }}</li>
+{% endblock breadcrumbs %}

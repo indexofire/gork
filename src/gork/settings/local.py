@@ -18,6 +18,7 @@ MIDDLEWARE_CLASSES += (
 
 INSTALLED_APPS += (
     'debug_toolbar',
+    'article',
 )
 
 INTERNAL_IPS = (
