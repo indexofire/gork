@@ -1,0 +1,16 @@
+{% extends feincms_page.template.path|default:"site_base.html" %}
+{% load i18n applicationcontent_tags feincms_page_tags %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row-fluid">
+  <div class="span3">
+    <div class="pad">{% block article-content %}{% endblock article-content %}</div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% endblock breadcrumbs %}

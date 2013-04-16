@@ -1,0 +1,12 @@
+{% extends "article/article_base.html" %}
+{% load feincms_tags i18n %}
+
+{% block article-content %}
+<div class="top">
+  {% feincms_render_region object 'top' request %}
+</div>
+<div class="article full">
+    {% feincms_render_region object 'main' request %}
+</div>
+
+{% endblock %}

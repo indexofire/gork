@@ -1,0 +1,11 @@
+{% load i18n feincms_tags applicationcontent_tags %}
+
+{% for object in object_list %}
+  <div class="news-block pad">
+    <h3 class="title">{{ object.title }}</h3>
+    <div class="h5">
+      <p>{{ object.content }}</p>
+      <p class="pull-right"><a href="{{ object.get_absolute_url }}">{% trans "Read More" %}</a></p>
+    </div>
+  </div>
+{% endfor %}
