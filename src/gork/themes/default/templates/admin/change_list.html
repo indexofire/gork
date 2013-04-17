@@ -59,6 +59,7 @@
 
 {% block admin_content %}
 <div class="span10 pad">
+  {% if title %}<h3 class="title">{{ title }}</h3>{% endif %}
   <div class="holder">
   <div id="content-main">
     {% block object-tools %}
@@ -108,7 +109,7 @@
 <div class="span2 pad">
 {% if cl.has_filters %}
   <div class="changelist-filter">
-    <h3 class="filter-title">{% trans 'Filter' %}</h3>
+    <h3 class="filter-title title">{% trans 'Filter' %}</h3>
     {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
   </div>
 </div>

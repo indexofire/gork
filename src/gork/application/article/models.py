@@ -151,7 +151,9 @@ class ArticleAdmin(ItemEditor):
         (_('Article'), {
             'fields': ['active', 'title', 'slug']
         }),
-        #(_('Important dates'), {'fields': ('', )}),
+        #(_('Important dates'), {
+        #    'fields': ('publication_date', )
+        #}),
         #item_editor.FEINCMS_CONTENT_FIELDSET,
     ]
 

@@ -15,6 +15,7 @@
 
 {% block admin_content %}
 <div class="span12 pad">
+  {% if title %}<h3 class="title">{{ title }}</h3>{% endif %}
   <div class="holder">
     <div id="content-main">
     {% if app_list %}
