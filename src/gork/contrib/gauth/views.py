@@ -78,7 +78,7 @@ class SignupView(FormView):
     Default sign up view.
     """
     template_name = "gauth/gauth_signup.html"
-    template_name_email_confirmation_sent = "gauth/gauth_signupemail_confirmation_sent.html"
+    template_name_email_confirmation_sent = "gauth/gauth_email_confirmation_sent.html"
     template_name_signup_closed = "gauth/gauth_signup_closed.html"
     form_class = SignupForm
     form_kwargs = {}
@@ -410,7 +410,7 @@ class PasswordResetView(FormView):
             subject = render_to_string("gauth/email/password_reset_subject.txt", ctx)
             subject = "".join(subject.splitlines())
             message = render_to_string("gauth/email/password_reset.txt", ctx)
-            send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email])
+            send_mail(subject, message, GAUTH_DEFAULT_FROM_EMAIL, [user.email])
 
     def make_token(self, user):
         return self.token_generator.make_token(user)
@@ -568,7 +568,7 @@ class ChangePasswordView(FormView):
         subject = render_to_string("gauth/email/password_change_subject.txt", ctx)
         subject = "".join(subject.splitlines())
         message = render_to_string("gauth/email/password_change.txt", ctx)
-        send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email])
+        send_mail(subject, message, GAUTH_DEFAULT_FROM_EMAIL, [user.email])
 
 
 def login_ajax(request, tpl=None):

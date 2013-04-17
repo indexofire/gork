@@ -3,5 +3,11 @@
 {% block title %}{{ SITE_NAME }} - {% endblock title %}
 
 {% block content %}
-
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12 pad">
+    {% block account-content %}{% endblock account-content %}
+    </div>
+  </div>
+</div>
 {% endblock content %}

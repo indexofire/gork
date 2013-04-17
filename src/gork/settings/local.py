@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from gork.settings.base import *
 
 
@@ -40,3 +41,10 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'themes/%s/templates/' % SITE_THEME),
 )
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'hzcdclabs@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_PWD"]
+EMAIL_USE_TLS = True

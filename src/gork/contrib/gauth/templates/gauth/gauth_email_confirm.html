@@ -1,5 +1,5 @@
 {% extends "gauth/gauth_base.html" %}
-{% load feincms_tags i18n applicationcontent_tags %}
+{% load i18n %}
 
 {% block title %}{{ block.super }}{% trans 'Email confirm' %}{% endblock %}
 
@@ -10,6 +10,7 @@
 {% endblock breadcrumbs %}
 
 {% block account-content %}
+
 <div class="pad">
   <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}" class="form-horizontal">{% csrf_token %}
   <legend>{% trans "Confirm Email" %}</legend>

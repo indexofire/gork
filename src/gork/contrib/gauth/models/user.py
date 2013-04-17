@@ -10,8 +10,76 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from feincms.extensions import ExtensionsMixin
-from gauth.managers import GUserManager, EmailConfirmationManager
+from gauth.managers import GUserManager  # , EmailConfirmationManager
 from gauth.settings import *
+
+
+class EmailConfirmation(models.Model):
+    """
+    Hash key for registered new users confirmation
+    """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    #email_address = models.ForeignKey(EmailAddress)
+    created = models.DateTimeField(default=timezone.now())
+    sent = models.DateTimeField(null=True)
+    key = models.CharField(max_length=64, unique=True)
+
+    #objects = EmailConfirmationManager()
+
+    class Meta:
+        verbose_name = _("email confirmation")
+        verbose_name_plural = _("email confirmations")
+
+    def __unicode__(self):
+        return u"confirmation for %s" % self.email_address
+
+    @property
+    def email_address(self):
+        return self.user.email
+
+    @classmethod
+    def create(cls, email_address):
+        key = random_token([self.email_address])
+        return cls._default_manager.create(email_address=self.email_address, key=key)
+
+    def key_expired(self):
+        expiration_date = self.sent + datetime.timedelta(days=GAUTH_EMAIL_CONFIRMATION_EXPIRE_DAYS)
+        return expiration_date <= timezone.now()
+    key_expired.boolean = True
+
+    def confirm(self):
+        if not self.key_expired() and not self.email_address.verified:
+            email_address = self.email_address
+            email_address.verified = True
+            email_address.set_as_primary(conditional=True)
+            email_address.save()
+            signals.email_confirmed.send(sender=self.__class__, email_address=email_address)
+            return email_address
+
+    def send(self, **kwargs):
+        current_site = kwargs["site"] if "site" in kwargs else Site.objects.get_current()
+        protocol = getattr(settings, "DEFAULT_HTTP_PROTOCOL", "http")
+        activate_url = u"%s://%s%s" % (
+            protocol,
+            unicode(current_site.domain),
+            reverse("account_confirm_email", args=[self.key])
+        )
+        ctx = {
+            "email_address": self.email_address,
+            "user": self.email_address.user,
+            "activate_url": activate_url,
+            "current_site": current_site,
+            "key": self.key,
+        }
+        subject = render_to_string("gauth/email/email_confirmation_subject.txt", ctx)
+
+        # remove superfluous line breaks
+        subject = "".join(subject.splitlines())
+        message = render_to_string("gauth/email/email_confirmation_message.txt", ctx)
+        send_mail(subject, message, GAUTH_DEFAULT_FROM_EMAIL, [self.email_address.email])
+        self.sent = timezone.now()
+        self.save()
+        signals.email_confirmation_sent.send(sender=self.__class__, confirmation=self)
 
 
 class GUser(AbstractBaseUser, PermissionsMixin, ExtensionsMixin):
@@ -137,69 +205,104 @@ class GUser(AbstractBaseUser, PermissionsMixin, ExtensionsMixin):
 GUser.register_extensions(*GAUTH_USER_EXTENSIONS)
 
 
-class EmailConfirmation(models.Model):
-    """
-    Hash key for registered new users confirmation
-    """
-    user = models.ForeignKey(GUser)
-    #email_address = models.ForeignKey(EmailAddress)
-    created = models.DateTimeField(default=timezone.now())
-    sent = models.DateTimeField(null=True)
-    key = models.CharField(max_length=64, unique=True)
+class SignupCode(models.Model):
 
-    objects = EmailConfirmationManager()
+    class AlreadyExists(Exception):
+        pass
 
-    class Meta:
-        verbose_name = _("email confirmation")
-        verbose_name_plural = _("email confirmations")
+    class InvalidCode(Exception):
+        pass
+
+    code = models.CharField(max_length=64, unique=True)
+    max_uses = models.PositiveIntegerField(default=0)
+    expiry = models.DateTimeField(null=True, blank=True)
+    inviter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    email = models.EmailField(blank=True)
+    notes = models.TextField(blank=True)
+    sent = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(default=timezone.now, editable=False)
+    use_count = models.PositiveIntegerField(editable=False, default=0)
 
     def __unicode__(self):
-        return u"confirmation for %s" % self.email_address
-
-    @property
-    def email_address(self):
-        return self.user.email
+        if self.email:
+            return u"%s [%s]" % (self.email, self.code)
+        else:
+            return self.code
 
     @classmethod
-    def create(cls, email_address):
-        key = random_token([self.email_address])
-        return cls._default_manager.create(email_address=self.email_address, key=key)
+    def exists(cls, code=None, email=None):
+        checks = []
+        if code:
+            checks.append(Q(code=code))
+        if email:
+            checks.append(Q(email=code))
+        return cls._default_manager.filter(reduce(operator.or_, checks)).exists()
 
-    def key_expired(self):
-        expiration_date = self.sent + datetime.timedelta(days=GAUTH_EMAIL_CONFIRMATION_EXPIRE_DAYS)
-        return expiration_date <= timezone.now()
-    key_expired.boolean = True
+    @classmethod
+    def create(cls, **kwargs):
+        email, code = kwargs.get("email"), kwargs.get("code")
+        if kwargs.get("check_exists", True) and cls.exists(code=code, email=email):
+            raise cls.AlreadyExists()
+        expiry = timezone.now() + datetime.timedelta(hours=kwargs.get("expiry", 24))
+        if not code:
+            code = random_token([email]) if email else random_token()
+        params = {
+            "code": code,
+            "max_uses": kwargs.get("max_uses", 0),
+            "expiry": expiry,
+            "inviter": kwargs.get("inviter"),
+            "notes": kwargs.get("notes", "")
+        }
+        if email:
+            params["email"] = email
+        return cls(**params)
 
-    def confirm(self):
-        if not self.key_expired() and not self.email_address.verified:
-            email_address = self.email_address
-            email_address.verified = True
-            email_address.set_as_primary(conditional=True)
-            email_address.save()
-            signals.email_confirmed.send(sender=self.__class__, email_address=email_address)
-            return email_address
+    @classmethod
+    def check(cls, code):
+        try:
+            signup_code = cls._default_manager.get(code=code)
+        except cls.DoesNotExist:
+            raise cls.InvalidCode()
+        else:
+            if signup_code.max_uses and signup_code.max_uses <= signup_code.use_count:
+                raise cls.InvalidCode()
+            else:
+                if signup_code.expiry and timezone.now() > signup_code.expiry:
+                    raise cls.InvalidCode()
+                else:
+                    return signup_code
+
+    def calculate_use_count(self):
+        self.use_count = self.signupcoderesult_set.count()
+        self.save()
+
+    def use(self, user):
+        """
+        Add a SignupCode result attached to the given user.
+        """
+        result = SignupCodeResult()
+        result.signup_code = self
+        result.user = user
+        result.save()
+        signup_code_used.send(sender=result.__class__, signup_code_result=result)
 
     def send(self, **kwargs):
-        current_site = kwargs["site"] if "site" in kwargs else Site.objects.get_current()
         protocol = getattr(settings, "DEFAULT_HTTP_PROTOCOL", "http")
-        activate_url = u"%s://%s%s" % (
+        current_site = kwargs["site"] if "site" in kwargs else Site.objects.get_current()
+        signup_url = u"%s://%s%s?%s" % (
             protocol,
             unicode(current_site.domain),
-            reverse("account_confirm_email", args=[self.key])
+            reverse("account_signup"),
+            urllib.urlencode({"code": self.code})
         )
         ctx = {
-            "email_address": self.email_address,
-            "user": self.email_address.user,
-            "activate_url": activate_url,
+            "signup_code": self,
             "current_site": current_site,
-            "key": self.key,
+            "signup_url": signup_url,
         }
-        subject = render_to_string("gauth/email/email_confirmation_subject.txt", ctx)
-
-        # remove superfluous line breaks
-        subject = "".join(subject.splitlines())
-        message = render_to_string("gauth/email/email_confirmation_message.txt", ctx)
-        send_mail(subject, message, GAUTH_DEFAULT_FROM_EMAIL, [self.email_address.email])
+        subject = render_to_string("account/email/invite_user_subject.txt", ctx)
+        message = render_to_string("account/email/invite_user.txt", ctx)
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [self.email])
         self.sent = timezone.now()
         self.save()
-        signals.email_confirmation_sent.send(sender=self.__class__, confirmation=self)
+        signup_code_sent.send(sender=SignupCode, signup_code=self)

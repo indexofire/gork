@@ -7,7 +7,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 #from django.utils.safestring import mark_safe
 from django.template.defaultfilters import striptags
 from gauth.models import GUser
-from gauth import settings
+from gauth.settings import GAUTH_EMAIL_UNIQUE
 from gform.models import BootstrapForm
 
 
@@ -88,14 +88,13 @@ class SignupForm(forms.Form, BootstrapForm):
         widget=forms.PasswordInput(render_value=False)
     )
     email = forms.EmailField(widget=forms.TextInput(), required=True)
-    """
     code = forms.CharField(
         label=_("Verify code"),
         max_length=64,
         required=False,
         widget=forms.HiddenInput()
     )
-    """
+
     def clean_username(self):
         if not alnum_re.search(self.cleaned_data["username"]):
             raise forms.ValidationError(_("Usernames can only contain letters, numbers and underscores."))
@@ -107,7 +106,7 @@ class SignupForm(forms.Form, BootstrapForm):
     def clean_email(self):
         value = self.cleaned_data["email"]
         qs = get_user_model().objects.filter(email__iexact=value)
-        if not qs.exists() or not settings.GAUTH_EMAIL_UNIQUE:
+        if not qs.exists() or not GAUTH_EMAIL_UNIQUE:
             return value
         raise forms.ValidationError(_("A user is registered with this email address."))
 
