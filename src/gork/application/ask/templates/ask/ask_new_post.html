@@ -1,8 +1,8 @@
 {% extends "ask/ask_base.html" %}
-{% load i18n %}
+{% load i18n applicationcontent_tags %}
 {% block ask-content %}
-<div class="pad" style="padding: 10px">
-<form class="form-horizontal" action="">{% csrf_token %}
+<div class="pad holder">
+<form class="form-horizontal" action="{% app_reverse 'ask-question' 'ask.urls' %}" method="POST">{% csrf_token %}
   {{ form.as_bootstrap }}
   <div class="control-group">
     <div class="controls">

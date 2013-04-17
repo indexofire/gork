@@ -3,7 +3,7 @@
 
 {% block title %}{{ block.super }}{% trans 'Log in' %}{% endblock title %}
 
-{% block content %}
+{% block account-content %}
 <h3 class="title">{{ SITE_NAME }}: {% trans "Login" %}</h3>
 <form method="post" class="form-horizontal" action="{% url 'gauth-login' %}" id="form-login">
 {% csrf_token %}
@@ -12,4 +12,4 @@
     <div class="controls"><button type="submit" class="btn">{% trans "Login" %}</button></div>
   </div>
 </form>
-{% endblock content %}
+{% endblock account-content %}

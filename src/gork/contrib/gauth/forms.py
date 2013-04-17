@@ -88,12 +88,12 @@ class SignupForm(forms.Form, BootstrapForm):
         widget=forms.PasswordInput(render_value=False)
     )
     email = forms.EmailField(widget=forms.TextInput(), required=True)
-    code = forms.CharField(
-        label=_("Verify code"),
-        max_length=64,
-        required=False,
-        widget=forms.HiddenInput()
-    )
+    #code = forms.CharField(
+    #    label=_("Verify code"),
+    #    max_length=64,
+    #    required=False,
+    #    widget=forms.HiddenInput()
+    #)
 
     def clean_username(self):
         if not alnum_re.search(self.cleaned_data["username"]):

@@ -82,15 +82,18 @@ class QuestionForm(forms.Form, BootstrapForm):
         widget=forms.TextInput(attrs={'class': '', 'placeholder': P_TAG}),
     )
 
-    context = forms.CharField(
-        max_length=1000,
-        required=False,
-        initial='',
-    )
+    #context = forms.CharField(
+    #    max_length=1000,
+    #    required=False,
+    #    initial='',
+    #)
 
     type = forms.ChoiceField(
         choices=POST_TYPES[2:],
     )
+
+
+from gtag.forms import TagField
 
 
 class AnswerForm(forms.Form, BootstrapForm):
@@ -99,3 +102,4 @@ class AnswerForm(forms.Form, BootstrapForm):
         validators=[valid_content],
         widget=forms.Textarea(attrs={'cols': '80', 'rows': '15', 'id': 'editor'}),
     )
+    tags = TagField()

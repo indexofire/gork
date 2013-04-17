@@ -12,7 +12,7 @@ def tag_list():
 
 
 def ask_index(request):
-    qs = Post.objects.filter(level=0)
+    qs = Post.objects.filter(level=0).select_related()
     return 'ask/ask_index.html', {
         'qs': qs,
         'tags': tag_list(),
@@ -40,26 +40,61 @@ def show_post(request, id):
                 'error': _(u"You have no permission to view the question.")
             }
 
+from gauth.models import GUser
+from gtag.managers import TaggableManager
+from django.utils import timezone
+from django.http import HttpResponseRedirect
+from feincms.content.application.models import app_reverse
+
 
 def reply_question(request, id):
-
+    form_class = AnswerForm
+    #post = Post.objects.get(id=id)
     if request.method == 'POST':
-        form = AnswerForm
+        form = form_class(request.POST)
         if form.is_valid():
-            pass
+            answer = Post.objects.create(
+                author=request.user,
+                content=form.cleaned_data['content'],
+                title='',
+                parent=Post.objects.get(id=id).select_related(),
+                creation_date=timezone.now(),
+                lastedit_date=timezone.now(),
+                lastedit_user=request.user,
+                type=1
+            )
+            for tag in form.cleaned_data['tags']:
+                answer.tags.add(tag)
+            answer.save()
+
+            return HttpResponseRedirect(app_reverse("ask-detail", 'ask.urls', args=id))
+        else:
+            print "wrong"
     else:
-        return
+        form = form_class()
 
-    return 'ask/ask_new_post.html', {
-
-    }
+    return 'ask/ask_new_post.html', {'form': form}
 
 
 def ask_question(request):
+    form_class = QuestionForm
     if request.method == 'POST':
-        form = QuestionForm
+        form = form_class(request.POST)
         if form.is_valid():
-            pass
+            print "true"
+            question = Post.objects.create(
+                author=request.user,
+                content=form.cleaned_data['content'],
+                title=form.cleaned_data['title'],
+                creation_date=timezone.now(),
+                lastedit_date=timezone.now(),
+                lastedit_user=request.user,
+                type=form.cleaned_data['type']
+            )
+            for tag in form.cleaned_data['tags']:
+                question.tags.add(tag)
+            question.save()
+            return HttpResponseRedirect(app_reverse("ask-index", 'ask.urls'))
     else:
         form = QuestionForm()
         return 'ask/ask_new_post.html', {'form': form}

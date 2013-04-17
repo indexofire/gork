@@ -47,7 +47,8 @@
 
 {% block ask-sidebar %}
 <div class="pad">
-  <ul>
+  <h3 class="title">{% trans "Tags" %}</h3>
+  <ul class="holder">
     {% for tag in tags %}
     <li>{{ tag }}</li>
     {% endfor %}

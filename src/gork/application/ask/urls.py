@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^q/(?P<id>\d+)/reply/$', main.reply_question, name='ask-reply'),
     # vote question or answers by ajax
     url(r'^vote/$', ajax.vote, name="ask-vote"),
+    #url(r'^a/(?P<pid>\d+)/$', main.post_answer, name="new-answer"),
 )
