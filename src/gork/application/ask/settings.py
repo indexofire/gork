@@ -12,8 +12,6 @@ ASK_CONTENT_DEFAULT_PARSER = (
 )
 ASK_CONTENT_PARSER = getattr(settings, 'ASK_CONTENT_DEFAULT_PARSER', ASK_CONTENT_DEFAULT_PARSER)
 
-
-
 # The name of the editor group
 MODERATOR_GROUP = 'mod_group'
 
@@ -24,7 +22,7 @@ MIN_REP = 1
 POST_SCORE_CHANGE = 1
 USER_SCORE_CHANGE = 1
 # this is how many votes can be cast per session
-MAX_VOTES_PER_SESSION = 10
+MAX_VOTES_PER_SESSION = 1
 
 
 # in seconds, the time intervals to reset vote limit

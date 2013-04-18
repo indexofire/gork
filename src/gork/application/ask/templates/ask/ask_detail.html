@@ -2,6 +2,11 @@
 {% load i18n applicationcontent_tags mptt_tags %}
 
 {% block ask-content %}
+<style>
+div.disabled {
+  cursor: default;
+}
+</style>
 <div class="pad">
   <h3 class="title">{% trans "Question" %}: {{ q.title }}</h3>
   <div class="content" style="padding: 20px 0px">
@@ -30,24 +35,15 @@
         <div class="vote-box">
           <div class="vote">
             <input type="hidden" value="{{ node.id }}">
-            {% if post.upvoted %}
-            <div class="vote-up vote-on" title="Click to remove">&nbsp;</div>
-            {% else %}
-            <div class="vote-up vote-off" title="Click to upvote">&nbsp;</div>
-            {% endif %}
-
-            <div class="vote-count">{{ node.score}}</div>
-
-            {% if post.downvoted %}
-            <div class="vote-down vote-on" title="Click to remove">&nbsp;</div>
-            {% else %}
-            <div class="vote-down vote-off" title="Click to downvote">&nbsp;</div>
-            {% endif %}
+            <div class="vote-up vote-off" data-original-title="Click to upvote">&nbsp;</div>
+            <div class="vote-count">{{ node.score }}</div>
+            <div class="vote-down vote-off" data-original-title="Click to updown">&nbsp;</div>
           </div>
         </div>
       </td>
       <td>
         {{ node.content }}
+        {{ node.author }}
         {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
       </td>
     </tr>
@@ -190,11 +186,12 @@ function toggle_button(button){
 }
 
 function popover(parent,msg,cls){
-    parent.append('<div></div>')
-    elem=parent.children('div').last()
-    elem.addClass('vote-popover '+cls)
-    elem.text(msg)
-    elem.delay(3000).fadeOut(3000,function(){$(this).remove()});
+    //parent.append('<div></div>')
+    //elem.addClass('vote-popover '+cls)
+    close = '<button type="button" class="close" data-dismiss="alert">×</button>'
+    $('#error_msg').addClass('alert alert-error fade in')
+    $('#error_msg').append(msg+close)
+    //elem.delay(3000).fadeOut(3000,function(){$(this).remove()});
 }
 
 function do_vote(button,post,type){
@@ -208,12 +205,16 @@ function do_vote(button,post,type){
         },
         success: function(data){
             if(data.status=='error'){
-                popover(button.parent(),data.msg,data.status)
+                popover($('#error_msg'),data.msg,data.status)
                 toggle_button(button)
             }
         },
+        //error: function(){
+        //    popover(button.parent(),'Unable to submit vote','error');
+        //    toggle_button(button);
+        //}
         error: function(){
-            popover(button.parent(),'Unable to submit vote','error');
+            popover($('#error_msg'),'Unable to submit vote','error');
             toggle_button(button);
         }
     });
@@ -226,13 +227,15 @@ $(document).ready(function(){
         // register a handler for each votable element
         //callback functions defined in /static/js/vote.js
         up_button  = elem.children('.vote-up')
-        up_button.click(function(){
+        up_button.stop(true, false).click(function(){
             do_vote($(this), $(this).parent().children('input').val(), 'upvote');
+            $(this).remove();
         });
 
         down_button  = elem.children('.vote-down')
         down_button.click(function(){
             do_vote($(this), $(this).parent().children('input').val(), 'downvote');
+            $(this).remove();
         });
 
         accept_button = elem.children('.vote-accepted')

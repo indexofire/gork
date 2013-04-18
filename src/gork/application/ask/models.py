@@ -362,8 +362,6 @@ def post_score_change(post, amount=1):
     post.score += amount
     post.full_score += amount
 
-    print post.score, post.full_score
-
     if post != root:
         root.full_score += amount
         root.save()
@@ -375,7 +373,6 @@ def post_score_change(post, amount=1):
 
 def user_score_change(user, amount):
     """How user score changes with votes"""
-    print user.username
     user.qa_score += amount
     user.save()
 
@@ -392,6 +389,8 @@ def insert_vote(post, user, vote_type):
         for vote in votes:
             vote.delete()
         msg = '%s removed' % vote.get_type_display()
+        post.score -= 1
+        post.save()
         return vote, msg
 
     # remove opposing votes
@@ -402,7 +401,9 @@ def insert_vote(post, user, vote_type):
             post = vote.post  # this reference now has been changed
 
     vote = Vote.objects.create(post=post, author=user, type=vote_type)
-    vote.apply()
+    #vote.apply()
     vote.save()
+    post.score += 1
+    post.save()
     msg = '%s added' % vote.get_type_display()
     return vote, msg

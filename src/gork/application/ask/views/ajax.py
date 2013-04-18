@@ -75,13 +75,13 @@ def vote(request):
     if type in (VOTE_UP, VOTE_DOWN, VOTE_ACCEPT) and post.author == author:
         return ajax_error('You may not vote on your own post')
 
-    if type == VOTE_ACCEPT and post.root.author != author:
+    if type == VOTE_ACCEPT and post.parent.author != author:
         return ajax_error('Only the original poster may accept an answer')
 
     # voting throttle
-    from django.utils import timezone
-    past = timezone.now() - VOTE_SESSION_LENGTH
-    #past = datetime.now() - VOTE_SESSION_LENGTH
+    from django.utils.timezone import utc
+
+    past = datetime.utcnow().replace(tzinfo=utc) - VOTE_SESSION_LENGTH
     count = Vote.objects.filter(author=author, date__gt=past).count()
     avail = MAX_VOTES_PER_SESSION - count
 
@@ -90,7 +90,6 @@ def vote(request):
         return ajax_error(msg)
     else:
         vote, msg = insert_vote(post=post, user=author, vote_type=type)
-        print msg
         return ajax_success(msg)
 
 
