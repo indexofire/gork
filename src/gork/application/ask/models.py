@@ -186,7 +186,7 @@ class Post(MPTTModel):
     objects = models.Manager()
 
     class MPTTMeta:
-        order_insertion_by = ['title']
+        order_insertion_by = ['full_score', 'creation_date']
 
     def __unicode__(self):
         return self.title
