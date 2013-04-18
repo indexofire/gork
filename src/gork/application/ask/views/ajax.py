@@ -21,11 +21,12 @@ def json_response(adict, **kwd):
     """Returns a http response in JSON format from a dictionary"""
     return HttpResponse(json.dumps(adict), **kwd)
 
+
 def ajax_msg(msg, status):
     return json_response(dict(status=status, msg=msg))
 
 ajax_success = partial(ajax_msg, status='success')
-ajax_error   = partial(ajax_msg, status='error')
+ajax_error = partial(ajax_msg, status='error')
 
 
 class ajax_error_wrapper(object):
@@ -44,7 +45,7 @@ class ajax_error_wrapper(object):
 
             value = self.f(*args, **kwds)
             return value
-        except Exception,exc:
+        except Exception, exc:
             traceback.print_exc()
             return ajax_error('Error: %s' % exc)
 
@@ -71,15 +72,16 @@ def vote(request):
     if type == VOTE_DOWN:
         return ajax_success('Downvote received!')
 
-    if type  in (VOTE_UP, VOTE_DOWN, VOTE_ACCEPT) and post.author == author:
+    if type in (VOTE_UP, VOTE_DOWN, VOTE_ACCEPT) and post.author == author:
         return ajax_error('You may not vote on your own post')
 
     if type == VOTE_ACCEPT and post.root.author != author:
         return ajax_error('Only the original poster may accept an answer')
 
     # voting throttle
-    #past  = datetime.now() - VOTE_SESSION_LENGTH
-    past
+    from django.utils import timezone
+    past = timezone.now() - VOTE_SESSION_LENGTH
+    #past = datetime.now() - VOTE_SESSION_LENGTH
     count = Vote.objects.filter(author=author, date__gt=past).count()
     avail = MAX_VOTES_PER_SESSION - count
 
@@ -88,6 +90,7 @@ def vote(request):
         return ajax_error(msg)
     else:
         vote, msg = insert_vote(post=post, user=author, vote_type=type)
+        print msg
         return ajax_success(msg)
 
 
@@ -98,7 +101,7 @@ def comment_delete(request, pid):
     post = Post.objects.get(id=pid)
 
     # two conditions where a comment destruction may occur
-    permit  = user.can_moderate or (user == post.author )
+    permit = user.can_moderate or (user == post.author)
     if not permit:
         return ajax_error('Permission denied')
 

@@ -29,10 +29,20 @@
       <td>
         <div class="vote-box">
           <div class="vote">
-            <input type="hidden" value="{{ node.parent.id }}">
-            <div class="vote-up vote-off" data-original-title="Click to upvote">&nbsp;</div>
-            <div class="vote-count">{{ node.score }}</div>
-            <div class="vote-down vote-off" data-original-title="Click to downvote">&nbsp;</div>
+            <input type="hidden" value="{{ node.id }}">
+            {% if post.upvoted %}
+            <div class="vote-up vote-on" title="Click to remove">&nbsp;</div>
+            {% else %}
+            <div class="vote-up vote-off" title="Click to upvote">&nbsp;</div>
+            {% endif %}
+
+            <div class="vote-count">{{ node.score}}</div>
+
+            {% if post.downvoted %}
+            <div class="vote-down vote-on" title="Click to remove">&nbsp;</div>
+            {% else %}
+            <div class="vote-down vote-off" title="Click to downvote">&nbsp;</div>
+            {% endif %}
           </div>
         </div>
       </td>
@@ -47,6 +57,7 @@
 </div>
 {% endif %}
 
+{% if request.user.is_authenticated %}
 <div class="pad">
   <h3 class="title">{% trans "Quick Reply" %}</h3>
   <div class="holder">
@@ -65,6 +76,7 @@
   width: 98%;
 }
 </style>
+{% endif %}
 <!--
 <script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
@@ -113,6 +125,7 @@ tinyMCE.init({
   text-align: center;
 }
 </style>
+
 <script>
 $('html').ajaxSend(function(event,xhr,settings){
     function getCookie(name){
@@ -136,7 +149,8 @@ $('html').ajaxSend(function(event,xhr,settings){
 
 function toggle_css(elem,start,end){
     if(e.hasClass(start)){
-        e.removeClass(start);e.addClass(end);
+        e.removeClass(start);
+        e.addClass(end);
     }
 }
 
@@ -180,7 +194,7 @@ function popover(parent,msg,cls){
     elem=parent.children('div').last()
     elem.addClass('vote-popover '+cls)
     elem.text(msg)
-    elem.delay(1000).fadeOut(1000,function(){$(this).remove()});
+    elem.delay(3000).fadeOut(3000,function(){$(this).remove()});
 }
 
 function do_vote(button,post,type){

@@ -324,9 +324,12 @@ class Vote(models.Model):
     date = models.DateTimeField(db_index=True, auto_now=True)
 
     def apply(self, dir=1):
-        "Applies a score and reputation changes upon a vote. Direction can be set to -1 to undo (ie delete vote)"
+        """
+        Applies a score and reputation changes upon a vote.
+        Direction can be set to -1 to undo (ie delete vote)
+        """
 
-        post, root = self.post, self.post.root
+        post, root = self.post, self.post.parent
         if self.type == app_settings.VOTE_UP:
             post_score_change(post, amount=dir)
             user_score_change(post.author, amount=dir)
@@ -340,20 +343,26 @@ class Vote(models.Model):
             user_score_change(post.author, amount=1)
             post.save()
             root.save()
-
+        """
         if self.type == app_settings.VOTE_BOOKMARK:
             post.book_count += dir
             post.save()
+        """
 
 
 def post_score_change(post, amount=1):
-    "How post score changes with votes. Both the rank and the score changes"
+    """
+    How post score changes with votes.
+    Both the rank and the score changes
+    """
 
-    root = post.root
+    root = post.parent
 
     # post score increases
     post.score += amount
     post.full_score += amount
+
+    print post.score, post.full_score
 
     if post != root:
         root.full_score += amount
@@ -365,14 +374,15 @@ def post_score_change(post, amount=1):
 
 
 def user_score_change(user, amount):
-    "How user score changes with votes"
-    user.score += amount
+    """How user score changes with votes"""
+    print user.username
+    user.qa_score += amount
     user.save()
 
 
 @transaction.commit_on_success
 def insert_vote(post, user, vote_type):
-    "Applies a vote. Applying an existing vote type removes it"
+    """Applies a vote. Applying an existing vote type removes it"""
 
     # due to race conditions (user spamming vote button) multiple votes may register
     # this removes votes with the metioned type
@@ -392,6 +402,7 @@ def insert_vote(post, user, vote_type):
             post = vote.post  # this reference now has been changed
 
     vote = Vote.objects.create(post=post, author=user, type=vote_type)
+    vote.apply()
     vote.save()
     msg = '%s added' % vote.get_type_display()
     return vote, msg

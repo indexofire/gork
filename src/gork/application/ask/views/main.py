@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 #from django.shortcuts import render
 #from django.views.generic import ListView
+from django.utils import timezone
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
+from feincms.content.application.models import app_reverse
+#from gauth.models import GUser
 from gtag.models import Tag
 from ask.models import Post
 from ask.forms import QuestionForm, AnswerForm
@@ -40,13 +45,8 @@ def show_post(request, id):
                 'error': _(u"You have no permission to view the question.")
             }
 
-from gauth.models import GUser
-from gtag.managers import TaggableManager
-from django.utils import timezone
-from django.http import HttpResponseRedirect
-from feincms.content.application.models import app_reverse
 
-
+@login_required()
 def reply_question(request, id):
     form_class = AnswerForm
     #post = Post.objects.get(id=id)
@@ -57,7 +57,7 @@ def reply_question(request, id):
                 author=request.user,
                 content=form.cleaned_data['content'],
                 title='',
-                parent=Post.objects.get(id=id).select_related(),
+                parent=Post.objects.select_related().get(id=id),
                 creation_date=timezone.now(),
                 lastedit_date=timezone.now(),
                 lastedit_user=request.user,
@@ -76,6 +76,7 @@ def reply_question(request, id):
     return 'ask/ask_new_post.html', {'form': form}
 
 
+@login_required()
 def ask_question(request):
     form_class = QuestionForm
     if request.method == 'POST':
