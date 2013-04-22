@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import DetailView, ListView
 from article.models import Article
-
+from article.module.category.models import Category
 
 class AppContentMixin(object):
     """
@@ -47,6 +47,7 @@ def article_index(request):
     objects = Article.objects.all()
     paginator = Paginator(objects, settings.ARTICLE_PER_PAGE)
     page = request.GET.get('page')
+    categories = Category.objects.all()
 
     try:
         articles = paginator.page(page)
@@ -55,4 +56,7 @@ def article_index(request):
     except EmptyPage:
         articles = paginator.page(paginator.num_pages)
 
-    return ('article/article_list.html', {'articles': articles})
+    return ('article/article_list.html', {
+        'articles': articles,
+        'categories': categories,
+    })

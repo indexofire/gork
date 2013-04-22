@@ -95,7 +95,7 @@ class Category(models.Model):
 
     @app_models.permalink
     def get_absolute_url(self):
-        return ('article_category', 'article.urls', (self.local_url,))
+        return ('article_category', 'article.urls', (self.local_url,), {})
 
 
 mptt.register(Category)
@@ -103,7 +103,7 @@ mptt.register(Category)
 ModelAdmin = get_callable(getattr(settings, 'CATEGORY_MODELADMIN_CLASS', 'django.contrib.admin.ModelAdmin'))
 
 
-class CategoryAdmin(tree_editor.TreeEditor, ModelAdmin):
+class CategoryAdmin(ModelAdmin):
     list_display = ['__unicode__', 'order_by']
     list_filter = ['parent', ]
     prepopulated_fields = {

@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import get_callable
+from feincms.admin import item_editor
 from feincms.admin.item_editor import ItemEditor
 from feincms.models import Base
 from feincms.content.application import models as app_models
@@ -145,11 +146,14 @@ class ArticleAdmin(ItemEditor):
     prepopulated_fields = {
         'slug': ('title',),
     }
-    fieldset_insertion_index = 1
+    fieldset_insertion_index = 2
 
     fieldsets = [
         (_('Article'), {
             'fields': ['active', 'title', 'slug']
+        }),
+        (_('Category'), {
+            'fields': ['category', ]
         }),
         #(_('Important dates'), {
         #    'fields': ('publication_date', )
@@ -161,6 +165,11 @@ class ArticleAdmin(ItemEditor):
         instance = form.save(commit=False)
         instance.save(request=request)
         return instance
+
+    def get_form(self, *args, **kwargs):
+        from django.utils.functional import curry
+        form = super(ArticleAdmin, self).get_form(*args, **kwargs)
+        return curry(form)
 
     @classmethod
     def add_extension_options(cls, *f):

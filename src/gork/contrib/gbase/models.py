@@ -120,7 +120,7 @@ Article.create_content_type(RichTextContent)
 
 Article.register_extensions(
     'feincms.module.extensions.datepublisher',
-    #'article.extensions.category',
+    'article.extensions.category',
     #'article.extensions.tags',
     #'article.extensions.thumbnails',
 )

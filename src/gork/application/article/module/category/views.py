@@ -4,7 +4,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from article.views import ArticleDetail, ArticleList
-from article.modules.category.models import Category
+from article.module.category.models import Category
 
 
 class CategoryAccesssGroupsMixin(object):
@@ -24,7 +24,7 @@ class CategoryAccesssGroupsMixin(object):
 
 
 class CategoryArticleDetail(ArticleDetail, CategoryAccesssGroupsMixin):
-    template_name = "articles/category_article_detail.html"
+    template_name = "article/category_article_detail.html"
     def get_queryset(self):
         return super(CategoryArticleDetail, self).get_queryset().filter(
             category__local_url=self.kwargs['category_url'])
@@ -40,7 +40,7 @@ class CategoryArticleDetail(ArticleDetail, CategoryAccesssGroupsMixin):
 
 
 class CategoryArticleList(ArticleList, CategoryAccesssGroupsMixin):
-    template_name = "articles/category_article_list.html"
+    template_name = "article/category_article_list.html"
     category = None
 
     def get(self, request, *args, **kwargs):
