@@ -26,7 +26,7 @@ class PostTreeAdmin(tree_editor.TreeEditor):
             'fields': ['score', 'full_score'],
         }),
     ]
-    list_display = ('title', 'type')
+    list_display = ('title', 'type', 'author', 'score')
     #active_toggle = tree_editor.ajax_editable_boolean('active', _('active'))
     list_filter = ('author', )
 

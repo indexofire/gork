@@ -3,7 +3,7 @@ import os
 from gork.settings.base import *
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {

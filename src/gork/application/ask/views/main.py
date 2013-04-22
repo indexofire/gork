@@ -7,13 +7,24 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from feincms.content.application.models import app_reverse
 #from gauth.models import GUser
-from gtag.models import Tag
+from gtag.models import Tag  # , TaggedItem
 from ask.models import Post
 from ask.forms import QuestionForm, AnswerForm
+#from django.contrib.contenttypes.models import ContentType
 
 
 def tag_list():
-    return Tag.objects.all()
+    #ct = ContentType.objects.get_for_model(Post)
+    #return TaggedItem.objects.filter(content_type=ct).select_related()
+    return Tag.objects.all().select_related()
+
+
+def tag_post(request, tag):
+    qs = Post.objects.filter(tags__name__in=[tag]).select_related()
+    return 'ask/ask_tag_post.html', {
+        'qs': qs,
+        'tags': tag_list(),
+    }
 
 
 def ask_index(request):

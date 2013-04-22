@@ -1,0 +1,23 @@
+{% extends "ask/ask_base.html" %}
+{% load i18n applicationcontent_tags %}
+
+{% block ask-content %}
+<div class="pad">
+<ul>
+  {% for q in qs %}
+    <li><a href="{% app_reverse 'ask-detail' 'ask.urls' q.id %}">{{ q.title }}</a> | {{ q.author }}</li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock ask-content %}
+
+{% block ask-sidebar %}
+<div class="pad">
+  <h3 class="title">{% trans "Tags" %}</h3>
+  <ul class="holder">
+    {% for tag in tags %}
+    <li><a href="{% app_reverse 'tag-post' 'ask.urls' tag %}">{{ tag }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock ask-sidebar %}

@@ -1,5 +1,5 @@
 {% extends "ask/ask_base.html" %}
-{% load i18n mptt_tags %}
+{% load i18n mptt_tags applicationcontent_tags %}
 
 {% block ask-content %}
 {% for q in qs %}
@@ -50,7 +50,7 @@
   <h3 class="title">{% trans "Tags" %}</h3>
   <ul class="holder">
     {% for tag in tags %}
-    <li>{{ tag }}</li>
+    <li><a href="{% app_reverse 'tag-post' 'ask.urls' tag %}">{{ tag }}</a></li>
     {% endfor %}
   </ul>
 </div>
