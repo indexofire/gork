@@ -4,8 +4,8 @@
 {% block article-content %}
 {% for article in articles %}
 <div class="pad">
-  <div class="summary">
-    <h3 class="title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+  <h3 class="title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+  <div class="holder">
     {% feincms_render_region article 'top' request %}
     {% feincms_render_region article 'main' request %}
   </div>
@@ -31,7 +31,7 @@
 
 {% block article-sidebar %}
 <div class="pad">
-  <h3 class="title">{% trans "Article Category" %}</h3>
+  <h3 class="title">{% trans "Category" %}</h3>
   <ul>
     {% for category in categories %}
     <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>

@@ -11,5 +11,9 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
+<li>
+  <i class="icon-home"></i>
+  <a href="/">首页</a>
+</li>
+<li>{{ feincms_page.title }}</li>
 {% endblock breadcrumbs %}

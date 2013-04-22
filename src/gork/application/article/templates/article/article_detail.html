@@ -4,10 +4,10 @@
 {% block article-content %}
 <div class="pad">
   <h3 class="title">{{ article.title }}</h3>
-  <div class="top">
+  <div class="top holder">
     {% feincms_render_region article 'top' request %}
   </div>
-  <div class="article full">
+  <div class="article full holder">
     {% feincms_render_region article 'main' request %}
   </div>
 </div>
@@ -15,7 +15,7 @@
 
 {% block article-sidebar %}
 <div class="pad">
-  <h3 class="title">{% trans "Article Category" %}</h3>
+  <h3 class="title">{% trans "Category" %}</h3>
   <ul>
     {% for category in categories %}
     <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
@@ -27,6 +27,10 @@
 {% endblock article-sidebar %}
 
 {% block breadcrumbs %}
-{{ block.super }}
+<li>
+  <i class="icon-home"></i>
+  <a href="/">首页</a>
+</li>
+<li><a href="../">{{ feincms_page.title }}</a></li>
 <li>{{ article.title }}</li>
 {% endblock breadcrumbs %}

@@ -1,6 +1,15 @@
 {% extends "ask/ask_base.html" %}
 {% load i18n applicationcontent_tags mptt_tags %}
 
+{% block breadcrumbs %}
+<li>
+  <i class="icon-home"></i>
+  <a href="/">首页</a>
+</li>
+<li><a href="../../">{{ feincms_page.title }}</a></li>
+<li>{{ q.title }}</li>
+{% endblock breadcrumbs %}
+
 {% block ask-content %}
 <style>
 div.disabled {
