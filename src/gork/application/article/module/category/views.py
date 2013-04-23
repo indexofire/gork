@@ -25,9 +25,10 @@ class CategoryAccesssGroupsMixin(object):
 
 class CategoryArticleDetail(ArticleDetail, CategoryAccesssGroupsMixin):
     template_name = "article/category_article_detail.html"
+
     def get_queryset(self):
         return super(CategoryArticleDetail, self).get_queryset().filter(
-            category__local_url=self.kwargs['category_url'])
+            category__slug=self.kwargs['category_url'])
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -60,6 +61,7 @@ class CategoryArticleList(ArticleList, CategoryAccesssGroupsMixin):
 
     def get_context_data(self, **kwargs):
         context = super(CategoryArticleList, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
         context['category'] = self.category
         return context
 

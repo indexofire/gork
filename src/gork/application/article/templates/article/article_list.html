@@ -1,5 +1,5 @@
 {% extends "article/article_base.html" %}
-{% load feincms_tags i18n %}
+{% load feincms_tags i18n applicationcontent_tags %}
 
 {% block article-content %}
 {% for article in articles %}
@@ -32,12 +32,10 @@
 {% block article-sidebar %}
 <div class="pad">
   <h3 class="title">{% trans "Category" %}</h3>
-  <ul>
-    {% for category in categories %}
-    <li><a href="category/{{ category.slug }}/">{{ category.name }}</a></li>
-    {% empty %}
-    {% trans 'no category yet' %}
-    {% endfor %}
-  </ul>
+  {% for category in categories %}
+  <div class="menu_entry" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' category.slug %}">{{ category.name }}</a></div>
+  {% empty %}
+  <div>{% trans 'no category yet' %}</div>
+  {% endfor %}
 </div>
 {% endblock article-sidebar %}

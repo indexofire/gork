@@ -30,6 +30,11 @@ class ArticleDetail(AppContentMixin, DetailView):
     def get_queryset(self):
         return Article.objects.active()
 
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetail, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
 
 class ArticleList(AppContentMixin, ListView):
     """List view of articles"""

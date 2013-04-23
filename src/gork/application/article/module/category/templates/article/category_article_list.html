@@ -1,29 +1,34 @@
 {% extends "article/article_list.html" %}
-
 {% load i18n applicationcontent_tags article_category_tags %}
-
-{% block article-title %}
-{% if category %}<h2>{{ category }}</h2>{% else %}{{ block.super }}{% endif %}
-{% endblock %}
-
-{% block article-aside %}
-    <h3>{% trans 'Categories' %}</h3>
-    <div class="sublinks">
-    {% articlecategories category %}
-    </div>
-{% endblock %}
 
 {% block article-content %}
 <div class="pad">
   <h3 class="title">Article List</h3>
-  <ul>
-    {% for article in article_list %}
-    <li><a href="{% app_reverse 'article_detail' 'article.urls' article.slug %}">{{ article.title }}</a></li>
-    {% endfor %}
+  {% for article in article_list %}
+  <div class="menu_entry" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_detail' 'article.urls' article.slug %}">{{ article.title }}</a></div>
+  {% empty %}
+  <div>{% trans 'no article yet' %}</div>
+  {% endfor %}
   </ul>
 </div>
 {% endblock article-content %}
 
 {% block breadcrumbs %}
-
+<li>
+  <i class="icon-home"></i>
+  <a href="/">首页</a>
+</li>
+<li><a href="../../">{{ feincms_page.title }}</a></li>
+<li>{{ category.name }}</li>
 {% endblock breadcrumbs %}
+
+{% block article-sidebar %}
+<div class="pad">
+  <h3 class="title">{% trans "Category" %}</h3>
+  {% for ca in categories %}
+  <div class="menu_entry{% if ca == category %} active{% endif %}" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' ca.slug %}">{{ ca.name }}</a></div>
+  {% empty %}
+  <div>{% trans 'no category yet' %}</div>
+  {% endfor %}
+</div>
+{% endblock article-sidebar %}

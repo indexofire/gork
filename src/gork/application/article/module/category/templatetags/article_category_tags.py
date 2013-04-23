@@ -35,7 +35,7 @@ class CategoriesNode(template.Node):
         if categories is not None:
             categories = categories.distinct()
 
-        t = template.loader.select_template(['articles/categories.html'])
+        t = template.loader.select_template(['article/category.html'])
         context.push()
         context['selected'] = selected
         context['categories'] = categories
