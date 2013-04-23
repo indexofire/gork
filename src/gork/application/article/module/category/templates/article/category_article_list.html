@@ -1,6 +1,6 @@
 {% extends "article/article_list.html" %}
 
-{% load i18n articlecategory %}
+{% load i18n applicationcontent_tags article_category_tags %}
 
 {% block article-title %}
 {% if category %}<h2>{{ category }}</h2>{% else %}{{ block.super }}{% endif %}
@@ -12,3 +12,18 @@
     {% articlecategories category %}
     </div>
 {% endblock %}
+
+{% block article-content %}
+<div class="pad">
+  <h3 class="title">Article List</h3>
+  <ul>
+    {% for article in article_list %}
+    <li><a href="{% app_reverse 'article_detail' 'article.urls' article.slug %}">{{ article.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock article-content %}
+
+{% block breadcrumbs %}
+
+{% endblock breadcrumbs %}

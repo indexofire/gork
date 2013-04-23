@@ -44,9 +44,8 @@ class CategoryArticleList(ArticleList, CategoryAccesssGroupsMixin):
     category = None
 
     def get(self, request, *args, **kwargs):
-
         if 'category_url' in self.kwargs:
-            self.category = get_object_or_404(Category, local_url=self.kwargs['category_url'])
+            self.category = get_object_or_404(Category, slug=self.kwargs['category_url'])
             if not self.has_access_groups_permission(self.category):
                 return HttpResponseRedirect("%s?next=%s" % (settings.LOGIN_URL, self.request.path))
 
@@ -57,13 +56,11 @@ class CategoryArticleList(ArticleList, CategoryAccesssGroupsMixin):
             except IndexError as e:
                 pass
 
-
         return super(CategoryArticleList, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryArticleList, self).get_context_data(**kwargs)
         context['category'] = self.category
-
         return context
 
     def get_queryset(self):

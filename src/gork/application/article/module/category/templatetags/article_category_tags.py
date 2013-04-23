@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import template
-from article.modules.category.models import Category
+from article.module.category.models import Category
 from article.utils import parse_tokens
 
 

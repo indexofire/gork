@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.conf.urls import patterns, url
 from article.views import ArticleList, ArticleDetail
-from article.module.category.views import *
+from article.module.category.views import CategoryArticleList
 
 
 urlpatterns = patterns(
