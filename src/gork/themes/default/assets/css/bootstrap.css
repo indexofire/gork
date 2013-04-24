@@ -6162,14 +6162,26 @@ ul.nav li.nav-header:hover {
 .title {
   margin: 0px;
   background-color: #ECECEC;
-  padding-left: 5px;
+  padding-left: 10px;
   border-bottom: 1px solid #E3E3E3;
+}
+.title a:hover {
+  text-decoration: none;
 }
 .accordion-group {
   border: 0px;
 }
 #article-container {
   padding: 10px;
+}
+.menu_entry {
+  padding: 5px 10px;
+}
+.menu_entry:hover {
+  background: #F6F6F6;
+}
+div.active {
+  background: #F3F3F3;
 }
 /*!
  * Bootstrap Responsive v2.3.1
