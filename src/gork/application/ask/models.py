@@ -19,7 +19,7 @@ class Post(MPTTModel):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         help_text=_(u'Who ask or answer the question'),
-        related_name='author',
+        related_name='post_author',
     )
     # post's content which is normal text as default
     content = models.TextField(
@@ -39,18 +39,22 @@ class Post(MPTTModel):
     # this is the sanitized HTML for display
     content_html = models.TextField(
         blank=True,
+        null=False,
     )
 
     # post tile
     title = models.CharField(
         max_length=200,
         help_text=_(u'Title of Question or Answer'),
+        blank=True,
+        null=True,
     )
 
     # post slug
     slug = models.SlugField(
         blank=True,
         max_length=200,
+        null=False,
     )
 
     # The tag value is the canonical form of the post's tags
@@ -85,17 +89,23 @@ class Post(MPTTModel):
     # post created date.
     creation_date = models.DateTimeField(
         db_index=True,
+        blank=False,
+        null=False,
     )
 
     # post edit date.
     lastedit_date = models.DateTimeField(
         db_index=True,
+        blank=True,
+        null=True,
     )
 
     # post edit by who latest.
     lastedit_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='editor',
+        blank=True,
+        null=True,
     )
 
     # keeps track of which posts have changed
@@ -117,10 +127,10 @@ class Post(MPTTModel):
     )
 
     # used to display a context the post was created in
-    context = models.TextField(
-        max_length=1000,
-        default='',
-    )
+    #context = models.TextField(
+    #    max_length=1000,
+    #    default='',
+    #)
 
     # this will maintain the ancestor/descendant relationship bewteen posts
     root = TreeForeignKey(
@@ -139,22 +149,22 @@ class Post(MPTTModel):
     )
 
     # the number of answer that a post has
-    answer_count = models.IntegerField(
-        default=0,
-        blank=True,
-    )
+    #answer_count = models.IntegerField(
+    #    default=0,
+    #    blank=True,
+    #)
 
     # bookmark count
-    book_count = models.IntegerField(
-        default=0,
-        blank=True,
-    )
+    #book_count = models.IntegerField(
+    #    default=0,
+    #    blank=True,
+    #)
 
     # stickiness of the post
-    sticky = models.IntegerField(
-        default=0,
-        db_index=True,
-    )
+    #sticky = models.IntegerField(
+    #    default=0,
+    #    db_index=True,
+    #)
 
     # wether the post has accepted answers
     accepted = models.BooleanField(
@@ -163,16 +173,16 @@ class Post(MPTTModel):
     )
 
     # used for post with a linkout
-    url = models.URLField(
-        default='',
-        blank=True,
-    )
+    #url = models.URLField(
+    #    default='',
+    #    blank=True,
+    #)
 
     # relevance measure, initially by timestamp, other rankings measures
-    rank = models.FloatField(
-        default=0,
-        blank=True,
-    )
+    #rank = models.FloatField(
+    #    default=0,
+    #    blank=True,
+    #)
 
     # define all posts which will be displayed by admin or some kind
     # of special users like super moderator.
@@ -204,16 +214,24 @@ class Post(MPTTModel):
         #    url = "/linkout/%s/" % self.id
 
         #return url
-        if self.url:
-            return ('link-detail', 'ask.urls', (), {'id': self.id})
+        #if self.url:
+        #    return ('link-detail', 'ask.urls', (), {'id': self.id})
         return ('ask-detail', 'ask.urls', (), {'id': self.id, })
+
+    def get_answer(self):
+        if self.root:
+            pass
+
+    def get_comment(self):
+        if self.parent.level == 1:
+            pass
 
     def answer_only(self):
         """The post should only have answers associate with it"""
         return self.type == app_settings.POST_QUESTION
 
-    def set_tags(self):
-        pass
+    #def set_tags(self):
+    #    pass
     """
     def set_tags(self):
         if self.type not in POST_CONTENT_ONLY:
@@ -271,8 +289,8 @@ class Post(MPTTModel):
         else:
             return 'open'
 
-    def get_tag_names(self):
-        pass
+    #def get_tag_names(self):
+    #    pass
 
     """
     def get_tag_names(self):

@@ -95,7 +95,7 @@ INSTALLED_APPS = (
     'gform',
     'gtag',
     'know',
-    'ask',
+    #'ask',
     'know.plugins.attachments',
     'know.plugins.notifications',
     'know.plugins.images',
