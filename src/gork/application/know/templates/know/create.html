@@ -1,5 +1,5 @@
 {% extends "know/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
+{% load wiki_tags i18n sekizai_tags feincms_tags %}
 {% load url from future %}
 
 {% block wiki_pagetitle %}{% trans "Add new article" %}{% endblock %}
@@ -42,8 +42,8 @@
   {% endaddtoblock %}
 
   {% include "know/includes/editormedia.html" %}
-  <h1 class="page-header">{% trans "Add new article" %}</h1>
-
+  <h1 class="page-header title" style="line-height: 48px">{% trans "Add new article" %}</h1>
+  <div class="holder">
   <form method="POST" class="form-horizontal">
     {% wiki_form create_form %}
     <div class="form-actions">
@@ -57,6 +57,10 @@
         </button>
     </div>
   </form>
-
+  </div>
 {% endblock %}
 
+{% block wiki_breadcrumbs %}
+<li><a href="{{ feincms_page.get_absolute_url }}">{{ feincms_page.title }}</a></li>
+<li>{% trans "Add new article" %}</li>
+{% endblock %}

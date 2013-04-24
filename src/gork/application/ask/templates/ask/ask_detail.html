@@ -25,7 +25,7 @@ div.disabled {
         <a href="{% url 'gauth-detail' q.author.id %}"><img src="{{ q.author.avatar }}"></a><br>author: {{ q.author.username }}
       </div>
       <div class="span10">
-        <span>{{ q.content }}</span>
+        <span>{{ q.content|safe }}</span>
       </div>
     </div>
     </div>
@@ -51,7 +51,7 @@ div.disabled {
         </div>
       </td>
       <td>
-        {{ node.content }}
+        {{ node.content|safe }}
         {{ node.author }}
         {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
       </td>
@@ -82,14 +82,14 @@ div.disabled {
 }
 </style>
 {% endif %}
-<!--
+
 <script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 tinyMCE.init({
     mode : "textareas"
 });
 </script>
--->
+
 {% endblock ask-content %}
 
 {% block ask-sidebar %}
