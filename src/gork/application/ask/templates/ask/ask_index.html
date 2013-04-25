@@ -33,22 +33,22 @@
 
 <div class="pagination">
   <ul>
-          <li class="disabled"><a href="#">Prev</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">Next</a></li>
-        </ul>
-      </div>
+    <li class="disabled"><a href="#">Prev</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</div>
 
 {% endblock ask-content %}
 
 {% block ask-sidebar %}
 <div class="pad">
   <h3 class="title">{% trans "Tags" %}</h3>
-  <ul class="holder">
+  <ul class="nav nav-pills holder">
     {% for tag in tags %}
     <li><a href="{% app_reverse 'tag-post' 'ask.urls' tag %}">{{ tag }}</a></li>
     {% endfor %}

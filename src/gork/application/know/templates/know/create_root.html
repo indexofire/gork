@@ -19,12 +19,12 @@
   {% endfor %}
   {% endaddtoblock %}
 
-  <h1>{% trans "Congratulations!" %}</h1>
+  <h3 class="title">{% trans "Congratulations!" %}</h3>
   <p class="lead">
     {% trans "You have django-wiki installed... but there are no articles. So it's time to create the first one, the root article. In the beginning, it will only be editable by administrators, but you can define permissions after." %}
   </p>
 
-  <h2 class="page-header">{% trans "Root article" %}</h2>
+  <h3 class="page-header">{% trans "Root article" %}</h3>
 
   <form method="POST" class="form-horizontal">
     {% wiki_form create_form %}

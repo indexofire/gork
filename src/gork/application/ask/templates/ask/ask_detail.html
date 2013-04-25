@@ -95,7 +95,7 @@ tinyMCE.init({
 {% block ask-sidebar %}
 <div class="pad">
   <h3 class="title">{% trans "Tags" %}</h3>
-  <ul class="holder">
+  <ul class="nav nav-pills pull-right holder">
   {% for tag in tags %}
     <li>{{ tag }}</li>
   {% endfor %}
