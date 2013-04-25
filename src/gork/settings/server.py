@@ -19,9 +19,8 @@ DATABASES = {
 
 INSTALLED_APPS += (
     'gunicorn',
-    'article',
-    'article.module.category',
 )
+
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 EMAIL_HOST = 'smtp.gmail.com'

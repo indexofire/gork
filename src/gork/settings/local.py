@@ -19,8 +19,8 @@ MIDDLEWARE_CLASSES += (
 
 INSTALLED_APPS += (
     'debug_toolbar',
-    'article',
-    'article.module.category',
+    'gmessage',
+    'ask',
 )
 
 INTERNAL_IPS = (

@@ -1,0 +1,44 @@
+{% extends "gmessage/gmessage_base.html" %}
+{% load i18n %}
+
+{% block msg-content %}
+<h3 class="title">{% trans "Inbox" %}</h3>
+<div class="holder">
+{% if message_list %}
+  <table>
+    <thead>
+      <tr>
+        <th>{% trans "Sender" %}</th>
+        <th>{% trans "Subject" %}</th>
+        <th>{% trans "Received" %}</th>
+        <th>{% trans "Action" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for message in message_list %}
+      <tr>
+        <td>{{ message.sender }}</td>
+        <td>
+          {% if message.new %}<strong>{% endif %}
+          {% if message.replied %}<em>{% endif %}
+          <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
+          {% if message.replied %}</em>{% endif %}
+          {% if message.new %}</strong>{% endif %}
+        </td>
+        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+        <td><a href="{% url 'gmessage-delete' message.id %}">{% trans "delete" %}</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<p>{% trans "No messages." %}</p>
+{% endif %}
+</div>
+{% endblock msg-content %}
+
+{% block breadcrumbs %}
+<li><i class="icon-home"></i><a href="/">{% trans 'Home' %}</a></li>
+<li><a href="/msg/">{% trans 'Messages' %}</a></li>
+<li>{% trans 'Inbox' %}</li>
+{% endblock breadcrumbs %}

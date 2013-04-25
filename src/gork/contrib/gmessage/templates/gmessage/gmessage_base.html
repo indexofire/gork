@@ -1,0 +1,30 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="pad">
+        <h3 class="title">{% trans "Menu" %}</h3>
+        {% block msg-menu %}
+        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-inbox' %}">{% trans "Inbox" %}</a></div>
+        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-outbox' %}">{% trans "Sent Messages" %}</a></div>
+        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-compose' %}">{% trans "New Message" %}</a></div>
+        <div class="menu_entry"><a href="{% url 'gmessage-trash' %}">{% trans "Trash" %}</a></div>
+        {% endblock msg-menu %}
+      </div>
+    </div>
+    <div class="span9">
+      <div class="pad">
+        {% block msg-content %}{% endblock msg-content %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block breadcrumbs %}
+<li><i class="icon-home"></i><a href="/">{% trans 'Home' %}</a></li>
+<li>{% trans 'Messages' %}</li>
+{% endblock breadcrumbs %}

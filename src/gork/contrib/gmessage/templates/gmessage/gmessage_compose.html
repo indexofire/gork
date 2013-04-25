@@ -1,0 +1,18 @@
+{% extends "gmessage/gmessage_base.html" %}
+{% load i18n %}
+
+{% block msg-content %}
+<h3 class="title">{% trans "Compose Message"%}</h3>
+<div class="holder">
+  <form action="" method="post">{% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="{% trans "Send" %} &raquo;"/>
+  </form>
+</div>
+{% endblock msg-content %}
+
+{% block breadcrumbs %}
+<li><i class="icon-home"></i><a href="/">{% trans 'Home' %}</a></li>
+<li><a href="/msg/">{% trans 'Messages' %}</a></li>
+<li>{% trans 'Write Messages' %}</li>
+{% endblock breadcrumbs %}

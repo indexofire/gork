@@ -1,0 +1,22 @@
+{% extends "gmessage/gmessage_base.html" %}
+{% load i18n %}
+
+{% block msg-content %}
+<h3 class="title">{% trans "View Message" %}</h3>
+<dl class="message-headers">
+  <dt>{% trans "Subject" %}</dt>
+  <dd><strong>{{ message.subject }}</strong></dd>
+  <dt>{% trans "Sender" %}</dt>
+  <dd>{{ message.sender }}</dd>
+  <dt>{% trans "Date" %} </dt>
+  <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+  <dt>{% trans "Recipient" %}</dt>
+  <dd>{{ message.recipient }}</dd>
+</dl>
+{{ message.body|linebreaksbr }}
+
+{% ifequal message.recipient.pk user.pk %}
+<a href="{% url 'gmessage-reply' message.id %}">{% trans "Reply" %}</a>
+{% endifequal %}
+<a href="{% url 'gmessage-delete' message.id %}">{% trans "Delete" %}</a>
+{% endblock msg-content %}

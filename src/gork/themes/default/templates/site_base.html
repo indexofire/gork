@@ -60,7 +60,7 @@
             <li><a href="#">{% trans "Welcome" %}, {{ request.user }}</a></li>
             <li class="divider"></li>
             <li><a href="{% url 'gauth-detail' request.user.id %}"><i class="icon-user"></i> {% trans "Preferences" %}</a></li>
-            <li><a href="/messages/"><i class="icon-envelope"></i> {% trans "Messages" %}</a></li>
+            <li><a href="/msg/"><i class="icon-envelope"></i> {% trans "Messages" %}</a></li>
             {% if request.user.is_superuser %}
             <li><a href="{% url 'admin:index' %}"><i class="icon-globe"></i> {% trans "Dashboard" %}</a></li>
             {% endif %}
