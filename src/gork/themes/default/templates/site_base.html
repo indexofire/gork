@@ -120,6 +120,7 @@
 
 
 {% block foot_static %}
+{% if debug %}
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-transition.js"></script>
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-alert.js"></script>
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-modal.js"></script>
@@ -132,6 +133,8 @@
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-collapse.js"></script>
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-carousel.js"></script>
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-typeahead.js"></script>
+{% else %}
+<script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap.min.js"></script>
 {{ feincms_page.content.media.js }}
 {{ feincms_page.object.media.js }}
 
