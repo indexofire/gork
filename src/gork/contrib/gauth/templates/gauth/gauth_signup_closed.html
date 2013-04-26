@@ -5,7 +5,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li><a href="{% url 'gauth-index' %}">{% trans 'Account' %}</a></li>
 <li>{% trans "Sign up closed" %}</li>
 {% endblock breadcrumbs %}
 

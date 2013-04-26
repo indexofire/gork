@@ -1,5 +1,5 @@
 {% extends "site_base.html" %}
-{% load i18n %}
+{% load i18n applicationcontent_tags %}
 
 {% block content %}
 <div class="container-fluid">
@@ -9,7 +9,7 @@
       {% block ask-content %}{% endblock ask-content %}
     </div>
     <div class="span3">
-      <a href="" class="btn btn-large btn-block btn-primary">{% trans 'New Post' %}</a>
+      <a href="{% app_reverse 'ask-question' 'ask.urls' %}" class="btn btn-large btn-block btn-primary">{% trans 'Post New' %}</a>
       {% block ask-sidebar %}{% endblock ask-sidebar %}
     </div>
   </div>

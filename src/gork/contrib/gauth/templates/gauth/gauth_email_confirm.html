@@ -5,14 +5,14 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li><a href="{% url 'gauth-index' %}">{% trans 'Account' %}</a></li>
 <li>{% trans "Email confirm" %}</li>
 {% endblock breadcrumbs %}
 
 {% block account-content %}
 
 <div class="pad">
-  <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}" class="form-horizontal">{% csrf_token %}
+  <form method="post" action="{% url 'gauth-confirm-email' confirmation.key %}" class="form-horizontal">{% csrf_token %}
   <legend>{% trans "Confirm Email" %}</legend>
   <fieldset>
     <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>

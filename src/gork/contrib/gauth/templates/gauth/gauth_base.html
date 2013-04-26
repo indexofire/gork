@@ -5,9 +5,11 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span12 pad">
     {% block account-content %}{% endblock account-content %}
-    </div>
   </div>
 </div>
 {% endblock content %}
+
+{% block breadcrumbs %}
+<li><i class="icon-home"></i><a href="/">首页</a></li>
+{% endblock breadcrumbs %}

@@ -5,32 +5,31 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="/account/">{% trans 'Account' %}</a></li>
+<li><a href="{% url 'gauth-index' %}">{% trans 'Account' %}</a></li>
 <li>{% trans "User" %} {{ object.username }}</li>
 {% endblock breadcrumbs %}
 
 {% block account-content %}
 <div class="span3">
-  <div>
-    <a title="{% trans 'your picture' %}" rel="prettyPhoto"><img src="{{ MEDIA_URL}}{{ object.avatar }}" class="img-circle"></a>
-    <h3>{{ object.username }}</h3>
-    <p>{% trans "Job title" %} / {% trans "Expertise" %}</p>
-  </div>
-
-  {% if request.user == object or request.user.is_superuser %}
-  <ul class="navbar">
+  <div class="pad">
+    <h3 class="title">{{ object.username }}</h3>
+    <div class="holder">
+      <img src="{{ object.avatar }}" class="img-circle" alt="{% trans 'Your avatar' %}">
+      {% if request.user == object or request.user.is_superuser %}
+      <ul class="navbar">
     <li><span>{% trans "view details" %}</span></li>
-    <li><a href="{% url 'account-edit' user.id %}">{% trans "edit details" %}</a></li>
-    <li><a href="{% url 'account-password-change' %}">{% trans "change password" %}</a></li>
+    <li><a href="{% url 'gauth-edit' user.id %}">{% trans "edit details" %}</a></li>
+    <li><a href="{% url 'gauth-password-change' %}">{% trans "change password" %}</a></li>
   </ul>
   {% endif %}
+    </div>
+  </div>
 </div>
 
 <div class="span9">
   <div class="pad">
-    <div>
-      <h2>{% trans "Personal Details" %}</h2>
-      <table class="table">
+    <h3 class="title">{% trans "Personal Details" %}</h3>
+    <table class="table">
         <tr>
           <td>{% trans "Name" %}</td>
           <td>{{ object.username }}</td>

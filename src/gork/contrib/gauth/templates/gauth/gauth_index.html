@@ -11,7 +11,7 @@
 {% block account-content %}
 <ul class="thumbnails">
   {% for p in object_list %}
-  <li class="span1"><div class="pad"><a href="{% url 'account-detail' p.id %}"><img src="{{ MEDIA_URL }}/{{ p.avatar }}"></a><br><center>{{ p.username }}</center></div></li>
+  <li class="span1"><div class="pad"><a href="{% url 'gauth-detail' p.id %}"><img src="{{ MEDIA_URL }}/{{ p.avatar }}"></a><br><center>{{ p.username }}</center></div></li>
   {% endfor %}
 </ul>
 {% endblock %}

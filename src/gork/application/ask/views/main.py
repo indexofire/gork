@@ -29,6 +29,7 @@ def tag_post(request, tag):
 
 def ask_index(request):
     qs = Post.objects.filter(level=0).select_related()
+    print tag_list()
     return 'ask/ask_index.html', {
         'qs': qs,
         'tags': tag_list(),
@@ -60,27 +61,29 @@ def show_post(request, id):
 @login_required()
 def reply_question(request, id):
     form_class = AnswerForm
-    #post = Post.objects.get(id=id)
+    post = Post.objects.get(id=id)
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
             answer = Post.objects.create(
                 author=request.user,
                 content=form.cleaned_data['content'],
-                title='',
+                title=post.title + '\'s answer by ' + request.user.username,
                 parent=Post.objects.select_related().get(id=id),
                 creation_date=timezone.now(),
                 lastedit_date=timezone.now(),
                 lastedit_user=request.user,
                 type=1
             )
-            for tag in form.cleaned_data['tags']:
+            tags = form.cleaned_data['tags'].replace(u'，', ',').replace(' ', '').split(',')
+            for tag in tags:
                 answer.tags.add(tag)
             answer.save()
 
             return HttpResponseRedirect(app_reverse("ask-detail", 'ask.urls', args=id))
         else:
-            print "wrong"
+            error = 'Form is wrong!'
+            return 'ask/ask_new_post.html', {'error': error}
     else:
         form = form_class()
 
@@ -93,7 +96,6 @@ def ask_question(request):
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            print "true"
             question = Post.objects.create(
                 author=request.user,
                 content=form.cleaned_data['content'],
@@ -103,9 +105,11 @@ def ask_question(request):
                 lastedit_user=request.user,
                 type=form.cleaned_data['type']
             )
-            for tag in form.cleaned_data['tags']:
-                question.tags.add(tag)
+            tags = form.cleaned_data['tags'].replace(u'，', ',').replace(' ', '').split(',')
+            for tag in tags:
+                question.tags.add(tag.replace(' ', ''))
             question.save()
+
             return HttpResponseRedirect(app_reverse("ask-index", 'ask.urls'))
     else:
         form = QuestionForm()

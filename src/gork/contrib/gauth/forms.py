@@ -211,3 +211,23 @@ class ChangePasswordForm(forms.Form):
             if self.cleaned_data["password_new"] != self.cleaned_data["password_new_confirm"]:
                 raise forms.ValidationError(_("You must type the same password each time."))
         return self.cleaned_data["password_new_confirm"]
+
+
+class GUserEditForm(forms.ModelForm, BootstrapForm):
+
+    class Meta:
+        model = GUser
+        exclude = (
+            'user_permissions',
+            'groups',
+            'password',
+            'username',
+            'is_staff',
+            'is_superuser',
+            'date_joined',
+            'last_login',
+            'is_active',
+            'qa_score',
+        )
+
+

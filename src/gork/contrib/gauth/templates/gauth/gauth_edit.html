@@ -5,20 +5,40 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="{% url 'account-index' %}">{% trans 'Account' %}</a></li>
-<li><a href="{% url 'account-detail' user.pk %}">{% trans 'User' %} {{ user.username }}</a></li>
+<li><a href="{% url 'gauth-index' %}">{% trans 'Account' %}</a></li>
+<li><a href="{% url 'gauth-detail' user.pk %}">{% trans 'User' %} {{ user.username }}</a></li>
 <li>{% trans "Edit" %}</li>
 {% endblock breadcrumbs %}
 
 {% block account-content %}
+<div class="span3">
+  <div class="pad">
+    <h3 class="title">{{ object.username }}</h3>
+    <div class="holder">
+      <img src="{{ object.avatar }}" class="img-circle" alt="{% trans 'Your avatar' %}">
+      {% if request.user == object or request.user.is_superuser %}
+      <ul class="navbar">
+    <li><span>{% trans "view details" %}</span></li>
+    <li><a href="{% url 'gauth-edit' user.id %}">{% trans "edit details" %}</a></li>
+    <li><a href="{% url 'gauth-password-change' %}">{% trans "change password" %}</a></li>
+  </ul>
+  {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="span9">
 <div class="pad">
-  <form method="POST" action="{% url 'account-edit' user.pk %}">
-    <legend>{% trans "Edit account" %}</legend>
+  <h3 class="title">{% trans "Edit account" %}</h3>
+  <div class="holder">
+  <form method="POST" action="{% url 'gauth-edit' user.pk %}" class="form-horizontal" >
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_bootstrap }}
     <div>
       <button class="btn btn-primary" type="submit">Save</button>
     </div>
   </form>
+  </div>
+</div>
 </div>
 {% endblock account-content %}

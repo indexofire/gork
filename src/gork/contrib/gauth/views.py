@@ -49,7 +49,7 @@ class AccountEdit(UpdateView):
     Edit user's profile.
     """
     #form_class = get_user_model()ChangeForm
-    form_class = GUserAdminForm
+    form_class = GUserEditForm
     template_name = 'gauth/gauth_edit.html'
 
     def form_valid(self, form):

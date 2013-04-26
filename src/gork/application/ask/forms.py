@@ -11,7 +11,7 @@ P_TITLE, P_CONTENT, P_TAG = _('Post title'), _('Post content'), _('Post tags')
 
 
 def valid_title(text):
-    "Validates form input for title"
+    """Validates form input for title"""
     if text == P_TITLE:
         raise ValidationError('Please change the default title.')
     if len(text) < 5:
@@ -21,7 +21,7 @@ def valid_title(text):
 
 
 def valid_content(text):
-    "Validates form input for content"
+    """Validates form input for content"""
     # text size, min size, max size
     text = text.strip()
     ts, mi, mx = len(text), MIN_POST_SIZE, MAX_POST_SIZE
@@ -36,7 +36,7 @@ def valid_content(text):
 
 
 def valid_tag(text):
-    "Validates form input for tags"
+    """Validates form input for tags"""
 
     if not text:
         raise ValidationError('Please enter at least one tag')
@@ -93,13 +93,15 @@ class QuestionForm(forms.Form, BootstrapForm):
     )
 
 
-from gtag.forms import TagField
-
-
 class AnswerForm(forms.Form, BootstrapForm):
     content = forms.CharField(
         max_length=10000,
         validators=[valid_content],
         widget=forms.Textarea(attrs={'cols': '80', 'rows': '15', 'id': 'editor'}),
     )
-    tags = TagField()
+    tags = forms.CharField(
+        max_length=250,
+        initial='',
+        validators=[valid_tag],
+        widget=forms.TextInput(attrs={'class': '', 'placeholder': P_TAG}),
+    )
