@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^vote/$', ajax.vote, name="ask-vote"),
     url(r'^tag/(?P<tag>.+)/$', main.tag_post, name='tag-post'),
     #url(r'^a/(?P<pid>\d+)/$', main.post_answer, name="new-answer"),
+    url(r'^q/(?P<id>\d+)/comment/$', main.comment_post, name='comment-post'),
 )

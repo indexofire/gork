@@ -9,7 +9,7 @@ from feincms.content.application.models import app_reverse
 #from gauth.models import GUser
 from gtag.models import Tag  # , TaggedItem
 from ask.models import Post
-from ask.forms import QuestionForm, AnswerForm
+from ask.forms import QuestionForm, AnswerForm, CommentForm
 #from django.contrib.contenttypes.models import ContentType
 
 
@@ -40,22 +40,17 @@ def show_post(request, id):
     """ Question display and quick reply. """
     q = Post.objects.select_related().get(id=id)
     form = AnswerForm
-    if request.method == 'POST':
-        pass
-    else:
-        #if request.user.has_perm('can_view', q):
-        if True:
-            answers = q.get_descendants().select_related()
-            return 'ask/ask_detail.html', {
-                'q': q,
-                'nodes': answers,
-                'tags': tag_list(),
-                'form': form(),
-            }
-        else:
-            return 'ask/ask_no_permission.html', {
-                'error': _(u"You have no permission to view the question.")
-            }
+    answers = q.get_descendants().select_related()
+    return 'ask/ask_detail.html', {
+        'q': q,
+        'nodes': answers,
+        'tags': tag_list(),
+        'form': form(),
+    }
+        #else:
+        #    return 'ask/ask_no_permission.html', {
+        #        'error': _(u"You have no permission to view the question.")
+        #    }
 
 
 @login_required()
@@ -73,7 +68,7 @@ def reply_question(request, id):
                 creation_date=timezone.now(),
                 lastedit_date=timezone.now(),
                 lastedit_user=request.user,
-                type=1
+                type=2
             )
             tags = form.cleaned_data['tags'].replace(u'，', ',').replace(' ', '').split(',')
             for tag in tags:
@@ -91,6 +86,32 @@ def reply_question(request, id):
 
 
 @login_required()
+def comment_post(request, id):
+    form_class = CommentForm
+    post = Post.objects.select_related().get(id=id)
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            print 'True'
+            comment = Post.objects.create(
+                author=request.user,
+                content=form.cleaned_data['content'],
+                title=post.title + '\'s comment by ' + request.user.username,
+                parent=post,
+                creation_date=timezone.now(),
+                lastedit_date=timezone.now(),
+                lastedit_user=request.user,
+                type=3
+            )
+            tags = post.tags.all()
+            for tag in tags:
+                comment.tags.add(tag)
+            comment.save()
+
+            return HttpResponseRedirect(app_reverse("ask-index", 'ask.urls'))
+
+
+@login_required()
 def ask_question(request):
     form_class = QuestionForm
     if request.method == 'POST':
@@ -103,7 +124,7 @@ def ask_question(request):
                 creation_date=timezone.now(),
                 lastedit_date=timezone.now(),
                 lastedit_user=request.user,
-                type=form.cleaned_data['type']
+                type=1
             )
             tags = form.cleaned_data['tags'].replace(u'，', ',').replace(' ', '').split(',')
             for tag in tags:

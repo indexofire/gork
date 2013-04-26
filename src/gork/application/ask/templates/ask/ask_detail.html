@@ -2,10 +2,7 @@
 {% load i18n applicationcontent_tags mptt_tags %}
 
 {% block breadcrumbs %}
-<li>
-  <i class="icon-home"></i>
-  <a href="/">首页</a>
-</li>
+<li><i class="icon-home"></i><a href="/">首页</a></li>
 <li><a href="../../">{{ feincms_page.title }}</a></li>
 <li>{{ q.title }}</li>
 {% endblock breadcrumbs %}
@@ -34,10 +31,8 @@ div.disabled {
 
 {% if nodes %}
 <div class="pad">
-  <div class="title">
-    <h3 style="margin: 0px">{% trans "Answers" %}</h3>
-  </div>
-  <table class="table table-striped" style="margin: 0px">
+  <h3 class="title">{% trans "Answers" %}</h3>
+  <table class="table">
     {% recursetree nodes %}
     <tr>
       <td>
@@ -51,8 +46,15 @@ div.disabled {
         </div>
       </td>
       <td>
+        <div>
         {{ node.content|safe }}
         {{ node.author }}
+      </div>
+      <div>
+        <div style="display:none">{% csrf_token %}</div>
+        <input type="hidden" value="{{ node.id }}">
+        <a class="add-comment"><span class="label">{% trans 'Comment' %}</span></a>
+      </div>
         {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
       </td>
     </tr>
@@ -95,9 +97,9 @@ tinyMCE.init({
 {% block ask-sidebar %}
 <div class="pad">
   <h3 class="title">{% trans "Tags" %}</h3>
-  <ul class="nav nav-pills pull-right holder">
+  <ul class="nav nav-pills holder">
   {% for tag in tags %}
-    <li>{{ tag }}</li>
+    <li><a href="{% app_reverse 'tag-post' 'ask.urls' tag %}">{{ tag }}</a></li>
   {% endfor %}
   </ul>
 </div>
@@ -252,6 +254,29 @@ $(document).ready(function(){
             do_vote($(this), $(this).parent().children('input').val(), 'accept');
         });
     });
+
+    $('.add-comment').each(function(){
+        elem = $(this)
+
+        elem.click(function(){
+            show_add_comment($(this).parent(), $(this).parent().children('input').val());
+        });
+    });
+
 });
+
+
+function show_add_comment(parent, post_id){
+    csrf_html = parent.find("input[name='csrfmiddlewaretoken']").parent().html()
+    parent.html('\
+    <form action="{{ feincms_page.get_absolute_url }}q/' + post_id + '/comment/" method="post">            \
+        ' + csrf_html + ' \
+        <div><textarea name="content" rows="4" cols="80"></textarea></div>            \
+        <div><input type="submit" value="Add Comment"></div>        \
+    </form>            \
+     \
+    '
+    )
+}
 </script>
 {% endblock %}

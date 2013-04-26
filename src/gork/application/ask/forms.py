@@ -105,3 +105,11 @@ class AnswerForm(forms.Form, BootstrapForm):
         validators=[valid_tag],
         widget=forms.TextInput(attrs={'class': '', 'placeholder': P_TAG}),
     )
+
+
+class CommentForm(forms.Form, BootstrapForm):
+    content = forms.CharField(
+        max_length=1000,
+        validators=[valid_content],
+        widget=forms.Textarea(attrs={'cols': '80', 'rows': '15', 'id': 'editor'}),
+    )
