@@ -14,6 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import TemplateResponseMixin, View
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.models import get_current_site
+from django.template.loader import render_to_string
 from feincms.content.application.models import app_reverse
 from gbase.utils import class_view_decorator, default_redirect
 from gauth.forms import *
@@ -568,6 +569,7 @@ class ChangePasswordView(FormView):
         subject = render_to_string("gauth/email/password_change_subject.txt", ctx)
         subject = "".join(subject.splitlines())
         message = render_to_string("gauth/email/password_change.txt", ctx)
+        from django.core.mail import send_mail
         send_mail(subject, message, GAUTH_DEFAULT_FROM_EMAIL, [user.email])
 
 

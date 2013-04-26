@@ -18,11 +18,11 @@
       <img src="{{ object.avatar }}" class="img-circle" alt="{% trans 'Your avatar' %}">
       {% if request.user == object or request.user.is_superuser %}
       <ul class="navbar">
-    <li><span>{% trans "view details" %}</span></li>
-    <li><a href="{% url 'gauth-edit' user.id %}">{% trans "edit details" %}</a></li>
-    <li><a href="{% url 'gauth-password-change' %}">{% trans "change password" %}</a></li>
-  </ul>
-  {% endif %}
+        <li><a href="{% url 'gauth-detail' request.user.id %}">{% trans "view details" %}</a></li>
+        <li>{% trans "edit details" %}</li>
+        <li><a href="{% url 'gauth-password-change' %}">{% trans "change password" %}</a></li>
+      </ul>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -34,8 +34,8 @@
   <form method="POST" action="{% url 'gauth-edit' user.pk %}" class="form-horizontal" >
     {% csrf_token %}
     {{ form.as_bootstrap }}
-    <div>
-      <button class="btn btn-primary" type="submit">Save</button>
+    <div class="control-group">
+      <div class="controls"><button type="submit" class="btn btn-primary">{% trans "Save" %}</button></div>
     </div>
   </form>
   </div>

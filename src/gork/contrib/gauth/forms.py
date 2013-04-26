@@ -228,6 +228,12 @@ class GUserEditForm(forms.ModelForm, BootstrapForm):
             'last_login',
             'is_active',
             'qa_score',
+            'user_type',
+            'about_me_html',
+            'bronze_badges',
+            'silver_badges',
+            'gold_badges',
+            'new_messages',
         )
 
 

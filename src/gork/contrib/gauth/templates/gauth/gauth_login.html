@@ -4,12 +4,20 @@
 {% block title %}{{ block.super }}{% trans 'Log in' %}{% endblock title %}
 
 {% block account-content %}
-<h3 class="title">{{ SITE_NAME }}: {% trans "Login" %}</h3>
-<form method="post" class="form-horizontal" action="{% url 'gauth-login' %}" id="form-login">
-{% csrf_token %}
-  {{ form.as_bootstrap }}
-  <div class="control-group">
-    <div class="controls"><button type="submit" class="btn">{% trans "Login" %}</button></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12 pad">
+      <h3 class="title">{{ SITE_NAME }}: {% trans "Login" %}</h3>
+      <div class="holder">
+        <form method="post" class="form-horizontal" action="{% url 'gauth-login' %}" id="form-login">
+        {% csrf_token %}
+        {{ form.as_bootstrap }}
+        <div class="control-group">
+          <div class="controls"><button type="submit" class="btn">{% trans "Login" %}</button></div>
+        </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</div>
 {% endblock account-content %}

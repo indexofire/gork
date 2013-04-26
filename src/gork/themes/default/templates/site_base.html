@@ -135,11 +135,6 @@
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap-typeahead.js"></script>
 {% else %}
 <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap.min.js"></script>
-{{ feincms_page.content.media.js }}
-{{ feincms_page.object.media.js }}
-
-{% if debug %}
-{% else %}
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5926586-4']);
@@ -152,6 +147,8 @@
 })();
 </script>
 {% endif %}
+{{ feincms_page.content.media.js }}
+{{ feincms_page.object.media.js }}
 {% endblock foot_static %}
 </body>
 </html>
