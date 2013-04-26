@@ -3,7 +3,8 @@
 
 {% block msg-content %}
 <h3 class="title">{% trans "View Message" %}</h3>
-<dl class="message-headers">
+<div class="holder">
+  <dl class="dl-horizontal">
   <dt>{% trans "Subject" %}</dt>
   <dd><strong>{{ message.subject }}</strong></dd>
   <dt>{% trans "Sender" %}</dt>
@@ -12,11 +13,12 @@
   <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
   <dt>{% trans "Recipient" %}</dt>
   <dd>{{ message.recipient }}</dd>
+  <dt>{% trans "Content" %}</dt>
+  <dd>{{ message.body|linebreaksbr }}</dd>
 </dl>
-{{ message.body|linebreaksbr }}
-
 {% ifequal message.recipient.pk user.pk %}
 <a href="{% url 'gmessage-reply' message.id %}">{% trans "Reply" %}</a>
 {% endifequal %}
 <a href="{% url 'gmessage-delete' message.id %}">{% trans "Delete" %}</a>
+</div>
 {% endblock msg-content %}
