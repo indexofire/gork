@@ -4,7 +4,8 @@
 {% block ask-content %}
 <div class="pad holder">
 <form class="form-horizontal" action="{% app_reverse 'ask-question' 'ask.urls' %}" method="POST">{% csrf_token %}
-  {{ form.as_bootstrap }}
+  {{ form_errors }}
+  {{ form.as_p }}
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn">{% trans 'Submit' %}</button>

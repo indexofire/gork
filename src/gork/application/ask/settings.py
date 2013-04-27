@@ -180,8 +180,8 @@ TARGET_COUNT_MAP = {
     "unanswered": "Unanswered",
 }
 
-MIN_POST_SIZE = 10
-MAX_POST_SIZE = 100000
+MIN_POST_SIZE = 6
+MAX_POST_SIZE = 250000
 
 # google analytics tracker and domain
 GOOGLE_TRACKER = ""

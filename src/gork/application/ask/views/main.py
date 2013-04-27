@@ -56,7 +56,7 @@ def show_post(request, id):
 @login_required()
 def reply_question(request, id):
     form_class = AnswerForm
-    post = Post.objects.get(id=id)
+    post = Post.objects.select_related().get(id=id)
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
@@ -77,8 +77,13 @@ def reply_question(request, id):
 
             return HttpResponseRedirect(app_reverse("ask-detail", 'ask.urls', args=id))
         else:
-            error = 'Form is wrong!'
-            return 'ask/ask_new_post.html', {'error': error}
+            return 'ask/ask_new_post.html', {
+                'form_error': form.errors,
+                'q': post,
+                'nodes': post.get_descendants().select_related(),
+                'tags': tag_list(),
+                'form': form_class(),
+            }
     else:
         form = form_class()
 
@@ -92,7 +97,6 @@ def comment_post(request, id):
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            print 'True'
             comment = Post.objects.create(
                 author=request.user,
                 content=form.cleaned_data['content'],
@@ -108,7 +112,10 @@ def comment_post(request, id):
                 comment.tags.add(tag)
             comment.save()
 
-            return HttpResponseRedirect(app_reverse("ask-index", 'ask.urls'))
+            return HttpResponseRedirect(app_reverse("ask-detail", 'ask.urls'))
+
+        else:
+            return 'ask/ask_detail.html', {'form_errors': form.errors}
 
 
 @login_required()

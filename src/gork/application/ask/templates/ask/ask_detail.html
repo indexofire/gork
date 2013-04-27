@@ -8,59 +8,106 @@
 {% endblock breadcrumbs %}
 
 {% block ask-content %}
+<div class="pad">
+  <h3 class="title">{% trans "Question" %}: {{ q.title }}</h3>
+    <div class="menu_entry">
+      <div class="vote-box" style="width:80px;float:left">
+          <div class="vote">
+            <input type="hidden" value="{{ node.id }}">
+            <div class="vote-up vote-off" data-original-title="Click to upvote">+</div>
+            <div class="vote-count">{{ q.score }}</div>
+            <div class="vote-down vote-off" data-original-title="Click to updown">-</div>
+            </div>
+          </div>
+          <div class="node-content">
+            <div class="avatar"><a href="{% url 'gauth-detail' q.author.id %}"><img src="{{ q.author.avatar }}" alt="avatar"></a></div>
+            <div class="content">{{ q.content|safe }}</div>
+          </div>
+        </div>
+      </div>
+
 <style>
+.menu_border {
+  border-bottom: 1px solid #ECECEC;
+}
+.children .menu_border {
+  border-bottom: 0px;
+}
 div.disabled {
   cursor: default;
 }
+.node-content{
+  margin-left: 100px;
+}
+.node-content .content {
+  margin-right: 100px;
+  min-height: 100px;
+}
+.node-content .avatar {
+  float: right;
+}
+.children .node-content .avatar {
+  float: left;
+}
+.children .node-content .avatar img{
+  width: 30px;
+  height: 30px;
+}
+.children {
+  background: #EEE;
+  margin: 10px 0px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  padding: 5px 0px 0px 0px;
+}
+.children .vote-box,
+.children .comment  {
+  display: none;
+}
+.children .node-content {
+  margin-left: 0px;
+}
+.children .node-content .content {
+  min-height: 40px;
+  margin: 0px 10px 0px 40px;
+}
+.children .node-content .avatar {
+  padding-top: 5px;
+}
 </style>
-<div class="pad">
-  <h3 class="title">{% trans "Question" %}: {{ q.title }}</h3>
-  <div class="content" style="padding: 20px 0px">
-    <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span2">
-        <a href="{% url 'gauth-detail' q.author.id %}"><img src="{{ q.author.avatar }}"></a><br>author: {{ q.author.username }}
-      </div>
-      <div class="span10">
-        <span>{{ q.content|safe }}</span>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
 
 {% if nodes %}
 <div class="pad">
   <h3 class="title">{% trans "Answers" %}</h3>
-  <table class="table">
-    {% recursetree nodes %}
-    <tr>
-      <td>
-        <div class="vote-box">
-          <div class="vote">
-            <input type="hidden" value="{{ node.id }}">
-            <div class="vote-up vote-off" data-original-title="Click to upvote">&nbsp;</div>
-            <div class="vote-count">{{ node.score }}</div>
-            <div class="vote-down vote-off" data-original-title="Click to updown">&nbsp;</div>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div>
-        {{ node.content|safe }}
-        {{ node.author }}
+  {% recursetree nodes %}
+  <div class="menu_entry menu_border">
+    <div class="vote-box" style="width:80px;float:left">
+      <div class="vote">
+        <input type="hidden" value="{{ node.id }}">
+        <div class="vote-up vote-off" data-original-title="Click to upvote">+</div>
+        <div class="vote-count">{{ node.score }}</div>
+        <div class="vote-down vote-off" data-original-title="Click to updown">-</div>
       </div>
-      <div>
-        <div style="display:none">{% csrf_token %}</div>
+    </div>
+
+    <div class="node-content">
+      <div class="avatar"><a href="{% url 'gauth-detail' q.author.id %}"><img src="{{ node.author.avatar }}" alt="avatar"></a></div>
+      <div class="content">{{ node.content|safe }}</div>
+      <div class="pull-right"><span style="font-size:11px">{{ node.creation_date }}</span></div>
+
+      <div class="comment">
+        <div class="csrf">{% csrf_token %}</div>
         <input type="hidden" value="{{ node.id }}">
         <a class="add-comment"><span class="label">{% trans 'Comment' %}</span></a>
       </div>
-        {% if not node.is_leaf_node %}<ul class="children nav">{{ children }}</ul>{% endif %}
-      </td>
-    </tr>
-    {% endrecursetree %}
-  </table>
 
+    {% if not node.is_leaf_node %}
+      <div class="children">{{ children }}</div>
+    {% endif %}
+    </div>
+  </div>
+  {% endrecursetree %}
 </div>
 {% endif %}
 
@@ -271,7 +318,8 @@ function show_add_comment(parent, post_id){
     parent.html('\
     <form action="{{ feincms_page.get_absolute_url }}q/' + post_id + '/comment/" method="post">            \
         ' + csrf_html + ' \
-        <div><textarea name="content" rows="4" cols="80"></textarea></div>            \
+        {{ form_errors }} \
+        <div><textarea name="content" rows="4" id="editor" cols="80"></textarea></div>            \
         <div><input type="submit" value="Add Comment"></div>        \
     </form>            \
      \
