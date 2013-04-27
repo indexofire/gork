@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'gauth',
     'gform',
     'gtag',
+    'gmessage',
     'know',
     'know.plugins.attachments',
     'know.plugins.notifications',

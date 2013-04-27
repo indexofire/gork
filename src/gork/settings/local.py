@@ -19,7 +19,6 @@ MIDDLEWARE_CLASSES += (
 
 INSTALLED_APPS += (
     'debug_toolbar',
-    'gmessage',
     'ask',
 )
 
