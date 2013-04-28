@@ -20,6 +20,7 @@ MIDDLEWARE_CLASSES += (
 INSTALLED_APPS += (
     'debug_toolbar',
     'ask',
+    'feedz',
 )
 
 INTERNAL_IPS = (

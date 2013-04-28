@@ -8,9 +8,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^favicon\.ico/$', RedirectView.as_view(url='%s/img/favicon.ico' % settings.STATIC_URL), name='icon'),
-    url(r'^admin/', include(admin.site.urls), name='site-admin'),
+    url(r'^g7N1fjaz823/', include(admin.site.urls), name='site-admin'),
     url(r'^auth/', include('gauth.urls')),
     url(r'^msg/', include('gmessage.urls'), name='msg'),
     #url(r'^gallery/', include('gallery.urls')),
@@ -28,24 +29,25 @@ urlpatterns = patterns('',
 
 
 from know.urls import get_pattern as get_wiki_pattern
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
     #(r'^notify/', get_notify_pattern()),
     (r'^know/', get_wiki_pattern()),
 )
 
 # default url route
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
     url(r'^', include('feincms.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'),
-            'django.views.static.serve', {'document_root': settings.MEDIA_ROOT},
-        ),
+            'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}, ),
         url(r'^%s/(?P<path>.*)$' % settings.STATIC_URL.strip('/'),
-            'django.views.static.serve', {'document_root': settings.STATIC_ROOT},
-        ),
+            'django.views.static.serve', {'document_root': settings.STATIC_ROOT}, ),
     )
