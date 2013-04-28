@@ -4,7 +4,7 @@
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext_lazy as _
+#from django.utils.translation import ugettext_lazy as _
 from feincms.content.application.models import app_reverse
 #from gauth.models import GUser
 from gtag.models import Tag  # , TaggedItem
@@ -29,7 +29,6 @@ def tag_post(request, tag):
 
 def ask_index(request):
     qs = Post.objects.filter(level=0).select_related()
-    print tag_list()
     return 'ask/ask_index.html', {
         'qs': qs,
         'tags': tag_list(),

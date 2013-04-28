@@ -29,7 +29,7 @@ class ArticleQuerySet(QuerySet):
         else:
             q = self.filter(Q(other_read=True) |
                             Q(owner=user) |
-                            (Q(group__user=user) & Q(group_read=True))
+                            (Q(group__guser=user) & Q(group_read=True))
                             )
         return q
 
@@ -43,7 +43,7 @@ class ArticleQuerySet(QuerySet):
         else:
             q = self.filter(Q(other_write=True) |
                             Q(owner=user) |
-                            (Q(group__user=user) & Q(group_write=True))
+                            (Q(group__guser=user) & Q(group_write=True))
                             )
         return q
 
@@ -64,8 +64,8 @@ class ArticleFkQuerySetMixin():
             # https://github.com/benjaoming/django-know/issues/67
             q = self.filter(Q(article__other_read=True) |
                             Q(article__owner=user) |
-                            (Q(article__group__user=user) & Q(article__group_read=True))
-                            ).distinct()
+                            (Q(article__group__guser=user) & Q(article__group_read=True))
+                            )
         return q
 
     def can_write(self, user):
@@ -79,7 +79,7 @@ class ArticleFkQuerySetMixin():
             # https://github.com/benjaoming/django-know/issues/67
             q = self.filter(Q(article__other_write=True) |
                             Q(article__owner=user) |
-                            (Q(article__group__user=user) & Q(article__group_write=True))
+                            (Q(article__group__guser=user) & Q(article__group_write=True))
                             ).distinct()
         return q
 
