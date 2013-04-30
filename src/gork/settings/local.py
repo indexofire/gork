@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
+import djcelery
 from gork.settings.base import *
 
+djcelery.setup_loader()
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -21,7 +24,17 @@ INSTALLED_APPS += (
     'debug_toolbar',
     'ask',
     'feedz',
+    'djcelery',
+    'entrez',
 )
+
+#BROKER_HOST = "localhost"
+#BROKER_PORT = 5672
+#BROKER_PASSWORD = "local"
+#BROKER_USER = "local"
+#BROKER_VHOST = "mark-desktop"
+#BROKER_URL = "amqp://local:local@mark-desktop:5672//"
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
 INTERNAL_IPS = (
     '127.0.0.1',
