@@ -108,6 +108,7 @@ Page.create_content_type(
         ('know.urls', 'Knowledge Application'),
         ('ask.urls', 'Ask Application'),
         ('article.urls', 'Article Application'),
+        ('entrez.urls', 'Entrez Utils'),
     ),
 )
 

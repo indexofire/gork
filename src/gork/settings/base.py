@@ -5,11 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env_variable(var_name):
+def get_env(var):
     try:
-        return os.environ['var_name']
+        return os.environ[var]
     except KeyError:
-        raise ImproperlyConfigured("Set the %s environment variable" % var_name)
+        raise ImproperlyConfigured("Set the %s environment variable" % var)
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'contrib'))
@@ -26,9 +26,6 @@ ADMINS = (
     ('Mark Renton', 'indexofire@gmail.com'),
 )
 MANAGERS = ADMINS
-ALLOWED_HOSTS = [
-    'www.hzcdclabs.org',
-]
 
 TIME_ZONE = 'Asia/Shanghai'
 LANGUAGE_CODE = 'zh_CN'
@@ -42,7 +39,6 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-#SECRET_KEY = get_env_variable("DJANGO_SECRET_KEY")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')

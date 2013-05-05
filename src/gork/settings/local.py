@@ -28,12 +28,6 @@ INSTALLED_APPS += (
     'entrez',
 )
 
-#BROKER_HOST = "localhost"
-#BROKER_PORT = 5672
-#BROKER_PASSWORD = "local"
-#BROKER_USER = "local"
-#BROKER_VHOST = "mark-desktop"
-#BROKER_URL = "amqp://local:local@mark-desktop:5672//"
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
 INTERNAL_IPS = (
@@ -47,7 +41,6 @@ SECRET_KEY = '007'
 
 SITE_THEME = 'default',
 
-
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'assets/'),
     os.path.join(PROJECT_ROOT, 'themes/%s/assets/' % SITE_THEME),
@@ -55,10 +48,3 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'themes/%s/templates/' % SITE_THEME),
 )
-
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'hzcdclabs@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ["EMAIL_PWD"]
-EMAIL_USE_TLS = True
