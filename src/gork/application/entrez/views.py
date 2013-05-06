@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.text import slugify
 from feincms.content.application.models import app_reverse
 from entrez.models import EntrezEntry, EntrezTerm
 from entrez.forms import AddTermForm
@@ -31,7 +32,7 @@ def term_list(request, slug):
     tpl = 'entrez/entrez_term_list.html'
     # todo: permission to check other user's term
     term = EntrezTerm.objects.get(slug=slug)
-    objects = EntrezEntry.objects.filter(term=term).select_related()
+    objects = EntrezEntry.objects.filter(term=term, read=False).select_related()
     terms = EntrezTerm.objects.filter(owner=request.user).select_related()
     form = AddTermForm()
     ctx = {
@@ -48,25 +49,38 @@ def add_term(request):
     form_class = AddTermForm
     if request.method == 'POST':
         form = form_class(request.POST)
+
+        #if form.is_valid():
+        #    term = EntrezTerm.objects.create(
+        #        name=form.cleaned_data["name"],
+                #slug=form.cleaned_data["slug"],
+        #        db=form.cleaned_data["db"],
+        #        period=form.cleaned_data["period"],
+        #        owner=request.user,
+        #        term=form.cleaned_data["term"],
+        #        creation_date=get_current_date(),
+        #        lastedit_date=get_current_date(),
+        #    )
+        #    term.save()
+
         if form.is_valid():
-            term = EntrezTerm.objects.create(
-                title=form.cleaned_data["title"],
-                db=form.cleaned_data["db"],
-                search_period=form.cleaned_data["period"],
-                owner=request.user,
-                condition=form.cleaned_data["term"],
-                creation_date=get_current_date(),
-                lastedit_date=get_current_date(),
-            )
+            term = form.save(commit=False)
+            print term.name
+            term.slug = slugify(term.name)
+            print term.slug
+            term.creation_date = term.lastedit_date = get_current_date()
+            term.owner = request.user
             term.save()
 
-    return app_reverse('entrez-index', )
+        return app_reverse('entrez-index', 'entrez.urls')
+
+    return app_reverse('entrez-index', 'entrez.urls')
 
 
 @csrf_exempt
 def mark_as_read(request):
     if request.method == "POST":
-        entry = get_object_or_404(EntrezEntry, pk=request.POST.get('feed_item_id'))
+        entry = get_object_or_404(EntrezEntry, pk=request.POST.get('entrezitem_id'))
         entry.read = True
         entry.save()
 

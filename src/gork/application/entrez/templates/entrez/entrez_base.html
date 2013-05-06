@@ -1,21 +1,40 @@
 {% extends "site_base.html" %}
-{% load i18n %}
+{% load i18n applicationcontent_tags %}
 
 {% block content %}
 <div class="container-fluid">
-<div class="row-fluid">
+  <div class="row-fluid">
+
   {% block sidebar %}
   <div class="span3">
     <div class="pad">
-    <h3 class="title">{% trans "Term List" %}</h3>
-    <ul class="nav nav-list">
-    {% for term in terms %}
-      <li><a class="pop-term" data-toggle="tooltip" data-placement="top" data-original-title="{{ term.db }}" href="{{ term.get_absolute_url }}">{{ term.name }}</a></li>
-    {% empty %}
-      {% trans "no term yet" %}
-    {% endfor %}
-    </ul>
+      <h3 class="title">
+      {% trans "Term List" %}
+        <span class="pull-right" style="padding:8px">
+          <a href="#AddTermModal" role="button" data-toggle="modal"><span class="icon-plus-sign"></span></a>
+        </span>
+      </h3>
+      {% for term in terms %}
+      <div class="menu_entry"{% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}>
+        <a class="pop-term" data-toggle="tooltip" data-placement="top" data-original-title="{{ term.db }}" href="{{ term.get_absolute_url }}">{{ term.name }}</a>
+      </div>
+      {% empty %}
+        {% trans "no term yet" %}
+      {% endfor %}
+    </div>
   </div>
+  <div id="AddTermModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{% trans "Add Term" %}</h3>
+  </div>
+  <form class="form-horizontal" action="{% app_reverse 'entrez-add-term' 'entrez.urls' %}" method="POST" style="margin: 20px 0px 0px 0px">{% csrf_token %}
+    {{ form.as_bootstrap }}
+    <div class="form-actions" style="margin-bottom:0px">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+      <button class="btn btn-primary" name="submit">{% trans "Submit" %}</button>
+    </div>
+  </form>
   </div>
   {% endblock sidebar %}
 
@@ -24,7 +43,19 @@
 </div>
 <script>
 $(document).ready(function(){
-  $('.pop-term').tooltip('hide');
+    $('.pop-term').tooltip('hide');
+    //$('.un-read').waypoint(function(direction) {
+    //    mark_read($(this).attr('id'));
+    //});
+
+    function mark_read(item_id){
+        $.ajax({
+            type: "POST",
+            url: "{% app_reverse 'entrez-mark-as-read' 'entrez.urls' %}",
+            data: {'entrezitem_id': item_id},
+        });
+    }
 });
+</script>
 </script>
 {% endblock content %}

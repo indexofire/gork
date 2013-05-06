@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
+from django.utils.text import slugify
 from django.core.mail import send_mail
 from feincms.content.application import models as app_models
 import entrez
@@ -27,6 +28,12 @@ class EntrezTerm(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    '''
+    def save(self):
+        self.slug = slugify(self.name)
+        super(EntrezTerm, self).save()
+    '''
 
     @app_models.permalink
     def get_absolute_url(self):
@@ -202,4 +209,8 @@ class EntrezEntry(models.Model):
 
     @property
     def get_db_badge(self):
-        return "<span class=\"badge\">%s</span>" % self.db
+        return mark_safe("<span class=\"pull-left label\" style=\"margin: 8px\">%s</span>" % self.db)
+
+    @property
+    def real_url(self):
+        return mark_safe("http://www.ncbi.nlm.nih.gov/%s/%s/" % (self.db, self.eid))

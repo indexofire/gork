@@ -1,18 +1,7 @@
 # -*- coding: utf-8 -*-
 from celery import task
-from entrez.utils import get_current_date, fetch_queryset
+from entrez.utils import get_current_date
 from entrez.models import EntrezTerm
-
-
-@task()
-def fetch_entry(**kwargs):
-    """
-    Task for fetch entrez.
-    """
-    queryset = EntrezTerm.objects.filter(search_period=kwargs["period"]).select_related()
-
-    if queryset:
-        fetch_queryset(queryset)
 
 
 @task()

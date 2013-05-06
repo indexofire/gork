@@ -26,7 +26,18 @@ INSTALLED_APPS += (
     'feedz',
     'djcelery',
     'entrez',
+    'endless_pagination',
+    #'actstream',
 )
+
+#ACTSTREAM_SETTINGS = {
+#    'MODELS': ('gauth.guser', 'auth.group', 'sites.site', 'comments.comment'),
+#    'MANAGER': 'actstream.managers.ActionManager',
+#    'FETCH_RELATIONS': True,
+#    'USE_PREFETCH': True,
+    #'USE_JSONFIELD': True,
+    #'GFK_FETCH_DEPTH': 1,
+#}
 
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 

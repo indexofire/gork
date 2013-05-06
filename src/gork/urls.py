@@ -15,6 +15,7 @@ urlpatterns = patterns(
     url(r'^auth/', include('gauth.urls')),
     url(r'^msg/', include('gmessage.urls')),
     url(r'^know/', get_wiki_pattern()),
+    #url(r'^activity/', include('actstream.urls')),
 )
 
 if settings.DEBUG:
