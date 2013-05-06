@@ -8,10 +8,10 @@
       <div class="pad">
         <h3 class="title">{% trans "Menu" %}</h3>
         {% block msg-menu %}
-        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-inbox' %}">{% trans "Inbox" %}</a></div>
-        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-outbox' %}">{% trans "Sent Messages" %}</a></div>
-        <div class="menu_entry" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-compose' %}">{% trans "New Message" %}</a></div>
-        <div class="menu_entry"><a href="{% url 'gmessage-trash' %}">{% trans "Trash" %}</a></div>
+        <div class="menu-item" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-inbox' %}">{% trans "Inbox" %}</a></div>
+        <div class="menu-item" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-outbox' %}">{% trans "Sent Messages" %}</a></div>
+        <div class="menu-item" style="border-bottom: 1px solid #EEE"><a href="{% url 'gmessage-compose' %}">{% trans "New Message" %}</a></div>
+        <div class="menu-item"><a href="{% url 'gmessage-trash' %}">{% trans "Trash" %}</a></div>
         {% endblock msg-menu %}
       </div>
     </div>

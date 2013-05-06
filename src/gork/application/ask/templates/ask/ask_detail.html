@@ -10,7 +10,7 @@
 {% block ask-content %}
 <div class="pad">
   <h3 class="title">{% trans "Question" %}: {{ q.title }}</h3>
-    <div class="menu_entry">
+    <div class="menu-item">
       <div class="vote-box" style="width:80px;float:left">
           <div class="vote">
             <input type="hidden" value="{{ node.id }}">
@@ -81,7 +81,7 @@ div.disabled {
 <div class="pad">
   <h3 class="title">{% trans "Answers" %}</h3>
   {% recursetree nodes %}
-  <div class="menu_entry menu_border">
+  <div class="menu-item menu_border">
     <div class="vote-box" style="width:80px;float:left">
       <div class="vote">
         <input type="hidden" value="{{ node.id }}">

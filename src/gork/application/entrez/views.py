@@ -23,6 +23,10 @@ def index(request):
     ctx["objects"] = get_user_all_entries(request)
     ctx["terms"] = get_user_all_terms(request)
     ctx["form"] = AddTermForm()
+    from django.db.models import Count
+    ctx["un_read"] = EntrezTerm.objects.annotate(num_entry=Count('term'))
+    for q in ctx["un_read"]:
+        print q.num_entry
 
     return tpl, ctx
 

@@ -7,4 +7,4 @@ from entrez.models import EntrezTerm
 class AddTermForm(forms.ModelForm, BootstrapForm):
     class Meta:
         model = EntrezTerm
-        exclude = ('owner', 'creation_date', 'lastedit_date', 'slug')
+        exclude = ('owner', 'creation_date', 'lastedit_date', 'slug', 'unreads')

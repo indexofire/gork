@@ -23,13 +23,13 @@ class EntryTermManager(models.Manager):
 
 class EntrezEntryQuerySet(QuerySet):
     def my_entry_items(self, user):
-        return self.filter(feed__user=user)
+        return self.filter(term__owner=user)
 
     def un_read(self):
-        return self.filter(read=False)
+        return self.filter(read=False).select_related().count()
 
     def read(self):
-        return self.filter(read=True)
+        return self.filter(read=True).select_related()
 
 
 class EntrezEntryManager(models.Manager):

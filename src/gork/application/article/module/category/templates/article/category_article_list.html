@@ -5,7 +5,7 @@
 <div class="pad">
   <h3 class="title">Article List</h3>
   {% for article in article_list %}
-  <div class="menu_entry" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_detail' 'article.urls' article.slug %}">{{ article.title }}</a></div>
+  <div class="menu-item" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_detail' 'article.urls' article.slug %}">{{ article.title }}</a></div>
   {% empty %}
   <div>{% trans 'no article yet' %}</div>
   {% endfor %}
@@ -26,7 +26,7 @@
 <div class="pad">
   <h3 class="title">{% trans "Category" %}</h3>
   {% for ca in categories %}
-  <div class="menu_entry{% if ca == category %} active{% endif %}" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' ca.slug %}">{{ ca.name }}</a></div>
+  <div class="menu-item{% if ca == category %} active{% endif %}" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' ca.slug %}">{{ ca.name }}</a></div>
   {% empty %}
   <div>{% trans 'no category yet' %}</div>
   {% endfor %}

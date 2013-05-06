@@ -6174,10 +6174,10 @@ ul.nav li.nav-header:hover {
 #article-container {
   padding: 10px;
 }
-.menu_entry {
+.menu-item {
   padding: 5px 10px;
 }
-.menu_entry:hover {
+.menu-item:hover {
   background: #F6F6F6;
 }
 div.active {

@@ -4,42 +4,38 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row-fluid">
-
   {% block sidebar %}
-  <div class="span3">
-    <div class="pad">
-      <h3 class="title">
-      {% trans "Term List" %}
-        <span class="pull-right" style="padding:8px">
-          <a href="#AddTermModal" role="button" data-toggle="modal"><span class="icon-plus-sign"></span></a>
-        </span>
-      </h3>
+    <div class="span3 pad">
+      <a class="pull-right" style="padding: 10px" href="#AddTermModal" role="button" data-toggle="modal"><i class="icon-plus-sign"></i></a>
+      <h3 class="title">{% trans "Term List" %}</h3>
       {% for term in terms %}
-      <div class="menu_entry"{% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}>
-        <a class="pop-term" data-toggle="tooltip" data-placement="top" data-original-title="{{ term.db }}" href="{{ term.get_absolute_url }}">{{ term.name }}</a>
+      <div class="menu-item{% if forloop.last %} menu-item-last{% endif %}">
+        <a class="pop-term pull-left entry-count" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'unread items number' %}" href="#">{{ term.unreads }}</a>
+        <a style="margin-left: 46px" href="{{ term.get_absolute_url }}">
+          {{ term.name }}
+        </a>
       </div>
       {% empty %}
         {% trans "no term yet" %}
       {% endfor %}
     </div>
-  </div>
-  <div id="AddTermModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">{% trans "Add Term" %}</h3>
-  </div>
-  <form class="form-horizontal" action="{% app_reverse 'entrez-add-term' 'entrez.urls' %}" method="POST" style="margin: 20px 0px 0px 0px">{% csrf_token %}
-    {{ form.as_bootstrap }}
-    <div class="form-actions" style="margin-bottom:0px">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-      <button class="btn btn-primary" name="submit">{% trans "Submit" %}</button>
-    </div>
-  </form>
-  </div>
-  {% endblock sidebar %}
 
+    <div id="AddTermModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div style="margin-bottom: 20px">
+        <button type="button" class="close" style="padding: 10px" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="title" id="myModalLabel">{% trans "Add Term" %}</h3>
+      </div>
+      <form class="form-horizontal" action="{% app_reverse 'entrez-add-term' 'entrez.urls' %}" method="POST">{% csrf_token %}
+        {{ form.as_bootstrap }}
+        <div class="form-actions">
+          <button class="btn btn-primary" name="submit">{% trans "Submit" %}</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+        </div>
+      </form>
+    </div>
+  {% endblock sidebar %}
   {% block entrez-content %}{% endblock entrez-content %}
-</div>
+  </div>
 </div>
 <script>
 $(document).ready(function(){

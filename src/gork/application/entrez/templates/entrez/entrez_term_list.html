@@ -2,27 +2,8 @@
 {% load i18n %}
 
 {% block entrez-content %}
-<div class="span9">
-  <div class="pad">
+<div class="span9 pad">
   <h3 class="title">{% trans "Entry List" %}</h3>
-  <div class="accordion" id="accordion2">
-  {% for obj in objects %}
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <span class="pull-left label" style="margin: 8px">{{ obj.db }}</span>
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ obj.pk }}"><div style="overflow: hidden; text-overflow:ellipsis"><nobr>{{ obj.title|title }}</nobr></div></a>
-      </div>
-      <div id="{{ obj.pk }}" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <div class="entry-content">{{ obj.content|linebreaks|cut:"<br />" }}</div>
-          <div class="toolbar"><a href="http://http://www.ncbi.nlm.nih.gov/{{ obj.db }}/{{ obj.eid }}/" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a></div>
-        </div>
-      </div>
-    </div>
-  {% empty %}
-    {% trans "no entry yet" %}
-  {% endfor %}
-  </div>
-</div>
+  {% include "entrez/entrez_list.html" %}
 </div>
 {% endblock entrez-content %}

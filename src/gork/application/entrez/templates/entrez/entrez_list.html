@@ -1,0 +1,27 @@
+{% load i18n endless %}
+
+{% paginate objects %}
+
+<div class="accordion" id="accordion2">
+{% for obj in objects %}
+  <div class="accordion-group" style="border-bottom:1px solid #EEE; -webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px;">
+    <div class="accordion-heading">
+    {{ obj.get_db_badge }}
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ obj.pk }}">
+        <div style="overflow: hidden; text-overflow:ellipsis"><nobr>{{ obj.title|title }}</nobr></div>
+      </a>
+    </div>
+
+    <div id="{{ obj.pk }}" class="accordion-body collapse">
+      <div class="accordion-inner" style="border-top:0px">
+        <div class="entry-content">{{ obj.content|linebreaks|cut:"<br />" }}</div>
+        <div class="toolbar"><a href="{{ obj.real_url }}" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a></div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  {% trans "no entry yet" %}
+{% endfor %}
+</div>
+
+{% show_pages %}

@@ -33,7 +33,7 @@
 <div class="pad">
   <h3 class="title">{% trans "Category" %}</h3>
   {% for category in categories %}
-  <div class="menu_entry" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' category.slug %}">{{ category.name }}</a></div>
+  <div class="menu-item" {% if not forloop.last %}style="border-bottom:1px solid #EEE;"{% endif %}><a href="{% app_reverse 'article_category' 'article.urls' category.slug %}">{{ category.name }}</a></div>
   {% empty %}
   <div>{% trans 'no category yet' %}</div>
   {% endfor %}

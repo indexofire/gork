@@ -4,7 +4,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
-from django.utils.text import slugify
 from django.core.mail import send_mail
 from feincms.content.application import models as app_models
 import entrez
@@ -22,18 +21,13 @@ class EntrezTerm(models.Model):
     db = models.CharField(choices=ENTREZ_DATABASE_CHOICES, max_length=30, default='pubmed')
     creation_date = models.DateField(blank=True, null=False)
     lastedit_date = models.DateField(blank=True, null=False)
+    unreads = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-creation_date']
 
     def __unicode__(self):
         return self.name
-
-    '''
-    def save(self):
-        self.slug = slugify(self.name)
-        super(EntrezTerm, self).save()
-    '''
 
     @app_models.permalink
     def get_absolute_url(self):
@@ -42,8 +36,7 @@ class EntrezTerm(models.Model):
     @property
     def get_unread_entry_count(self):
         """Get unread entries numbers of a term"""
-        # will raise a new database hit
-        return EntrezEntry.objects.filter(term=self).un_read().count()
+        return EntrezEntry.objects.filter(term=self).un_read()
 
     @property
     def get_db_badge(self):
@@ -70,7 +63,11 @@ class EntrezTerm(models.Model):
         handler = entrez.efetch(id=','.join(result['IdList']), **fetch_options)
         entries = handler.read().strip('\n').split(spliter)
         handler.close()
+
         EntrezEntry.objects.bulk_create([func(entry) for entry in entries])
+
+        self.unreads = EntrezEntry.objects.filter(term=self).count()
+        self.save()
 
         if not settings.DEBUG and settings.EMAIL_HOST is not None:
             send_mail('Your Search for %s is finished' % self.term,
@@ -85,22 +82,22 @@ class EntrezTerm(models.Model):
         """
         # todo: using lambda is better ?
         if self.db == 'pubmed':
-            search_options = self.search_options(datetype='edat')
-            fetch_options = self.fetch_options(rettype='abstract')
-            spliter = '\n\n\n'
-            func = self.pubmed
+            s_options = self.search_options(datetype='edat')
+            f_options = self.fetch_options(rettype='abstract')
+            f_spliter = '\n\n\n'
+            f_func = self.pubmed
         elif self.db == 'gene':
-            search_options = self.search_options(rettype=False)
-            fetch_options = self.fetch_options()
-            spliter = '\n\n'
-            func = self.gene
+            s_options = self.search_options(rettype=False)
+            f_options = self.fetch_options()
+            f_spliter = '\n\n'
+            f_func = self.gene
         elif self.db == 'epigenomics':
-            search_options = self.search_options()
-            fetch_options = self.fetch_options()
-            spliter = '\n'
-            func = self.epigenomics
+            s_options = self.search_options()
+            f_options = self.fetch_options()
+            f_spliter = '\n'
+            f_func = self.epigenomics
 
-        return search_options, fetch_options, func, spliter
+        return s_options, f_options, f_func, f_spliter
 
     def search_options(self, **kwargs):
         """Return entrez.esearch's options"""
