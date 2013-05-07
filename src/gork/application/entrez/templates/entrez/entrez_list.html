@@ -1,27 +1,33 @@
-{% load i18n endless %}
+{% load i18n endless gfavor_tags %}
 
 {% paginate objects %}
 
-<div class="accordion" id="accordion2">
+<div class="entry-accordion" id="accordion">
 {% for obj in objects %}
-  <div class="accordion-group" style="border-bottom:1px solid #EEE; -webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px;">
-    <div class="accordion-heading">
+  <div class="entry-accordion-group"{% if forloop.last %}style="border-bottom:0px"{% endif %}>
+    <div class="entry-accordion-heading">
     {{ obj.get_db_badge }}
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ obj.pk }}">
-        <div style="overflow: hidden; text-overflow:ellipsis"><nobr>{{ obj.title|title }}</nobr></div>
+      <a class="entry-accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ obj.pk }}">
+        <nobr>{{ obj.title|title }}</nobr>
       </a>
     </div>
-
-    <div id="{{ obj.pk }}" class="accordion-body collapse">
-      <div class="accordion-inner" style="border-top:0px">
+    <div id="{{ obj.pk }}" class="entry-accordion-body collapse">
+      <div class="entry-accordion-inner">
         <div class="entry-content">{{ obj.content|linebreaks|cut:"<br />" }}</div>
         <div class="toolbar"><a href="{{ obj.real_url }}" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a></div>
+        <div class="actions">{% fav_item obj user %}</div>
       </div>
     </div>
   </div>
 {% empty %}
-  {% trans "no entry yet" %}
+  <div class="entry-accordion-group">
+    <div class="entry-accordion-heading">
+      {% trans "no entry yet" %}
+    </div>
+  </div>
 {% endfor %}
 </div>
 
-{% show_pages %}
+<div class="pages">
+  <div class="pagination">{% show_pages %}</div>
+</div>

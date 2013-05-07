@@ -206,7 +206,7 @@ class EntrezEntry(models.Model):
 
     @property
     def get_db_badge(self):
-        return mark_safe("<span class=\"pull-left label\" style=\"margin: 8px\">%s</span>" % self.db)
+        return mark_safe("<span class=\"pull-left label\">%s</span>" % self.db)
 
     @property
     def real_url(self):

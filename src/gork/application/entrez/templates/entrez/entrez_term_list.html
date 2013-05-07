@@ -1,5 +1,5 @@
 {% extends "entrez/entrez_base.html" %}
-{% load i18n %}
+{% load i18n applicationcontent_tags %}
 
 {% block entrez-content %}
 <div class="span9 pad">
@@ -7,3 +7,9 @@
   {% include "entrez/entrez_list.html" %}
 </div>
 {% endblock entrez-content %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{{ feincms_page.get_absolute_url }}">{{ feincms_page.title }}</a></li>
+<li>{{ term.name }}</li>
+{% endblock breadcrumbs %}

@@ -43,6 +43,7 @@ def term_list(request, slug):
         "objects": objects[:30],
         "terms": terms,
         "form": form,
+        "term": term,
     }
     return tpl, ctx
 

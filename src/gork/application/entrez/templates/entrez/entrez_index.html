@@ -7,3 +7,8 @@
   {% include "entrez/entrez_list.html" %}
 </div>
 {% endblock entrez-content %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li>{{ feincms_page.title }}</li>
+{% endblock breadcrumbs %}

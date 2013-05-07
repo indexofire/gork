@@ -27,6 +27,7 @@ INSTALLED_APPS += (
     'djcelery',
     'entrez',
     'endless_pagination',
+    'gfavor',
     #'actstream',
 )
 
