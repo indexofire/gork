@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import json
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.views.decorators.csrf import csrf_exempt
@@ -82,8 +85,24 @@ def add_term(request):
 @csrf_exempt
 def mark_as_read(request):
     if request.method == "POST":
-        entry = get_object_or_404(EntrezEntry, pk=request.POST.get('entrezitem_id'))
-        entry.read = True
-        entry.save()
+        entry = get_object_or_404(EntrezEntry, pk=request.POST.get('entrezentry_id'))
+        if entry.read is True:
+            return HttpResponse()
+        else:
+            entry.read = True
+            entry.save()
+
+    return HttpResponse()
+
+
+@csrf_exempt
+def mark_all_as_read(request):
+    if request.method == "POST":
+        entries = EntrezEntry.objects.filter(owner=request.user, read=False, term=request.POST.get('term'))
+        if entries:
+            return HttpResponse()
+
+        else:
+            entries.update(read=True)
 
     return HttpResponse()

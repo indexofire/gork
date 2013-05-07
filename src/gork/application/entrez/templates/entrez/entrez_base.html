@@ -43,28 +43,27 @@
   </div>
 </div>
 <script>
-
-    $('html').ajaxSend(function(event,xhr,settings){
-        function getCookie(name){
-            var cookieValue=null;
-            if(document.cookie && document.cookie!=''){
-                var cookies=document.cookie.split(';');
-                for(var i=0;i<cookies.length;i++){
-                    var cookie=jQuery.trim(cookies[i]);
-                    if(cookie.substring(0,name.length+1)==(name+'=')){
-                        cookieValue=decodeURIComponent(cookie.substring(name.length+1));break;
-                    }
+$('html').ajaxSend(function(event,xhr,settings){
+    function getCookie(name){
+        var cookieValue=null;
+        if(document.cookie && document.cookie!=''){
+            var cookies=document.cookie.split(';');
+            for(var i=0;i<cookies.length;i++){
+                var cookie=jQuery.trim(cookies[i]);
+                if(cookie.substring(0,name.length+1)==(name+'=')){
+                    cookieValue=decodeURIComponent(cookie.substring(name.length+1));break;
                 }
             }
-            return cookieValue;
         }
+        return cookieValue;
+    }
 
-        if(!(/^http:.*/.test(settings.url)||/^https:.*/.test(settings.url))){
-            xhr.setRequestHeader("X-CSRFToken",getCookie('csrftoken'));
-        }
-    });
+    if(!(/^http:.*/.test(settings.url)||/^https:.*/.test(settings.url))){
+        xhr.setRequestHeader("X-CSRFToken",getCookie('csrftoken'));
+    }
+});
 
-    $('.pop-term').tooltip('hide');
+
     //$('.un-read').waypoint(function(direction) {
     //    mark_read($(this).attr('id'));
     //});
@@ -76,16 +75,17 @@
     //        data: {'entrezitem_id': item_id},
     //    });
     //});
-$(document).ready(function(){
-    $('a.favIt').click(function()){
-        var itemId = $(this).attr('id').split("_")[1];
+$(function(){
+    $('.pop-term').tooltip('hide');
+    $('.favIt').click(function(){
+        var itemId = $(this).attr('data');
         $.ajax({
             type: "POST",
-            url: $(this).attr("href"),
+            url: "{% url 'ajax_fav' %}",
             data: {
                 content_type_id: {{ ct_id }},
-                object_id: $(this).attr("data"),
-                csrftoken: getCookie('csrftoken'),
+                object_id: itemId,
+                //csrftoken: getCookie('csrftoken'),
             },
             dataType: "json",
             timeout: 2000,
@@ -105,6 +105,20 @@ $(document).ready(function(){
             }
         });
         return false;
+    });
+    $('.mark-read').click(function(){
+        var itemId = $(this).attr('data')
+        $.ajax({
+            type: 'POST',
+            url: "{% app_reverse 'entrez-mark-as-read' 'entrez.urls' %}",
+            data: {
+                entrezentry_id: itemId,
+            },
+            dataType: "json",
+            success: function(data, textStatus, XMLHttpRequest){
+                $('#entry-heading-'+itemId).removeClass("unread");
+            }
+        });
     });
 });
 </script>

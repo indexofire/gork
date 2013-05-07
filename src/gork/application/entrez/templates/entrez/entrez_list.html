@@ -6,8 +6,8 @@
 {% for obj in objects %}
   <div class="entry-accordion-group"{% if forloop.last %}style="border-bottom:0px"{% endif %}>
     <div class="entry-accordion-heading">
-    {{ obj.get_db_badge }}
-      <a class="entry-accordion-toggle{% if not obj.read %} unread{% endif %}" data-toggle="collapse" data-parent="#accordion" href="#{{ obj.pk }}">
+      {{ obj.get_db_badge }}
+      <a id="entry-heading-{{ obj.id }}" data="{{ obj.id }}" class="entry-accordion-toggle mark-read{% if not obj.read %} unread{% endif %}" data-toggle="collapse" data-parent="#accordion" href="#{{ obj.pk }}">
         <nobr>{{ obj.title|title }}</nobr>
       </a>
     </div>
@@ -16,7 +16,8 @@
         <div class="entry-content">{{ obj.content|linebreaks|cut:"<br />" }}</div>
         <div class="toolbar">
           <a href="{{ obj.real_url }}" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a>
-          <a class="favIt" id="FavIt_{{ obj.id }}" href="{% url 'ajax_fav' ct_id obj.id %}" data="{{ obj.id }}">Fav it</a>
+          <a class="favIt" data="{{ obj.id }}" href="#">Fav it</a>
+          <a class="mark-read" data="{{ obj.id }}" href="#">Read it</a>
         </div>
       </div>
     </div>
