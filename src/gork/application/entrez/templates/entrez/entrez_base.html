@@ -43,46 +43,68 @@
   </div>
 </div>
 <script>
-$(document).ready(function(){
+
+    $('html').ajaxSend(function(event,xhr,settings){
+        function getCookie(name){
+            var cookieValue=null;
+            if(document.cookie && document.cookie!=''){
+                var cookies=document.cookie.split(';');
+                for(var i=0;i<cookies.length;i++){
+                    var cookie=jQuery.trim(cookies[i]);
+                    if(cookie.substring(0,name.length+1)==(name+'=')){
+                        cookieValue=decodeURIComponent(cookie.substring(name.length+1));break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        if(!(/^http:.*/.test(settings.url)||/^https:.*/.test(settings.url))){
+            xhr.setRequestHeader("X-CSRFToken",getCookie('csrftoken'));
+        }
+    });
+
     $('.pop-term').tooltip('hide');
     //$('.un-read').waypoint(function(direction) {
     //    mark_read($(this).attr('id'));
     //});
 
-    function mark_read(item_id){
+    //function mark_read(item_id){
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "{% app_reverse 'entrez-mark-as-read' 'entrez.urls' %}",
+    //        data: {'entrezitem_id': item_id},
+    //    });
+    //});
+$(document).ready(function(){
+    $('a.favIt').click(function()){
+        var itemId = $(this).attr('id').split("_")[1];
         $.ajax({
             type: "POST",
-            url: "{% app_reverse 'entrez-mark-as-read' 'entrez.urls' %}",
-            data: {'entrezitem_id': item_id},
+            url: $(this).attr("href"),
+            data: {
+                content_type_id: {{ ct_id }},
+                object_id: $(this).attr("data"),
+                csrftoken: getCookie('csrftoken'),
+            },
+            dataType: "json",
+            timeout: 2000,
+            cache: false,
+            beforeSend: function(XMLHttpRequest) {
+                //$("#loader").fadeIn();
+            },
+            error: function(data, XMLHttpRequest, textStatus, errorThrown){
+                $(this).html("Error connecting to the server.");
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+                //$("#loader").fadeOut();
+            },
+            success: function(data, textStatus, XMLHttpRequest){
+                $('#FavIt_'+itemId).html(data.message);
+                $('#FavCounter_'+itemId).html(data.counter);
+            }
         });
-    }
-
-    $(function(){
-        $('a.favIt').live('click', function(){
-            var itemId = $(this).attr('id').split("_")[1];
-            $.ajax({
-                type: "POST",
-                url: $(this).attr("href"),
-                data: {},
-                dataType: "json",
-                timeout: 2000,
-                cache: false,
-                beforeSend: function(XMLHttpRequest) {
-                    //$("#loader").fadeIn();
-                },
-                error: function(data, XMLHttpRequest, textStatus, errorThrown){
-                    $(this).html("Error connecting to the server.");
-                },
-                complete: function(XMLHttpRequest, textStatus) {
-                    //$("#loader").fadeOut();
-                },
-                success: function(data, textStatus, XMLHttpRequest){
-                    $('#FavIt_'+itemId).html(data.message);
-                    $('#FavCounter_'+itemId).html(data.counter);
-                }
-            });
         return false;
-        });
     });
 });
 </script>

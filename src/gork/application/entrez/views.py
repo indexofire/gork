@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.text import slugify
 from feincms.content.application.models import app_reverse
@@ -23,11 +24,7 @@ def index(request):
     ctx["objects"] = get_user_all_entries(request)
     ctx["terms"] = get_user_all_terms(request)
     ctx["form"] = AddTermForm()
-    from django.db.models import Count
-    ctx["un_read"] = EntrezTerm.objects.annotate(num_entry=Count('term'))
-    for q in ctx["un_read"]:
-        print q.num_entry
-
+    ctx["ct_id"] = ContentType.objects.get_for_model(EntrezEntry).id
     return tpl, ctx
 
 

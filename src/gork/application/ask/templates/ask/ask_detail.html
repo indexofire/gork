@@ -2,7 +2,7 @@
 {% load i18n applicationcontent_tags mptt_tags %}
 
 {% block breadcrumbs %}
-<li><i class="icon-home"></i><a href="/">首页</a></li>
+<li><i class="icon-home"></i><a href="/"> {% trans "Home" %}</a></li>
 <li><a href="../../">{{ feincms_page.title }}</a></li>
 <li>{{ q.title }}</li>
 {% endblock breadcrumbs %}
