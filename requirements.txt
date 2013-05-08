@@ -21,3 +21,4 @@ sphinx
 markdown
 django-sekizai
 sorl-thumbnail
+request

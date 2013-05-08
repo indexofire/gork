@@ -6041,8 +6041,8 @@ body {
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
-#site_main {
-  margin: 100px 0px;
+#main {
+  margin: 100px 0px 20px 0px;
 }
 .pad {
   background-color: white;
@@ -6051,6 +6051,9 @@ body {
   box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.1);
   border: 1px solid #E3E3E3;
   margin: 0 0 20px;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
 }
 .navbar .brand {
   padding: 0px;
@@ -6071,9 +6074,6 @@ body {
 }
 #main-menu li.active > a:hover {
   background: #4F4F4F;
-}
-#forum-app ul {
-  list-style: none;
 }
 .breadcrumbs {
   padding: 0px;
@@ -6262,6 +6262,9 @@ div.form-actions {
 }
 .pagination .endless_page_current:first-child {
   border-left-width: 1px;
+}
+.unread {
+  font-weight: bold;
 }
 /*!
  * Bootstrap Responsive v2.3.1

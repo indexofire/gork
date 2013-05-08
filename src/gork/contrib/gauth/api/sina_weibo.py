@@ -100,6 +100,3 @@ class Client(object):
         res = json.loads(self.session.post(url, data=kwargs).text)
         self._assert_error(res)
         return res
-
-API_KEY = '3708643275'
-API_SECRET = 'ae6f295706005b0a29eb1c5eb6e628c8'
