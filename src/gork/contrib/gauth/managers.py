@@ -20,13 +20,15 @@ class GUserManager(BaseUserManager):
         """
         # to record user joined date.
         now = timezone.now()
+
         if not username:
             raise ValueError('The given username must be set')
+
         email = GUserManager.normalize_email(email)
         u = self.model(
             username=username,
             email=email,
-            nickname=nickname,
+            nickname=username,
             is_staff=False,
             is_active=True,
             is_superuser=False,

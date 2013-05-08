@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 from gauth.views import *
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', AccountIndex.as_view(), name='gauth-index'),
     url(r'^(?P<pk>\d+)/$', AccountDetail.as_view(), name='gauth-detail'),
     url(r'^(?P<pk>\d+)/edit/$', AccountEdit.as_view(), name='gauth-edit'),
