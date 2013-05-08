@@ -28,20 +28,8 @@ INSTALLED_APPS += (
     'entrez',
     'endless_pagination',
     'gfavor',
-    'social_auth',
     #'actstream',
 )
-
-AUTHENTICATION_BACKENDS = (
-    #'social_auth.backends.google.GoogleOAuth2Backend',
-    'social_auth.backends.contrib.weibo.WeiboBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
-
-WEIBO_CLIENT_KEY = get_env('WEIBO_KEY')
-WEIBO_CLIENT_SECRET = get_env('WEIBO_SECRET')
 
 #ACTSTREAM_SETTINGS = {
 #    'MODELS': ('gauth.guser', 'auth.group', 'sites.site', 'comments.comment'),
