@@ -23,9 +23,9 @@ class GUserManager(BaseUserManager):
 
         if not username:
             raise ValueError('The given username must be set')
-        print 'email: ' email
+        print 'email: ', email
         email = GUserManager.normalize_email(email)
-        print 'after normalize_email: ' email
+        print 'after normalize_email: ', email
         u = self.model(
             username=username,
             email=email,
