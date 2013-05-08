@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager
+from gauth.settings import GAUTH_DEFAULT_PASSWORD
 
 
 class GUserManager(BaseUserManager):
@@ -23,12 +24,10 @@ class GUserManager(BaseUserManager):
 
         if not username:
             raise ValueError('The given username must be set')
-        print 'email: ', email
-        email = GUserManager.normalize_email(email)
-        print 'after normalize_email: ', email
+
         u = self.model(
             username=username,
-            email=email,
+            email=GUserManager.normalize_email(email),
             nickname=username,
             is_staff=False,
             is_active=True,
@@ -37,9 +36,14 @@ class GUserManager(BaseUserManager):
             date_joined=now,
             **extra_fields
         )
+
         # use set_password to create password.
+        if password is None:
+            password = GAUTH_DEFAULT_PASSWORD
+
         u.set_password(password)
         u.save(using=self._db)
+
         return u
 
     def create_superuser(self, username, email, password, **extra_fields):
@@ -50,6 +54,7 @@ class GUserManager(BaseUserManager):
         u.is_active = True
         u.is_superuser = True
         u.save(using=self._db)
+
         return u
 
 

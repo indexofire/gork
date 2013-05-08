@@ -60,3 +60,9 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'themes/%s/templates/' % SITE_THEME),
 )
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'gauth.backends.RoleBackend',
+    'gauth.backends.PermissionBackend',
+)
