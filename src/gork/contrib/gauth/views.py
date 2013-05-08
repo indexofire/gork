@@ -597,3 +597,42 @@ def login_ajax(request, tpl=None):
 
 def activate_user(request):
     pass
+
+
+def _get_referer_url(request):
+    referer_url = request.META.get('HTTP_REFERER', '/')
+    host = request.META['HTTP_HOST']
+    if referer_url.startswith('http') and host not in referer_url:
+        referer_url = '/'
+    return referer_url
+
+
+def weibo_login(request):
+    weibo_auth_url = '%s?%s' % (settings.WEIBO_AUTH_ENDPOINT,
+        urllib.urlencode({'response_type': 'code',
+                          'client_id': settings.WEIBO_API['app_key'],
+                          'redirect_uri': settings.WEIBO_REDIRECT_URI,
+                        }))
+    request.session['redirect_uri'] = _get_referer_url(request)
+
+    return HttpResponseRedirect(weibo_auth_url)
+
+def weibo_auth(request):
+    if 'error' in request.GET or 'code' not in request.GET:
+        return HttpResponseRedirect('/')
+
+    code = request.GET['code']
+
+    data = weibo.get_auth_json(code)
+
+    blog_user = weibo.get_blog_user(data)
+
+    blog_user['auth_type'] = auth_types['weibo']
+    blog_user['access_token'] = data['access_token']
+    blog_user['expires'] = data['expires']
+    request.session['blog_user'] = blog_user
+
+    next = request.session['redirect_uri']
+    del request.session['redirect_uri']
+
+    return HttpResponseRedirect(next)
