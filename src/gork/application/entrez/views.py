@@ -39,11 +39,13 @@ def term_list(request, slug):
     objects = EntrezEntry.objects.filter(term=term, read=False).select_related()
     terms = EntrezTerm.objects.filter(owner=request.user).select_related()
     form = AddTermForm()
+    ct_id = ContentType.objects.get_for_model(EntrezEntry).id
     ctx = {
         "objects": objects[:30],
         "terms": terms,
         "form": form,
         "term": term,
+        "ct_id": ct_id,
     }
     return tpl, ctx
 

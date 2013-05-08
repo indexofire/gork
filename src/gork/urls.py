@@ -16,7 +16,6 @@ urlpatterns = patterns(
     url(r'^msg/', include('gmessage.urls')),
     url(r'^know/', get_wiki_pattern()),
     url(r'^favor/', include('gfavor.urls')),
-    url(r'^social/', include('social_auth.urls')),
     #url(r'^activity/', include('actstream.urls')),
 )
 
@@ -29,6 +28,7 @@ else:
     urlpatterns += patterns(
         '',
         url(r'^%s/' % settings.ADMIN_URL, include(admin.site.urls)),
+        url(r'^social/', include('social_auth.urls')),
     )
 
 
