@@ -44,7 +44,7 @@ GAUTH_DELETION_EXPUNGE_HOURS = 48
 GAUTH_TIMEZONES = zip(pytz.all_timezones, pytz.all_timezones)
 GAUTH_LANGUAGES = [(code, get_language_info(code).get("name_local")) for code, lang in settings.LANGUAGES]
 GAUTH_DEFAULT_FROM_EMAIL = ''
-
+GAUTH_DEFAULT_PASSWORD = '123456'
 
 # User permission settings
 PERMISSION_MODULE_NAME = getattr(settings, 'PERMISSION_MODULE_NAME', 'permissions')
