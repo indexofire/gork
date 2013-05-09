@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'article',
     'article.module.category',
     #'compressor',
+    'denorm',
 )
 
 MIDDLEWARE_CLASSES = (

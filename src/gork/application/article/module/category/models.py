@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import get_callable
 from denorm import denormalized, depend_on_related
-from feincms.admin import tree_editor
+#from feincms.admin import tree_editor
 from feincms.content.application import models as app_models
 from article.models import Article
 
