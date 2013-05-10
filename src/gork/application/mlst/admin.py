@@ -3,28 +3,33 @@ from django.contrib import admin
 from mlst.models import *
 
 
-class MLSTDataSetAdmin(admin.ModelAdmin):
+class TaxonAdmin(admin.ModelAdmin):
     pass
 
 
-class MLSTTypeAdmin(admin.ModelAdmin):
+class DataSetAdmin(admin.ModelAdmin):
     pass
 
 
-class MLSTStrainAdmin(admin.ModelAdmin):
+class STTypeAdmin(admin.ModelAdmin):
     pass
 
 
-class MLSTLocusAdmin(admin.ModelAdmin):
+class StrainAdmin(admin.ModelAdmin):
     pass
 
 
-class MLSTLocusNumberAdmin(admin.ModelAdmin):
+class LocusAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(MLSTDataSet, MLSTDataSetAdmin)
-admin.site.register(MLSTType, MLSTTypeAdmin)
-admin.site.register(MLSTStrain, MLSTStrainAdmin)
-admin.site.register(MLSTLocus, MLSTLocusAdmin)
-admin.site.register(MLSTLocusNumber, MLSTLocusNumberAdmin)
+class ExperimentDataAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Taxon, TaxonAdmin)
+admin.site.register(DataSet, DataSetAdmin)
+admin.site.register(STType, STTypeAdmin)
+admin.site.register(Strain, StrainAdmin)
+admin.site.register(Locus, LocusAdmin)
+admin.site.register(ExperimentData, ExperimentDataAdmin)

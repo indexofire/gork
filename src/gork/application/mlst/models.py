@@ -2,32 +2,61 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from feincms.extensions import ExtensionsMixin
 from mlst.settings import RAW_FILE_UPLOAD_TO
 
 
-class MLSTDataSet(models.Model):
-    name = models.CharField(max_length=255)
+class Taxon(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField()
     info = models.TextField(blank=True)
-    creat_time = models.DateTimeField(auto_now_add=True)
-    lastedit_time = models.DateTimeField(auto_now=True)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='creator')
-    moderator = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='moderator')
 
     class Meta:
         ordering = ['name']
-        verbose_name = _('DataSet')
-        verbose_name_plural = _('DataSets')
+        verbose_name = _('Taxon')
+        verbose_name_plural = _('Taxon')
 
     def __unicode__(self):
         return self.name
 
 
-class MLSTLocus(models.Model):
+class DataSet(models.Model):
+    taxon = models.ForeignKey(Taxon)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField()
+    info = models.TextField(blank=True)
+    scheme = models.TextField(blank=True)
+    creat_time = models.DateTimeField(auto_now_add=True)
+    lastedit_time = models.DateTimeField(auto_now=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='creator')
+    moderator = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='moderator')
+    remote_uri = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = _('DataSet')
+        verbose_name_plural = _('DataSet')
+
+    def __unicode__(self):
+        return "%s_%s" % (self.taxon, self.name)
+
+
+class Locus(models.Model):
+    LOCUS_STATUS = (
+        (True, _('active')),
+        (False, _('inactive')),
+    )
+    dataset = models.ForeignKey(DataSet)
     name = models.CharField(max_length=10)
     info = models.TextField(blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     lastedit_time = models.DateTimeField(auto_now=True)
-    dataset = models.ForeignKey(MLSTDataSet)
+
+    # set remote uri if dataset scheme is from internet.
+    remote_uri = models.URLField(blank=True)
+
+    # set the locus status if scheme changed.
+    status = models.BooleanField(default=True, choices=LOCUS_STATUS)
 
     class Meta:
         ordering = ['name']
@@ -35,28 +64,31 @@ class MLSTLocus(models.Model):
         verbose_name_plural = _('Locus')
 
     def __unicode__(self):
-        return '%s_%s' % (self.name, self.dataset.name)
+        return self.name
 
 
-class MLSTType(models.Model):
-    dataset = models.ForeignKey(MLSTDataSet, related_name='type_dataset')
-    name = models.CharField(max_length=10)
+class STType(models.Model):
+    dataset = models.ForeignKey(DataSet, related_name='type_dataset')
     value = models.PositiveIntegerField(default=1, unique=True)
+    locus_data = models.TextField(blank=True)
+    creat_time = models.DateTimeField(auto_now_add=True)
+    lastedit_time = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['value']
         verbose_name = _('ST Type')
-        verbose_name_plural = _('ST Types')
+        verbose_name_plural = _('ST Type')
         unique_together = (
             ("dataset", "value"),
         )
 
     def __unicode__(self):
-        return self.name
+        return '%s' % self.value
 
 
-class MLSTStrain(models.Model):
+class Strain(models.Model, ExtensionsMixin):
     STRAINS_CHOICES = (
+        (0, _('Unknown')),
         (1, _('Human')),
         (2, _('Animal')),
         (3, _('Food')),
@@ -64,50 +96,77 @@ class MLSTStrain(models.Model):
         (5, _('Others')),
     )
 
-    dataset = models.ForeignKey(MLSTDataSet, related_name='strain_dataset')
-    sttype = models.ForeignKey(MLSTType, related_name='strain_type')
+    taxon = models.ForeignKey(Taxon)
+    # if there is more than one dataset for one kind of strain.
+    #dataset = models.ManyToManyField(DataSet, related_name='strain_dataset')
+
+    # same as upper
+    sttype = models.ForeignKey(STType, related_name='strain_type')
+
+    # information of submittor
     submittor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='submittor')
+
+    # strain create time.
     submit_time = models.DateTimeField(auto_now_add=True)
+
+    # each strain should be only one id named.
     strain_id = models.CharField(max_length=50)
+
+    # background information about this strain.
     strain_info = models.TextField(blank=True)
-    serotype = models.CharField(max_length=50)
-    isolate_from = models.PositiveSmallIntegerField(
+
+    # most kind of strain will afford a serotype for analysing.
+    serotype = models.CharField(max_length=50, blank=True)
+
+    # serotype formula
+    serotype_formula = models.CharField(max_length=50, blank=True)
+
+    # type of isolate source
+    isolate_source = models.PositiveSmallIntegerField(
+        default=0,
         max_length=3,
         choices=STRAINS_CHOICES,
         help_text=_('Strain isolate from human or animal, etc'),
     )
-    isolate_year = models.CharField(max_length=4)
-    isolate_country = models.CharField(max_length=50)
-    cc = models.CharField(max_length=50)
-    data_source = models.CharField(max_length=50)
+
+    # isolate time information
+    isolate_year = models.CharField(max_length=4, blank=True)
+
+    # isolate geo information
+    isolate_country = models.CharField(max_length=50, blank=True)
+
+    # most of isolates will be assign to a clone complex.
+    cc = models.CharField(max_length=50, blank=True)
+
+    # data from other mlst database or local upload.
+    data_source = models.CharField(max_length=50, blank=True)
 
     class Meta:
         ordering = ['sttype']
         verbose_name = _('Strain Info')
         verbose_name_plural = _('Strain Info')
-        unique_together = (
-            ("dataset", "sttype"),
-        )
 
     def __unicode__(self):
         return self.strain_id
 
 
-class MLSTLocusNumber(models.Model):
-    #dataset = models.ForeignKey(MLSTDataSet, related_name='seq_dataset')
-    locus = models.OneToOneField(MLSTLocus)
-    value = models.PositiveIntegerField(default=1)
-    seq = models.TextField(
-        default='atcg',
-        help_text=_('fasta format(pure text) content of nucletides'),
-    )
+class ExperimentData(models.Model):
+    locus = models.OneToOneField(Locus)
     raw = models.FileField(upload_to=RAW_FILE_UPLOAD_TO, blank=True)
-    creat_time = models.DateTimeField()
+    value = models.PositiveIntegerField(default=1, unique=True)
+    sttype = models.ManyToManyField(STType)
+    sequence = models.TextField(
+        blank=True,
+        help_text=_('fasta format content of loci nucletides'),
+        unique=True,
+    )
+    creat_time = models.DateTimeField(auto_now_add=True)
+    lastedit_time = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['creat_time']
-        verbose_name = _('Locus Number')
-        verbose_name_plural = _('Locus Numbers')
+        verbose_name = _('Experiment Data')
+        verbose_name_plural = _('Experiment Data')
 
     def __unicode__(self):
-        return '%s_%s' % (self.locus.name, self.locus.value)
+        return '%s_%s' % (self.locus.name, self.value)
