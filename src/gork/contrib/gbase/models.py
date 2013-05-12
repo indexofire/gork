@@ -109,6 +109,7 @@ Page.create_content_type(
         ('ask.urls', 'Ask Application'),
         ('article.urls', 'Article Application'),
         ('entrez.urls', 'Entrez Utils'),
+        ('mlst.urls', 'MLST Application'),
     ),
 )
 
