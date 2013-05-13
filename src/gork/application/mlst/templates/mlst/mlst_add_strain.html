@@ -4,7 +4,7 @@
 <div class="span9 pad">
   <h3 class="title">Submit Form</h3>
   <form action="" >{% csrf_token %}
-    <table class="table">{{ form.as_table }}</table>
+    {{ form.as_p }}
   </form>
 </div>
 {% endblock mlst-content %}

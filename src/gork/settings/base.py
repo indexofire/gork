@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'article.module.category',
     #'compressor',
     'denorm',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
