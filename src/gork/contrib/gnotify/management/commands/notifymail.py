@@ -41,11 +41,18 @@ class Command(BaseCommand):
         email.send(fail_silently=False)
 
     def handle(self, *args, **options):
+        daemon = options['daemon']
 
         self.logger = logging.getLogger('gnotify')
 
         if not self.logger.handlers:
-            self.logger.addHandler(logging.StreamHandler(stream=self.stdout))
+            #self.logger.addHandler(logging.StreamHandler(stream=self.stdout))
+            if daemon:
+                handler = logging.FileHandler(filename=notify_settings.NOTIFY_LOG)
+            else:
+                handler = logging.StreamHandler(stream=self.stdout)
+
+            self.logger.addHandler(handler)
             self.logger.setLevel(logging.INFO)
 
         self.logger.info("Starting gnotify e-mail dispatcher")
@@ -53,8 +60,6 @@ class Command(BaseCommand):
         if not notify_settings.SEND_EMAILS:
             print "E-mails disabled - quitting."
             sys.exit()
-
-        daemon = options['daemon']
 
         # Run as daemon, ie. fork the process
         if daemon:
@@ -64,7 +69,8 @@ class Command(BaseCommand):
                 if fpid > 0:
                 # Running as daemon now. PID is fpid
                     self.logger.info("PID: %s" % str(fpid))
-                    pid_file = file('/tmp/daemon-example.pid', "w")
+                    #pid_file = file('/tmp/daemon-example.pid', "w")
+                    pid_file = file(notify_settings.NOTIFY_PID, "w")
                     pid_file.write(str(fpid))
                     pid_file.close()
                     sys.exit(0)
@@ -112,7 +118,7 @@ class Command(BaseCommand):
 
             for setting in settings:
                 context['user'] = setting.user
-                context['notifications']= []
+                context['notifications'] = []
                 #get the index of the tuple corresponding to the interval and get the string name
                 context['digest'] = notify_settings.INTERVALS[[y[0] for y in notify_settings.INTERVALS].index(setting.interval)][1]
                 for subscription in setting.subscription_set.filter(
@@ -124,7 +130,7 @@ class Command(BaseCommand):
                     try:
                         self._send_user_notifications(context, connection)
                         for n in context['notifications']:
-                            n.is_emailed=True
+                            n.is_emailed = True
                             n.save()
                     except smtplib.SMTPException:
                         # TODO: Only quit on certain errors, retry on others.
@@ -133,7 +139,7 @@ class Command(BaseCommand):
 
             connection.close()
             last_sent = datetime.now()
-            elapsed_seconds = ((last_sent - started_sending_at).seconds)
+            elapsed_seconds = (last_sent - started_sending_at).seconds
             time.sleep(
                 max(
                     (min(notify_settings.INTERVALS)[0] - elapsed_seconds) * 60,
