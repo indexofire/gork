@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from sphinxdoc.models import SphinxDocProject, SphinxDoc
+from docs.models import SphinxDocProject, SphinxDoc
 
 
 class SphinxDocProjectAdmin(admin.ModelAdmin):

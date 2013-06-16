@@ -2,15 +2,15 @@
 import json
 import os.path
 import datetime
-from django.core import urlresolvers
+#from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.static import serve
-#from haystack.views import SearchView
-#from sphinxdoc.forms import ProjectSearchForm
-from sphinxdoc.models import SphinxDocProject, SphinxDoc
+from haystack.views import SearchView
+from docs.forms import ProjectSearchForm
+from docs.models import SphinxDocProject, SphinxDoc
 
 
 BUILDDIR = os.path.join('_build', 'json')
@@ -39,8 +39,8 @@ def documentation(request, slug, path):
 
     # genindex and modindex get a special template
     templates = (
-        'sphinxdoc/%s.html' % os.path.basename(path),
-        'sphinxdoc/documentation.html',
+        'docs/%s.html' % os.path.basename(path),
+        'docs/documentation.html',
     )
 
     try:
@@ -97,7 +97,7 @@ def sphinx_serve(request, slug, type_, path):
         path=path,
     )
 
-'''
+
 class ProjectSearchView(SearchView):
     """
     Inherits :class:`SearchView` and handles a search request and displays the
@@ -105,8 +105,7 @@ class ProjectSearchView(SearchView):
 
     """
     def __init__(self):
-        SearchView.__init__(self, form_class=ProjectSearchForm,
-                template='sphinxdoc/search.html')
+        SearchView.__init__(self, form_class=ProjectSearchForm, template='docs/search.html')
 
     def __call__(self, request, slug):
         self.slug = slug
@@ -117,8 +116,7 @@ class ProjectSearchView(SearchView):
         Instantiates the form that should be used to process the search query.
 
         """
-        return self.form_class(self.request.GET, slug=self.slug,
-                searchqueryset=self.searchqueryset, load_all=self.load_all)
+        return self.form_class(self.request.GET, slug=self.slug, searchqueryset=self.searchqueryset, load_all=self.load_all)
 
     def extra_context(self):
         """
@@ -147,4 +145,3 @@ class ProjectSearchView(SearchView):
             'env': env,
             'update_date': update_date,
         }
-'''

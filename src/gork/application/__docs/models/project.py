@@ -15,6 +15,7 @@ from docs.projects.templatetags.projects_tags import sort_version_aware
 from docs.projects.utils import highest_version as _highest, make_api_version
 from gtag.managers import TaggableManager
 from tastyapi.slum import api
+
 from vcs_support.base import VCSProject
 from vcs_support.backends import backend_cls
 from vcs_support.utils import Lock
@@ -88,15 +89,11 @@ class Project(models.Model):
     #Auto fields
     pub_date = models.DateTimeField(_('Publication date'), auto_now_add=True)
     modified_date = models.DateTimeField(_('Modified date'), auto_now=True)
-
     #Generally from conf.py
-    users = models.ManyToManyField(User, verbose_name=_('User'),
-                                   related_name='projects')
+    users = models.ManyToManyField(User, verbose_name=_('User'), related_name='projects')
     name = models.CharField(_('Name'), max_length=255)
     slug = models.SlugField(_('Slug'), max_length=255, unique=True)
-    description = models.TextField(_('Description'), blank=True,
-                                   help_text=_('The reStructuredText '
-                                               'description of the project'))
+    description = models.TextField(_('Description'), blank=True, help_text=_('The reStructuredText description of the project'))
     repo = models.CharField(_('Repository URL'), max_length=100, blank=True,
                             help_text=_('Checkout URL for your code (hg, git, '
                                         'etc.). Ex. http://github.com/'

@@ -6,7 +6,7 @@ import os
 import subprocess
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
-from sphinxdoc.models import SphinxDocProject, SphinxDoc
+from docs.models import SphinxDocProject, SphinxDoc
 
 
 BUILDDIR = '_build'
