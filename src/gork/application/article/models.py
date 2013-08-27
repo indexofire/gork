@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import get_callable
-from feincms.admin import item_editor
+#from feincms.admin import item_editor
 from feincms.admin.item_editor import ItemEditor
 from feincms.models import Base
 from feincms.content.application import models as app_models
@@ -33,7 +33,8 @@ class Article(Base, ContentModelMixin):
     slug = models.SlugField(
         _('slug'),
         max_length=255,
-        help_text=_('generated from the title, only english character, numbers or -'),
+        help_text=_(
+            "generated from the title, only english character, numbers or -"),
         unique=True,
         editable=True,
     )
@@ -50,7 +51,7 @@ class Article(Base, ContentModelMixin):
     )
 
     class Meta:
-        ordering = ['title']
+        ordering = ['-publish_date', 'title']
         verbose_name = _('article')
         verbose_name_plural = _('articles')
 
@@ -64,14 +65,16 @@ class Article(Base, ContentModelMixin):
         return patterns(
             'article.views',
             url(r'^$', 'ArticleList.as_view()', name='article_index'),
-            url(r'^(?P<slug>[a-z0-9_-]+)/$', 'ArticleDetail.as_view()', name='article_detail'),
+            url(r'^(?P<slug>[a-z0-9_-]+)/$', 'ArticleDetail.as_view()',
+                name='article_detail'),
         )
 
     @classmethod
     def remove_field(cls, f_name):
         """Remove a field. Effectively inverse of contribute_to_class"""
         # Removes the field form local fields list
-        cls._meta.local_fields = [f for f in cls._meta.local_fields if f.name != f_name]
+        cls._meta.local_fields = [
+            f for f in cls._meta.local_fields if f.name != f_name]
 
         # Removes the field setter if exists
         if hasattr(cls, f_name):
@@ -93,7 +96,7 @@ class Article(Base, ContentModelMixin):
         return Article.objects.active().filter(pk=self.pk).count() > 0
 
     def save(self, request, *args, **kwargs):
-    #    #self.author = CustomUser.objects.get(id=1)
+    # self.author = CustomUser.objects.get(id=1)
         self.author = request.user
         super(Article, self).save(*args, **kwargs)
 
@@ -118,8 +121,10 @@ class Article(Base, ContentModelMixin):
                     try:
                         fn = get_callable(ext + '.register', False)
                     except ImportError:
-                        fn = get_callable('%s.%s.register' % (here_path, ext), False)
-                # Not a string, so take our chances and just try to access "register"
+                        fn = get_callable(
+                            '%s.%s.register' % (here_path, ext), False)
+                # Not a string, so take our chances and just try to access
+                # "register"
                 else:
                     fn = ext.register
 
@@ -158,7 +163,7 @@ class ArticleAdmin(ItemEditor):
         #(_('Important dates'), {
         #    'fields': ('publication_date', )
         #}),
-        #item_editor.FEINCMS_CONTENT_FIELDSET,
+        # item_editor.FEINCMS_CONTENT_FIELDSET,
     ]
 
     def save_model(self, request, obj, form, change):
