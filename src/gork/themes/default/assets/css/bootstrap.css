@@ -6037,11 +6037,11 @@ a.badge:focus {
   line-height: 30px;
 }
 body {
-  background-image: url('../img/bg.png') !important;
+  background-image: url('../../../img/bg.png') !important;
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
-#main {
+#co-main {
   margin: 100px 0px 20px 0px;
 }
 .pad {
@@ -6090,7 +6090,7 @@ body {
   text-shadow: 0 1px 0 #ffffff;
   line-height: 30px;
   padding: 0px 15px 0px 5px;
-  background: url('../img/breadcrumb_divider.svg') no-repeat 100% 50%;
+  background: url('../../../img/breadcrumb_divider.svg') no-repeat 100% 50%;
 }
 .breadcrumbs .active a {
   color: #333333;
