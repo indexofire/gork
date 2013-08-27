@@ -28,8 +28,14 @@ class DataSet(models.Model):
     scheme = models.TextField(blank=True)
     creat_time = models.DateTimeField(auto_now_add=True)
     lastedit_time = models.DateTimeField(auto_now=True)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='creator')
-    moderator = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='moderator')
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='creator',
+    )
+    moderator = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='moderator',
+    )
     remote_uri = models.URLField(blank=True)
 
     class Meta:
@@ -104,7 +110,10 @@ class Strain(models.Model, ExtensionsMixin):
     sttype = models.ForeignKey(STType, related_name='strain_type')
 
     # information of submittor
-    submittor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='submittor')
+    submittor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='submittor',
+    )
 
     # strain create time.
     submit_time = models.DateTimeField(auto_now_add=True)

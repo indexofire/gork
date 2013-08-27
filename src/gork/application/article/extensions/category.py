@@ -9,7 +9,12 @@ from article.module.category.models import Category
 def register(cls, admin_cls):
     cls.add_to_class(
         'category',
-        models.ForeignKey(Category, verbose_name=_('category'), blank=True, null=True),
+        models.ForeignKey(
+            Category,
+            verbose_name=_('category'),
+            blank=True,
+            null=True
+        ),
     )
     cls._meta.unique_together += [('category', 'slug')]
 

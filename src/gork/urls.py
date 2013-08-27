@@ -11,7 +11,8 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^favicon\.ico/$', RedirectView.as_view(url='%s/img/favicon.ico' % settings.STATIC_URL), name='icon'),
+    url(r'^favicon\.ico/$', RedirectView.as_view(
+        url='%s/img/favicon.ico' % settings.STATIC_URL), name='icon'),
     url(r'^auth/', include('gauth.urls')),
     url(r'^msg/', include('gmessage.urls')),
     url(r'^know/', get_wiki_pattern()),
@@ -45,7 +46,9 @@ if settings.DEBUG:
     urlpatterns += patterns(
         '',
         url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'),
-            'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}, ),
+            'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT},),
         url(r'^%s/(?P<path>.*)$' % settings.STATIC_URL.strip('/'),
-            'django.views.static.serve', {'document_root': settings.STATIC_ROOT}, ),
+            'django.views.static.serve',
+            {'document_root': settings.STATIC_ROOT},),
     )
