@@ -21,13 +21,15 @@ def register(cls, admin_cls):
     @classmethod
     def get_urlpatterns(cls):
         from article.module.category import views
-        return patterns('',
+        return patterns(
+            '',
             url(r'^(?P<category_url>[a-z0-9_/-]+/)articles/(?P<slug>[a-z0-9_-]+)/$',
                 views.CategoryArticleDetail.as_view(), name="article_detail"),
             url(r'^(?P<category_url>[a-z0-9_/-]+/)articles/$',
                 views.CategoryArticleList.as_view(), name='article_category'),
-            url(r'^$', views.CategoryArticleList.as_view(), name='article_index'),
-       )
+            url(r'^$', views.CategoryArticleList.as_view(),
+                name='article_index'),
+        )
     cls.get_urlpatterns = get_urlpatterns
 
     def get_absolute_url(self):
@@ -48,7 +50,6 @@ def register(cls, admin_cls):
             except ValueError:
                 at = len(fields)
             fields.insert(at, 'category')
-
 
 
 '''
