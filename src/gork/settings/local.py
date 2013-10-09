@@ -29,6 +29,7 @@ INSTALLED_APPS += (
     'endless_pagination',
     'gfavor',
     'mlst',
+    'sale',
     #'actstream',
 )
 

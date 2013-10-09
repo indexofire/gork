@@ -11,13 +11,18 @@ class ShoppingItem(models.Model):
     create_time = models.DateTimeField(auto_now=True)
     lastedit_time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-    list = models.ForeignKey('ShoppingList', related_name='shopping_list')
+    shopping_list = models.ForeignKey(
+        'ShoppingList', related_name='shopping_list')
 
     def __unicode__(self):
         return self.id
 
     def get_absolute_url(self):
-        return
+        return self.url
+
+    @property
+    def url(self):
+        return '%s' % self.name
 
 
 class ShoppingList(models.Model):
@@ -25,3 +30,10 @@ class ShoppingList(models.Model):
     lastedit_time = models.DateTimeField()
     creator = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Shopping(models.Model):
+    pass
