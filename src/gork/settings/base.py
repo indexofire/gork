@@ -106,6 +106,7 @@ INSTALLED_APPS = (
     #'compressor',
     'denorm',
     'crispy_forms',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (

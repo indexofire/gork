@@ -1,0 +1,18 @@
+{% load i18n forum_tags applicationcontent_tags %}
+<div>
+<ul style="margin:0px;">
+<li class="topic" style="background: #FCFCFC">
+  <div class="avatar">
+    <a href="{% app_reverse 'profile-detail' 'pows.apps.account.urls' topic.author__username %}" >
+      <img src="{{ topic.author.avatar }}" height="{{ AVATAR_HEIGHT}}" width="{{ AVATAR_WIDTH }}">
+    </a>
+  </div>
+  <p>{{ thread.content|safe }}</p>
+  <div class="fade-in">By <a href="{% app_reverse 'profile-detail' 'pows.apps.account.urls' topic.author__username %}" class="dark">{{ topic.author }}</a> in <a href="{% app_reverse 'forum-forum' 'pows.apps.forum.urls' forum_id %}">{{ topic.forum }}</a> <span class="created">{{ thread.created|lbtimesince }}</span>  {% if request.user.is_authenticated %}
+  <span class="quote-post" style="float:right; padding-left:5px"><a href="{% app_reverse 'forum-reply-topic' 'pows.apps.forum.urls' topic.id %}?qid={{ thread.id }}">{% trans "quote" %}</a></span>
+  {% if request.user == topic.author or user.is_staff %}<span class="edit-post" style="float:right; padding-left:5px"><a href="{% app_reverse 'forum-edit-post' 'pows.apps.forum.urls' thread.id %}">{% trans "edit" %}</a></span>{% endif %}
+  {% endif %}
+  </div>
+</li>
+</ul>
+</div>

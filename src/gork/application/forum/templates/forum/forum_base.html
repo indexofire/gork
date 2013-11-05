@@ -1,0 +1,22 @@
+{% load i18n applicationcontent_tags feincms_page_tags %}
+
+<div id="forum">
+  <div class="row-fluid">
+    <div class="span3">
+      {% block forum_title %}<h3>{% trans "Forum" %}</h3>{% endblock forum_title %}
+      <div class="pad">
+      {% block forum_list %}
+      <ul>
+        {% for f in forums %}
+        <li class="list-item{% if f == forum %} active-item{% endif %}"><a href="{% app_reverse 'forum-forum' 'pows.apps.forum.urls' f.id %}" title="{{ f.description }}">{{ f.name }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endblock forum_list %}
+      </div>
+    </div>
+    <div class="span9">
+      <div>{% block forum_tool %}{% endblock forum_tool %}</div>
+      {% block forum_main %}{% endblock forum_main %}
+    </div>
+  </div>
+</div>
