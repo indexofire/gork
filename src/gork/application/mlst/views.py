@@ -1,17 +1,9 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, get_list_or_404
 from mlst.models import *
-
-
-@login_required
-def index(request):
-    return
-
-
-
-from django import forms
 
 
 class GeneCharField(forms.CharField):
@@ -58,3 +50,18 @@ def add_strain(request, slug):
         form = AddStrainForm(slug)
         return "mlst/mlst_add_strain.html", {'form': form}
         #print form
+
+
+@login_required
+def mlst_index(request):
+    tpl = 'mlst/mlst_index.html'
+    ctx = {}
+    ctx["taxon"] = Taxon.objects.all()
+    return tpl, ctx
+
+
+@login_required
+def taxon_detail(request, slug):
+    tpl = 'mlst/mlst_taxon_detail.html'
+    ctx = {}
+    return tpl, ctx

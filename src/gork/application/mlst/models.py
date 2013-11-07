@@ -19,6 +19,9 @@ class Taxon(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "t/%s" % self.slug
+
 
 class DataSet(models.Model):
     taxon = models.ForeignKey(Taxon)

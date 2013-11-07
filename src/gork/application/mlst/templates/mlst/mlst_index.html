@@ -1,1 +1,7 @@
 {% extends "mlst/mlst_base.html" %}
+
+{% block mlst-content %}
+{% for t in taxon %}
+<div><a href="{{ t.get_absolute_url }}">{{ t.name }}</a></div>
+{% endfor %}
+{% endblock mlst-content %}
