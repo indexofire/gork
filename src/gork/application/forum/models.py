@@ -8,9 +8,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Sum
 from feincms.content.application.models import app_reverse
-from pows.apps.account.models import Profile
-from pows.apps.forum.managers import TopicManager
-from pows.apps.attachment.models import Attachment
+#from pows.apps.account.models import Profile
+#from pows.apps.forum.managers import TopicManager
+#from pows.apps.attachment.models import Attachment
+from forum.managers import TopicManager
 
 
 __all__ = [
