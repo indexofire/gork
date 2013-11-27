@@ -22,7 +22,7 @@ MIDDLEWARE_CLASSES += (
 
 INSTALLED_APPS += (
     'debug_toolbar',
-    #'ask',
+    'ask',
     #'feedz',
     'djcelery',
     'entrez',
